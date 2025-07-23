@@ -4,6 +4,7 @@ import type { User } from '@supabase/supabase-js';
 import React, { createContext, use, useEffect, useReducer, useRef } from 'react';
 import { AuthClientService } from '@/libs/AuthClient';
 import { supabase } from '@/libs/Supabase';
+import { UserDataService } from '@/libs/UserDataService';
 
 // Types - moved here to avoid importing from types file that might reference server code
 export type UserProfile = {
@@ -197,7 +198,7 @@ function authReducer(state: AuthState, action: AuthAction): AuthState {
   return newState;
 }
 
-// Helper function to fetch user data from API
+// Helper function to fetch user data directly from Supabase using RLS
 async function fetchUserData(userId: string): Promise<AuthUser | null> {
   try {
     const { user, error } = await AuthClientService.getCurrentUser();
@@ -206,15 +207,8 @@ async function fetchUserData(userId: string): Promise<AuthUser | null> {
       return null;
     }
 
-    // Fetch additional data from API
-    const response = await fetch(`/api/auth/user?userId=${encodeURIComponent(userId)}`);
-
-    if (!response.ok) {
-      console.error('Failed to fetch user data from API');
-      return user;
-    }
-
-    const { profile, preferences, subscription } = await response.json();
+    // 🚀 直接并行调用 Supabase，使用 RLS 策略保证安全性
+    const { profile, preferences, subscription } = await UserDataService.getUserDataParallel(userId);
 
     return {
       ...user,
@@ -227,6 +221,8 @@ async function fetchUserData(userId: string): Promise<AuthUser | null> {
     return null;
   }
 }
+
+// 备注：如需渐进式加载，可以使用 UserDataService.getUserDataProgressive 方法
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
@@ -473,11 +469,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     try {
-      const result = await AuthClientService.updateUserProfile(state.user.id, profileUpdates);
-      if (result && result.profile) {
+      // 🚀 直接调用 Supabase，使用 RLS 策略
+      const updatedProfile = await UserDataService.updateUserProfile(state.user.id, profileUpdates);
+      
+      if (updatedProfile) {
         const updatedUser: AuthUser = {
           ...state.user,
-          profile: result.profile,
+          profile: updatedProfile,
         };
         dispatch({ type: 'UPDATE_USER', payload: updatedUser });
         return {};
@@ -485,6 +483,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       return { error: 'Failed to update profile' };
     } catch (error) {
+      console.error('Error updating profile:', error);
       return { error: 'Failed to update profile' };
     }
   };
@@ -495,11 +494,13 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     try {
-      const result = await AuthClientService.updateUserPreferences(state.user.id, preferenceUpdates);
-      if (result && result.preferences) {
+      // 🚀 直接调用 Supabase，使用 RLS 策略
+      const updatedPreferences = await UserDataService.updateUserPreferences(state.user.id, preferenceUpdates);
+      
+      if (updatedPreferences) {
         const updatedUser: AuthUser = {
           ...state.user,
-          preferences: result.preferences,
+          preferences: updatedPreferences,
         };
         dispatch({ type: 'UPDATE_USER', payload: updatedUser });
         return {};
@@ -507,6 +508,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
       return { error: 'Failed to update preferences' };
     } catch (error) {
+      console.error('Error updating preferences:', error);
       return { error: 'Failed to update preferences' };
     }
   };
@@ -516,6 +518,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       return;
     }
 
+    // 🚀 使用优化后的数据获取函数
     const completeUser = await fetchUserData(state.user.id);
     if (completeUser) {
       dispatch({ type: 'UPDATE_USER', payload: completeUser });

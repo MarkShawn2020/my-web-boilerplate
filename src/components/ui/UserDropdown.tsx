@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
+import { useLocale } from 'next-intl';
 import { useAuthActions, useAuthUser } from '@/hooks/useAuthUser';
-import { useRouter } from '@/libs/I18nNavigation';
+import { usePathname, useRouter } from '@/libs/I18nNavigation';
 import { Avatar, AvatarFallback, AvatarImage } from './Avatar';
 import { 
   DropdownMenu,
@@ -49,6 +50,12 @@ const LogoutIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
+const LanguageIcon = ({ className }: { className?: string }) => (
+  <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+  </svg>
+);
+
 interface UserDropdownProps {
   className?: string;
 }
@@ -57,6 +64,9 @@ const UserDropdown = ({}: UserDropdownProps) => {
   const { user, isAuthenticated } = useAuthUser();
   const { signOut } = useAuthActions();
   const router = useRouter();
+  const pathname = usePathname();
+  const locale = useLocale();
+  
   const [theme, setTheme] = useState<'system' | 'light' | 'dark'>(() => {
     // Get theme from user preferences or localStorage
     if (user?.preferences?.theme) {
@@ -105,6 +115,11 @@ const UserDropdown = ({}: UserDropdownProps) => {
 
     // Update user preferences
     // TODO: Call API to update preferences
+  };
+
+  const handleLanguageChange = (newLocale: string) => {
+    // Use next-intl's router which handles locale switching correctly
+    router.push(pathname, { locale: newLocale });
   };
 
   const userDisplayName = user.profile?.fullName || user.email || 'User';
@@ -164,6 +179,25 @@ const UserDropdown = ({}: UserDropdownProps) => {
           <span>Command Menu</span>
           <span className="ml-auto text-xs text-muted-foreground">⌘K</span>
         </DropdownMenuItem>
+        
+        <DropdownMenuSeparator />
+        
+        {/* Language Section */}
+        <DropdownMenuLabel>
+          <span className="text-xs font-medium text-muted-foreground">Language</span>
+        </DropdownMenuLabel>
+        
+        {/* Language Options */}
+        <DropdownMenuRadioGroup value={locale} onValueChange={handleLanguageChange}>
+          <DropdownMenuRadioItem value="zh">
+            <LanguageIcon className="w-4 h-4" />
+            <span>中文</span>
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="en">
+            <LanguageIcon className="w-4 h-4" />
+            <span>English</span>
+          </DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
         
         <DropdownMenuSeparator />
         

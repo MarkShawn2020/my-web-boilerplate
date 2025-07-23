@@ -15,6 +15,13 @@
       "when": 1753258646806,
       "tag": "0001_broad_speed",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1753313800000,
+      "tag": "0002_add_rls_policies",
+      "breakpoints": true
     }
   ]
 }

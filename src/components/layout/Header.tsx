@@ -147,9 +147,12 @@ const Header = () => {
                                 {item.name}
                             </Link>
                         ))}
-                        <div className="pl-4 border-l border-border-default/20">
-                            <LocaleSwitcher/>
-                        </div>
+                        {/* Show LocaleSwitcher only when user is not authenticated */}
+                        {(!hasMounted || loading || !isAuthenticated) && (
+                            <div className="pl-4 border-l border-border-default/20">
+                                <LocaleSwitcher/>
+                            </div>
+                        )}
                     </nav>
 
                     {/* Desktop Actions */}
@@ -221,9 +224,12 @@ const Header = () => {
                     )}
                 >
                     <nav className="flex flex-col space-y-4">
-                        <div className="flex justify-end py-2">
-                            <LocaleSwitcher/>
-                        </div>
+                        {/* Show LocaleSwitcher only when user is not authenticated */}
+                        {(!hasMounted || loading || !isAuthenticated) && (
+                            <div className="flex justify-end py-2">
+                                <LocaleSwitcher/>
+                            </div>
+                        )}
                         
                         {/* Mobile Features Section */}
                         <div className="space-y-2">
