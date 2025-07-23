@@ -20,6 +20,10 @@ export class UserDataService {
         .single();
 
       if (error) {
+        // 如果没有找到记录，创建默认用户档案
+        if (error.code === 'PGRST116') {
+          return await this.createDefaultUserProfile(userId);
+        }
         console.error('Error fetching user profile:', error.message);
         return null;
       }
@@ -212,6 +216,45 @@ export class UserDataService {
       return this.mapDbPreferencesToUserPreferences(data);
     } catch (error) {
       console.error('Unexpected error updating user preferences:', error);
+      return null;
+    }
+  }
+
+  /**
+   * 创建默认用户档案
+   */
+  private static async createDefaultUserProfile(userId: string): Promise<UserProfile | null> {
+    try {
+      // Get the user's email from Supabase Auth
+      const { data: { user }, error: authError } = await supabase.auth.getUser();
+      
+      if (authError || !user || user.id !== userId) {
+        console.error('Error getting auth user for profile creation:', authError);
+        return null;
+      }
+
+      const { data, error } = await supabase
+        .from('user_profiles')
+        .insert({
+          id: userId,
+          email: user.email || '',
+          full_name: user.user_metadata?.full_name || null,
+          avatar_url: user.user_metadata?.avatar_url || null,
+          locale: 'zh',
+          timezone: 'Asia/Shanghai',
+          onboarding_completed: false,
+        })
+        .select()
+        .single();
+
+      if (error) {
+        console.error('Error creating default user profile:', error.message);
+        return null;
+      }
+
+      return this.mapDbProfileToUserProfile(data);
+    } catch (error) {
+      console.error('Unexpected error creating default user profile:', error);
       return null;
     }
   }

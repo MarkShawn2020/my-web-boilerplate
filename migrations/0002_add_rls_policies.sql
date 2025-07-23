@@ -16,6 +16,10 @@ CREATE POLICY "Users can view own profile" ON "user_profiles"
 CREATE POLICY "Users can update own profile" ON "user_profiles"
   FOR UPDATE USING (auth.uid() = id);
 
+-- Users can insert own profile (for automatic profile creation)
+CREATE POLICY "Users can insert own profile" ON "user_profiles"
+  FOR INSERT WITH CHECK (auth.uid() = id);
+
 -- ==========================================
 -- Enable RLS on user_preferences table
 -- ==========================================
