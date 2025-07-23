@@ -1,6 +1,6 @@
 {
   "name": "next-js-boilerplate",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "author": "Ixartz (https://github.com/ixartz)",
   "engines": {
     "node": ">=20"
