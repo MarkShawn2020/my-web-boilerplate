@@ -1,7 +1,7 @@
 'use client';
 
 import type { User } from '@supabase/supabase-js';
-import React, { createContext, use, useEffect, useReducer } from 'react';
+import React, { createContext, use, useEffect, useReducer, useRef } from 'react';
 import { AuthClientService } from '@/libs/AuthClient';
 import { supabase } from '@/libs/Supabase';
 
@@ -86,14 +86,20 @@ function getCachedAuthState(): Partial<AuthState> {
     const cached = sessionStorage.getItem('auth-state');
     if (cached) {
       const parsed = JSON.parse(cached);
-      // Only use cached user data, not loading/error state
+      // Only return cached user data - always validate before trusting
       return {
         user: parsed.user || null,
-        loading: !parsed.user, // If we have cached user, don't show loading
+        // Don't set loading state from cache - always validate first
       };
     }
   } catch (error) {
     console.warn('Failed to parse cached auth state:', error);
+    // Clear corrupted cache
+    try {
+      sessionStorage.removeItem('auth-state');
+    } catch (clearError) {
+      console.warn('Failed to clear corrupted auth cache:', clearError);
+    }
   }
   
   return {};
@@ -115,12 +121,11 @@ function cacheAuthState(state: AuthState) {
   }
 }
 
-const cachedState = getCachedAuthState();
+// Remove module-level cache loading - will be done dynamically in useEffect
 const initialState: AuthState = {
   user: null,
   loading: true,
   error: null,
-  ...cachedState,
 };
 
 function authReducer(state: AuthState, action: AuthAction): AuthState {
@@ -225,20 +230,29 @@ async function fetchUserData(userId: string): Promise<AuthUser | null> {
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [state, dispatch] = useReducer(authReducer, initialState);
+  const stateRef = useRef(state);
+  
+  // Keep stateRef current for visibility handler access
+  stateRef.current = state;
 
   // Load user on mount and listen for auth changes
   useEffect(() => {
     let isMounted = true;
+    let authSubscription: any = null;
+    let isBackgroundValidating = false; // Flag to prevent circular triggering
 
-    // Get initial session
+    // Load initial auth state with dynamic cache loading
     const loadUser = async () => {
       try {
-        // If we already have a cached user, don't show loading state
-        const hasCachedUser = !!state.user;
+        // Always show loading state initially
+        dispatch({ type: 'SET_LOADING', payload: true });
+
+        // Dynamically get cached state (fresh on each mount)
+        const cachedState = getCachedAuthState();
         
-        if (!hasCachedUser) {
-          // Only set loading if we don't have cached data
-          dispatch({ type: 'SET_LOADING', payload: true });
+        // If we have cached user, update state but still validate
+        if (cachedState.user && isMounted) {
+          dispatch({ type: 'UPDATE_USER', payload: cachedState.user });
         }
 
         const { session, error } = await AuthClientService.getSession();
@@ -252,17 +266,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
 
         if (session?.user) {
-          // If we have cached user but it's a different user, show loading
-          if (hasCachedUser && state.user?.id !== session.user.id) {
-            dispatch({ type: 'SET_LOADING', payload: true });
-          }
-          
+          // Always fetch complete user data for validation
           const completeUser = await fetchUserData(session.user.id);
           if (isMounted) {
-            dispatch({ type: 'SIGN_IN_SUCCESS', payload: completeUser || session.user });
+            if (completeUser) {
+              dispatch({ type: 'SIGN_IN_SUCCESS', payload: completeUser });
+            } else {
+              // If fetchUserData fails, treat as authentication failure
+              console.warn('Failed to fetch complete user data, signing out');
+              dispatch({ type: 'SIGN_OUT' });
+            }
           }
         } else {
-          // No session, clear cached data
+          // No session, clear any cached data
           if (isMounted) {
             dispatch({ type: 'SIGN_OUT' });
           }
@@ -275,21 +291,114 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
     };
 
+    // Silent background validation without loading state
+    const validateUserSilently = async () => {
+      if (isBackgroundValidating) {
+        console.log('Background validation already in progress, skipping');
+        return;
+      }
+      
+      try {
+        isBackgroundValidating = true;
+        console.log('Starting silent background validation');
+        
+        const { session, error } = await AuthClientService.getSession();
+        
+        if (error || !session?.user) {
+          console.log('Silent validation: No valid session, signing out');
+          if (isMounted) {
+            dispatch({ type: 'SIGN_OUT' });
+          }
+          return;
+        }
+        
+        const currentUser = stateRef.current.user;
+        if (currentUser && session.user.id === currentUser.id) {
+          // Same user, optionally refresh profile data without showing loading
+          console.log('Silent validation: Same user, refreshing profile silently');
+          const completeUser = await fetchUserData(session.user.id);
+          if (completeUser && isMounted) {
+            dispatch({ type: 'UPDATE_USER', payload: completeUser });
+          }
+        } else {
+          // Different user or no current user, this is a significant change
+          console.log('Silent validation: User changed, updating with loading');
+          if (isMounted) {
+            dispatch({ type: 'SIGN_IN_START' });
+            const completeUser = await fetchUserData(session.user.id);
+            dispatch({ type: 'SIGN_IN_SUCCESS', payload: completeUser || session.user });
+          }
+        }
+      } catch (error) {
+        console.error('Silent validation failed:', error);
+        // Don't update state for background validation failures
+      } finally {
+        isBackgroundValidating = false;
+        console.log('Silent background validation completed');
+      }
+    };
+
+    // Smart visibility change handler
+    const handleVisibilityChange = () => {
+      if (!document.hidden && isMounted) {
+        const currentState = stateRef.current;
+        
+        if (!currentState.user || currentState.error) {
+          // No user or error state - need full loading
+          console.log('Page visible: No user data, loading with spinner');
+          loadUser();
+        } else {
+          // Have user data - validate silently in background
+          console.log('Page visible: Have user data, validating silently');
+          validateUserSilently();
+        }
+      }
+    };
+
+    // Initial load
     loadUser();
 
-    // Listen for auth changes
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+    // Add page visibility listener
+    document.addEventListener('visibilitychange', handleVisibilityChange);
+
+    // Listen for auth changes with coordination logic to prevent circular triggering
+    authSubscription = supabase.auth.onAuthStateChange(
       async (event, session) => {
         if (!isMounted) {
           return;
         }
 
+        console.log('Auth state change:', event, session?.user?.id, `(backgroundValidating: ${isBackgroundValidating})`);
+
+        // Ignore events triggered by our own background validation
+        if (isBackgroundValidating) {
+          console.log('Ignoring auth event during background validation to prevent circular triggering');
+          return;
+        }
+
+        const currentUser = stateRef.current.user;
+
         switch (event) {
           case 'SIGNED_IN':
             if (session?.user) {
-              dispatch({ type: 'SIGN_IN_START' });
-              const completeUser = await fetchUserData(session.user.id);
-              dispatch({ type: 'SIGN_IN_SUCCESS', payload: completeUser || session.user });
+              // Only show loading if this represents a real state change
+              if (!currentUser || currentUser.id !== session.user.id) {
+                console.log('SIGNED_IN: New user detected, showing loading');
+                dispatch({ type: 'SIGN_IN_START' });
+                const completeUser = await fetchUserData(session.user.id);
+                if (completeUser) {
+                  dispatch({ type: 'SIGN_IN_SUCCESS', payload: completeUser });
+                } else {
+                  console.warn('Auth event SIGNED_IN but failed to fetch user data');
+                  dispatch({ type: 'SIGN_IN_ERROR', payload: 'Failed to load user profile' });
+                }
+              } else {
+                console.log('SIGNED_IN: Same user, updating without loading');
+                const completeUser = await fetchUserData(session.user.id);
+                if (completeUser) {
+                  dispatch({ type: 'UPDATE_USER', payload: completeUser });
+                }
+              }
             }
             break;
           case 'SIGNED_OUT':
@@ -298,7 +407,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           case 'TOKEN_REFRESHED':
             if (session?.user) {
               const completeUser = await fetchUserData(session.user.id);
-              dispatch({ type: 'UPDATE_USER', payload: completeUser || session.user });
+              if (completeUser) {
+                dispatch({ type: 'UPDATE_USER', payload: completeUser });
+              } else {
+                console.warn('Token refreshed but failed to fetch user data, signing out');
+                dispatch({ type: 'SIGN_OUT' });
+              }
             }
             break;
         }
@@ -307,9 +421,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     return () => {
       isMounted = false;
-      subscription.unsubscribe();
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
+      if (authSubscription) {
+        authSubscription.data.subscription.unsubscribe();
+      }
     };
-  }, []);
+  }, []); // Keep empty dependency array but remove state references
 
   const signIn = async (email: string, password: string) => {
     dispatch({ type: 'SIGN_IN_START' });
