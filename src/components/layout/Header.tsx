@@ -3,13 +3,14 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { useAuthActions, useAuthUser } from '@/hooks/useAuthUser';
+import { useAuthUser } from '@/hooks/useAuthUser';
 import { useRouter } from '@/libs/I18nNavigation';
 import { cn } from '@/utils/Helpers';
 import packageJson from '../../../package.json';
 import { LocaleSwitcher } from '../LocaleSwitcher';
 import { Button } from '../ui/Button';
 import { NeuroraIcon } from '../ui/NeuroraIcon';
+import { UserDropdown } from '../ui/UserDropdown';
 import { Container } from './Container';
 
 const Header = () => {
@@ -19,7 +20,6 @@ const Header = () => {
 
   // Auth state and actions
   const { user, isAuthenticated, loading } = useAuthUser();
-  const { signOut } = useAuthActions();
 
   const navigation = [
     { name: t('features'), href: '/features' },
@@ -34,11 +34,6 @@ const Header = () => {
     router.push('/sign-in');
   };
 
-  // Handle logout
-  const handleLogout = async () => {
-    await signOut();
-    setIsMenuOpen(false);
-  };
 
   // Handle dashboard navigation
   const handleDashboard = () => {
@@ -86,19 +81,12 @@ const Header = () => {
                 )
               : isAuthenticated && user
                 ? (
-                    <>
+                    <div className="flex items-center space-x-4">
                       <Button variant="secondary" size="md" onClick={handleDashboard}>
                         Dashboard
                       </Button>
-                      <div className="flex items-center space-x-2">
-                        <span className="text-sm text-gray-600">
-                          {user.profile?.fullName || user.email}
-                        </span>
-                        <Button variant="outline" size="md" onClick={handleLogout}>
-                          Sign Out
-                        </Button>
-                      </div>
-                    </>
+                      <UserDropdown />
+                    </div>
                   )
                 : (
                     <>
@@ -175,14 +163,14 @@ const Header = () => {
                 : isAuthenticated && user
                   ? (
                       <>
-                        <div className="text-sm text-gray-600 px-2 py-1">
-                          {user.profile?.fullName || user.email}
+                        <div className="flex items-center justify-between px-2 py-1">
+                          <span className="text-sm text-gray-600">
+                            {user.profile?.fullName || user.email}
+                          </span>
+                          <UserDropdown />
                         </div>
                         <Button variant="secondary" size="md" className="w-full" onClick={handleDashboard}>
                           Dashboard
-                        </Button>
-                        <Button variant="outline" size="md" className="w-full" onClick={handleLogout}>
-                          Sign Out
                         </Button>
                       </>
                     )
