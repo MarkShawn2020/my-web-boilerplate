@@ -94,7 +94,7 @@ const Header = () => {
                             : isAuthenticated && user
                                 ? (
                                     <div className="flex items-center space-x-4">
-                                        <Button variant="secondary" size="default" onClick={handleDashboard}>
+                                        <Button variant="default" size="default" onClick={handleDashboard}>
                                             Dashboard
                                         </Button>
                                         <UserDropdown/>
@@ -181,7 +181,7 @@ const Header = () => {
                           </span>
                                                 <UserDropdown/>
                                             </div>
-                                            <Button variant="secondary" size="default" className="w-full"
+                                            <Button variant="default" size="default" className="w-full"
                                                     onClick={handleDashboard}>
                                                 Dashboard
                                             </Button>
