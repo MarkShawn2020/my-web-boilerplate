@@ -1,6 +1,6 @@
-import React from 'react';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import React from 'react';
 import { LegalPage } from '@/components/legal/LegalPage';
 
 type Props = {

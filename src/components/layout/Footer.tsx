@@ -1,8 +1,8 @@
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
-import { useTranslations } from 'next-intl';
-import { Container } from './Container';
 import { NeuroraIcon } from '../ui/NeuroraIcon';
+import { Container } from './Container';
 
 const Footer = () => {
   const t = useTranslations('Footer');
@@ -51,7 +51,7 @@ const Footer = () => {
                 <a href="https://weixin.qq.com/r/nHGkUFf" className="text-gray-400 hover:text-white transition-colors">
                   <span className="sr-only">微信公众号</span>
                   <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
-                    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 4.074-1.915 6.309-1.302-.548-3.328-4.045-5.884-8.052-5.884zM5.785 7.328c.48 0 .869.398.869.889 0 .49-.389.889-.869.889-.48 0-.87-.398-.87-.889 0-.49.39-.889.87-.889zm5.813 0c.48 0 .869.398.869.889 0 .49-.389.889-.869.889-.48 0-.869-.398-.869-.889 0-.49.389-.889.869-.889zM16.759 9.07c-3.717 0-6.73 2.741-6.73 6.12 0 1.78.937 3.4 2.459 4.570a.49.49 0 0 1 .178.550l-.325 1.23c-.016.06-.04.118-.04.177 0 .136.108.246.241.246a.27.27 0 0 0 .139-.045l1.586-.928a.72.72 0 0 1 .598-.082 8.47 8.47 0 0 0 2.364.336c3.717 0 6.73-2.741 6.73-6.12 0-3.379-3.013-6.12-6.73-6.12z"/>
+                    <path d="M8.691 2.188C3.891 2.188 0 5.476 0 9.53c0 2.212 1.17 4.203 3.002 5.55a.59.59 0 0 1 .213.665l-.39 1.48c-.019.07-.048.141-.048.213 0 .163.13.295.29.295a.326.326 0 0 0 .167-.054l1.903-1.114a.864.864 0 0 1 .717-.098 10.16 10.16 0 0 0 2.837.403c.276 0 .543-.027.811-.05-.857-2.578.157-4.972 1.932-6.446 1.703-1.415 4.074-1.915 6.309-1.302-.548-3.328-4.045-5.884-8.052-5.884zM5.785 7.328c.48 0 .869.398.869.889 0 .49-.389.889-.869.889-.48 0-.87-.398-.87-.889 0-.49.39-.889.87-.889zm5.813 0c.48 0 .869.398.869.889 0 .49-.389.889-.869.889-.48 0-.869-.398-.869-.889 0-.49.389-.889.869-.889zM16.759 9.07c-3.717 0-6.73 2.741-6.73 6.12 0 1.78.937 3.4 2.459 4.570a.49.49 0 0 1 .178.550l-.325 1.23c-.016.06-.04.118-.04.177 0 .136.108.246.241.246a.27.27 0 0 0 .139-.045l1.586-.928a.72.72 0 0 1 .598-.082 8.47 8.47 0 0 0 2.364.336c3.717 0 6.73-2.741 6.73-6.12 0-3.379-3.013-6.12-6.73-6.12z" />
                   </svg>
                 </a>
                 <a href="https://twitter.com/neurora_ai" className="text-gray-400 hover:text-white transition-colors">
@@ -133,7 +133,9 @@ const Footer = () => {
           <div className="mt-12 pt-8 border-t border-gray-700">
             <div className="flex flex-col md:flex-row justify-between items-center">
               <p className="text-gray-400 text-sm">
-                © 2025 Neurora Technology. {t('rights_reserved')}
+                © 2025 Neurora Technology.
+                {' '}
+                {t('rights_reserved')}
               </p>
               <div className="flex space-x-6 mt-4 md:mt-0">
                 <Link href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors no-underline">

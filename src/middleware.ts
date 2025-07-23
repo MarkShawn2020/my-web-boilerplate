@@ -1,6 +1,6 @@
-import type { NextFetchEvent, NextRequest } from 'next/server';
+import type { NextRequest } from 'next/server';
 import { detectBot } from '@arcjet/next';
-import { clerkMiddleware, createRouteMatcher } from '@clerk/nextjs/server';
+import { createServerClient } from '@supabase/ssr';
 import createMiddleware from 'next-intl/middleware';
 import { NextResponse } from 'next/server';
 import arcjet from '@/libs/Arcjet';
@@ -9,17 +9,14 @@ import { routing } from './libs/I18nRouting';
 // Use next-intl middleware with our routing configuration
 const handleI18nRouting = createMiddleware(routing);
 
-const isProtectedRoute = createRouteMatcher([
-  '/dashboard(.*)',
-  '/:locale/dashboard(.*)',
-]);
+// Route matchers
+const isProtectedRoute = (pathname: string) => {
+  return pathname.includes('/dashboard');
+};
 
-const isAuthPage = createRouteMatcher([
-  '/sign-in(.*)',
-  '/:locale/sign-in(.*)',
-  '/sign-up(.*)',
-  '/:locale/sign-up(.*)',
-]);
+const isAuthPage = (pathname: string) => {
+  return pathname.includes('/sign-in') || pathname.includes('/sign-up');
+};
 
 // Improve security with Arcjet
 const aj = arcjet.withRule(
@@ -37,7 +34,6 @@ const aj = arcjet.withRule(
 
 export default async function middleware(
   request: NextRequest,
-  event: NextFetchEvent,
 ) {
   // Verify the request with Arcjet
   // Use `process.env` instead of Env to reduce bundle size in middleware
@@ -49,23 +45,87 @@ export default async function middleware(
     }
   }
 
-  // Clerk keyless mode doesn't work with i18n, this is why we need to run the middleware conditionally
-  if (
-    isAuthPage(request) || isProtectedRoute(request)
-  ) {
-    return clerkMiddleware(async (auth, req) => {
-      if (isProtectedRoute(req)) {
-        const locale = req.nextUrl.pathname.match(/(\/.*)\/dashboard/)?.at(1) ?? '';
+  const pathname = request.nextUrl.pathname;
 
-        const signInUrl = new URL(`${locale}/sign-in`, req.url);
+  // Handle authentication for protected routes
+  if (isProtectedRoute(pathname)) {
+    // Create Supabase client for server-side auth
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          get(name: string) {
+            return request.cookies.get(name)?.value;
+          },
+          set() {
+            // Do nothing in middleware
+          },
+          remove() {
+            // Do nothing in middleware
+          },
+        },
+      },
+    );
 
-        await auth.protect({
-          unauthenticatedUrl: signInUrl.toString(),
-        });
+    // Check if user is authenticated
+    const { data: { session }, error } = await supabase.auth.getSession();
+
+    if (error || !session) {
+      // Extract locale from path for redirect
+      const localeMatch = pathname.match(/^\/([^/]+)\//);
+      const locale = localeMatch?.[1];
+
+      // Build sign-in URL with proper locale
+      let signInUrl = '/sign-in';
+      if (locale && locale !== routing.defaultLocale) {
+        signInUrl = `/${locale}/sign-in`;
       }
 
-      return handleI18nRouting(request);
-    })(request, event);
+      const url = new URL(signInUrl, request.url);
+      url.searchParams.set('redirect', pathname);
+
+      return NextResponse.redirect(url);
+    }
+  }
+
+  // Redirect authenticated users away from auth pages
+  if (isAuthPage(pathname)) {
+    // Create Supabase client for server-side auth
+    const supabase = createServerClient(
+      process.env.NEXT_PUBLIC_SUPABASE_URL!,
+      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
+      {
+        cookies: {
+          get(name: string) {
+            return request.cookies.get(name)?.value;
+          },
+          set() {
+            // Do nothing in middleware
+          },
+          remove() {
+            // Do nothing in middleware
+          },
+        },
+      },
+    );
+
+    // Check if user is authenticated
+    const { data: { session } } = await supabase.auth.getSession();
+
+    if (session) {
+      // Extract locale from path for redirect
+      const localeMatch = pathname.match(/^\/([^/]+)\//);
+      const locale = localeMatch?.[1];
+
+      // Build dashboard URL with proper locale
+      let dashboardUrl = '/dashboard';
+      if (locale && locale !== routing.defaultLocale) {
+        dashboardUrl = `/${locale}/dashboard`;
+      }
+
+      return NextResponse.redirect(new URL(dashboardUrl, request.url));
+    }
   }
 
   return handleI18nRouting(request);

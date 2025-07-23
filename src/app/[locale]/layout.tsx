@@ -4,9 +4,9 @@ import { setRequestLocale } from 'next-intl/server';
 import { Fira_Code, Inter } from 'next/font/google';
 import { notFound } from 'next/navigation';
 import { PostHogProvider } from '@/components/analytics/PostHogProvider';
-import { DemoBadge } from '@/components/DemoBadge';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import { routing } from '@/libs/I18nRouting';
+import { AuthProvider } from '@/providers/AuthProvider';
 import '@/styles/global.css';
 
 const inter = Inter({
@@ -27,7 +27,7 @@ export const generateMetadata = async (props: {
 }): Promise<Metadata> => {
   const { locale } = await props.params;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://neurora.ai';
-  
+
   // Locale-specific metadata
   const metadataByLocale = {
     zh: {
@@ -112,8 +112,8 @@ export const generateMetadata = async (props: {
       index: true,
       follow: true,
       googleBot: {
-        index: true,
-        follow: true,
+        'index': true,
+        'follow': true,
         'max-video-preview': -1,
         'max-image-preview': 'large',
         'max-snippet': -1,
@@ -190,7 +190,9 @@ export default async function RootLayout(props: {
         <NextIntlClientProvider>
           <PostHogProvider>
             <ToastProvider>
-              {props.children}
+              <AuthProvider>
+                {props.children}
+              </AuthProvider>
             </ToastProvider>
           </PostHogProvider>
         </NextIntlClientProvider>

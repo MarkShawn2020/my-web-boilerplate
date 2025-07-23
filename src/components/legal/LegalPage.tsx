@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { useTranslations } from 'next-intl';
+import React from 'react';
 import { Container } from '../layout/Container';
 
 type LegalPageProps = {
@@ -32,17 +32,27 @@ export const LegalPage: React.FC<LegalPageProps> = ({
         {/* Header */}
         <div className="mb-12 text-center">
           <h1 className="text-4xl font-bold text-text-main mb-6">{title}</h1>
-          
+
           {/* Date Information */}
           <div className="flex flex-col sm:flex-row justify-center gap-4 text-sm text-gray-600">
             {effectiveDate && (
               <div>
-                <span className="font-medium">{t('effective_date')}:</span> {effectiveDate}
+                <span className="font-medium">
+                  {t('effective_date')}
+                  :
+                </span>
+                {' '}
+                {effectiveDate}
               </div>
             )}
             {lastUpdated && (
               <div>
-                <span className="font-medium">{t('last_updated')}:</span> {lastUpdated}
+                <span className="font-medium">
+                  {t('last_updated')}
+                  :
+                </span>
+                {' '}
+                {lastUpdated}
               </div>
             )}
           </div>
@@ -99,9 +109,10 @@ export const LegalPage: React.FC<LegalPageProps> = ({
             {t('contact_us')}
           </h3>
           <p className="text-gray-600 text-sm">
-            If you have any questions about this policy, please contact us at{' '}
-            <a 
-              href="mailto:mark@cs-magic.com" 
+            If you have any questions about this policy, please contact us at
+            {' '}
+            <a
+              href="mailto:mark@cs-magic.com"
               className="text-primary hover:text-primary/80 transition-colors"
             >
               mark@cs-magic.com

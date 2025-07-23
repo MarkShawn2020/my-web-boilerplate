@@ -1,6 +1,6 @@
-import React from 'react';
 import type { Metadata } from 'next';
 import { getTranslations } from 'next-intl/server';
+import React from 'react';
 import { PricingPageContent } from '@/components/pricing/PricingPageContent';
 
 type Props = {
@@ -17,6 +17,6 @@ export async function generateMetadata(props: Props): Promise<Metadata> {
   };
 }
 
-export default async function PricingPage(props: Props) {
+export default async function PricingPage() {
   return <PricingPageContent />;
 }

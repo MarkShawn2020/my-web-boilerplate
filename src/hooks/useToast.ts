@@ -1,19 +1,19 @@
 'use client';
 
+import type { ToastData } from '@/components/ui/Toast';
 import { create } from 'zustand';
-import { ToastData, ToastType } from '@/components/ui/Toast';
 
-interface ToastStore {
+type ToastStore = {
   toasts: ToastData[];
   addToast: (toast: Omit<ToastData, 'id'>) => void;
   removeToast: (id: string) => void;
   clearAllToasts: () => void;
-}
+};
 
-const useToastStore = create<ToastStore>((set) => ({
+const useToastStore = create<ToastStore>(set => ({
   toasts: [],
-  addToast: (toast) =>
-    set((state) => ({
+  addToast: toast =>
+    set(state => ({
       toasts: [
         ...state.toasts,
         {
@@ -22,9 +22,9 @@ const useToastStore = create<ToastStore>((set) => ({
         },
       ],
     })),
-  removeToast: (id) =>
-    set((state) => ({
-      toasts: state.toasts.filter((toast) => toast.id !== id),
+  removeToast: id =>
+    set(state => ({
+      toasts: state.toasts.filter(toast => toast.id !== id),
     })),
   clearAllToasts: () => set({ toasts: [] }),
 }));

@@ -2,7 +2,7 @@
   "Header": {
     "features": "Features",
     "cases": "Cases",
-    "community": "Community", 
+    "community": "Community",
     "pricing": "Pricing",
     "blog": "Blog",
     "login": "Login",
@@ -63,26 +63,15 @@
     "content": "Created a set of promotional materials and branding elements for a corporate event. Crafted a visually unified theme, encompassing a logo, posters, banners, and digital assets. Integrated the client's brand identity while infusing it with a contemporary and innovative approach.",
     "code_review_powered_by": "Code review powered by"
   },
-  "SignIn": {
-    "meta_title": "Sign in",
-    "meta_description": "Seamlessly sign in to your account with our user-friendly login process."
-  },
-  "SignUp": {
-    "meta_title": "Sign up",
-    "meta_description": "Effortlessly create an account through our intuitive sign-up process."
-  },
   "Dashboard": {
     "meta_title": "Dashboard",
     "hello_message": "Hello {email}!",
     "alternative_message": "Want to build your SaaS faster using the same stack? Try <url></url>."
   },
-  "UserProfile": {
-    "meta_title": "User Profile"
-  },
   "Footer": {
     "company_title": "Company",
     "product_title": "Product",
-    "support_title": "Support", 
+    "support_title": "Support",
     "newsletter_title": "Newsletter",
     "newsletter_description": "Get the latest product updates and insights.",
     "email_placeholder": "Enter your email",
@@ -96,7 +85,7 @@
         "blog": "Blog"
       },
       "product": {
-        "platform": "Neurora Platform", 
+        "platform": "Neurora Platform",
         "pricing": "Pricing",
         "api_docs": "API Documentation",
         "help_docs": "Help Center"
@@ -109,7 +98,7 @@
       },
       "legal": {
         "terms": "Terms of Service",
-        "privacy": "Privacy Policy", 
+        "privacy": "Privacy Policy",
         "cookies": "Cookie Policy"
       }
     }
@@ -191,13 +180,13 @@
     "close": "Close",
     "success_title": "Success",
     "error_title": "Error",
-    "warning_title": "Warning", 
+    "warning_title": "Warning",
     "info_title": "Information",
     "save_success": "Saved successfully",
     "save_error": "Failed to save",
     "delete_success": "Deleted successfully",
     "delete_error": "Failed to delete",
-    "update_success": "Updated successfully", 
+    "update_success": "Updated successfully",
     "update_error": "Failed to update",
     "create_success": "Created successfully",
     "create_error": "Failed to create",
@@ -376,13 +365,99 @@
       }
     }
   },
+  "Auth": {
+    "loading": "Loading..."
+  },
+  "SignIn": {
+    "meta_title": "Sign In - Neurora",
+    "meta_description": "Sign in to your Neurora account to access AI-powered content creation tools",
+    "title": "Sign In",
+    "subtitle": "Welcome back! Please sign in to your account",
+    "email_label": "Email Address",
+    "email_placeholder": "Enter your email address",
+    "password_label": "Password",
+    "password_placeholder": "Enter your password",
+    "remember_me": "Remember me",
+    "forgot_password": "Forgot password?",
+    "sign_in_button": "Sign In",
+    "signing_in": "Signing in...",
+    "or": "or",
+    "no_account": "Don't have an account?",
+    "sign_up_link": "Sign up"
+  },
+  "SignUp": {
+    "meta_title": "Sign Up - Neurora",
+    "meta_description": "Create your Neurora account and start building amazing content with AI assistance",
+    "title": "Create Account",
+    "subtitle": "Join thousands of creators using Neurora",
+    "full_name_label": "Full Name",
+    "full_name_placeholder": "Enter your full name",
+    "email_label": "Email Address",
+    "email_placeholder": "Enter your email address",
+    "password_label": "Password",
+    "password_placeholder": "Create a secure password",
+    "confirm_password_label": "Confirm Password",
+    "confirm_password_placeholder": "Confirm your password",
+    "accept_terms_part1": "I agree to the",
+    "terms_of_service": "Terms of Service",
+    "and": "and",
+    "privacy_policy": "Privacy Policy",
+    "sign_up_button": "Create Account",
+    "creating_account": "Creating account...",
+    "or": "or",
+    "have_account": "Already have an account?",
+    "sign_in_link": "Sign in",
+    "check_email_title": "Check Your Email",
+    "check_email_message": "We've sent a verification link to your email address. Please check your email and click the link to activate your account.",
+    "back_to_sign_in": "Back to Sign In"
+  },
+  "ResetPassword": {
+    "title": "Reset Password",
+    "subtitle": "Enter your email address and we'll send you a link to reset your password",
+    "email_label": "Email Address",
+    "email_placeholder": "Enter your email address",
+    "send_reset_email": "Send Reset Email",
+    "sending": "Sending...",
+    "back_to_sign_in": "Back to Sign In",
+    "email_sent_title": "Email Sent",
+    "email_sent_message": "If an account with that email exists, we've sent you a password reset link."
+  },
+  "UserProfile": {
+    "meta_title": "Profile Settings - Neurora",
+    "title": "Profile Settings",
+    "loading": "Loading profile...",
+    "profile_updated_success": "Profile updated successfully",
+    "email_label": "Email Address",
+    "email_help": "Contact support to change your email address",
+    "full_name_label": "Full Name",
+    "full_name_placeholder": "Enter your full name",
+    "avatar_url_label": "Avatar URL",
+    "avatar_url_placeholder": "https://example.com/avatar.jpg",
+    "locale_label": "Language",
+    "locale_zh": "中文 (Chinese)",
+    "locale_en": "English",
+    "timezone_label": "Timezone",
+    "timezone_shanghai": "Asia/Shanghai (GMT+8)",
+    "timezone_new_york": "America/New_York (GMT-5)",
+    "timezone_london": "Europe/London (GMT+0)",
+    "timezone_tokyo": "Asia/Tokyo (GMT+9)",
+    "timezone_sydney": "Australia/Sydney (GMT+10)",
+    "update_profile": "Update Profile",
+    "updating": "Updating...",
+    "account_info_title": "Account Information",
+    "user_id": "User ID",
+    "created_at": "Created",
+    "email_verified": "Email Verified",
+    "verified": "Yes",
+    "not_verified": "No"
+  },
   "Pricing": {
     "meta_title": "Pricing - Neurora AI Creation Platform",
     "meta_description": "Flexible pricing plans for content creators and teams. Start free with 3 projects, upgrade for unlimited AI-powered content creation and collaboration.",
     "hero_title": "Flexible pricing for everyone",
     "hero_description": "Choose the perfect plan for your content creation needs. Start free and scale as you grow.",
     "billing_monthly": "Monthly",
-    "billing_yearly": "Yearly", 
+    "billing_yearly": "Yearly",
     "billing_save": "Save 20%",
     "projects_label": "Projects",
     "recommended": "Recommended",
@@ -393,7 +468,7 @@
       "free": {
         "name": "Free",
         "price_monthly": "0",
-        "price_yearly": "0", 
+        "price_yearly": "0",
         "price_label": "Free forever",
         "description": "Perfect for getting started with AI-powered content creation",
         "cta": "Let's go",
@@ -407,7 +482,7 @@
         ]
       },
       "essentials": {
-        "name": "Essentials", 
+        "name": "Essentials",
         "price_monthly": "15",
         "price_yearly": "12",
         "price_label_monthly": "$15/month",
@@ -416,7 +491,7 @@
         "cta": "Start 14-day free trial",
         "features": [
           "Unlimited projects",
-          "Advanced AI writing assistant", 
+          "Advanced AI writing assistant",
           "Unlimited content generations",
           "SEO optimization tools",
           "Advanced templates library",
@@ -427,7 +502,7 @@
       },
       "team": {
         "name": "Team",
-        "price_monthly": "29", 
+        "price_monthly": "29",
         "price_yearly": "24",
         "price_label_monthly": "$29/month",
         "price_label_yearly": "$24/month, billed annually",
@@ -449,14 +524,14 @@
     "features_title": "Connect your favorite platforms",
     "features_description": "Publish and manage your content across all major platforms",
     "supported_platforms": [
-      {"name": "WordPress", "description": "Blog publishing"},
-      {"name": "Medium", "description": "Article publishing"},
-      {"name": "LinkedIn", "description": "Professional content"},
-      {"name": "Twitter/X", "description": "Social media posts"},
-      {"name": "Facebook", "description": "Social media marketing"},
-      {"name": "Instagram", "description": "Visual content"},
-      {"name": "YouTube", "description": "Video descriptions"},
-      {"name": "TikTok", "description": "Short-form content"}
+      { "name": "WordPress", "description": "Blog publishing" },
+      { "name": "Medium", "description": "Article publishing" },
+      { "name": "LinkedIn", "description": "Professional content" },
+      { "name": "Twitter/X", "description": "Social media posts" },
+      { "name": "Facebook", "description": "Social media marketing" },
+      { "name": "Instagram", "description": "Visual content" },
+      { "name": "YouTube", "description": "Video descriptions" },
+      { "name": "TikTok", "description": "Short-form content" }
     ],
     "testimonial": {
       "quote": "Neurora has transformed how we create content. The AI assistance is incredibly intuitive and helps us maintain consistency across all our channels.",
@@ -467,7 +542,7 @@
     "comparison_title": "Compare all features",
     "comparison_categories": {
       "content_creation": "Content Creation",
-      "ai_features": "AI Features", 
+      "ai_features": "AI Features",
       "collaboration": "Collaboration",
       "analytics": "Analytics",
       "integrations": "Integrations",
@@ -475,7 +550,7 @@
     },
     "comparison_features": {
       "projects": "Projects",
-      "ai_generations": "AI Content Generations", 
+      "ai_generations": "AI Content Generations",
       "templates": "Templates",
       "seo_tools": "SEO Tools",
       "content_analytics": "Content Analytics",
@@ -485,7 +560,7 @@
       "approval_workflows": "Approval Workflows",
       "custom_branding": "Custom Branding",
       "integrations": "Platform Integrations",
-      "api_access": "API Access", 
+      "api_access": "API Access",
       "support": "Support Level",
       "sso": "SSO Integration"
     },
@@ -500,7 +575,7 @@
         "answer": "Yes! You can upgrade or downgrade your plan at any time. Changes take effect immediately, and we'll prorate your billing accordingly."
       },
       {
-        "question": "Is there a free trial?", 
+        "question": "Is there a free trial?",
         "answer": "Yes, we offer a 14-day free trial for both Essentials and Team plans. No credit card required to start your trial."
       },
       {

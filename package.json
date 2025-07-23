@@ -1,5 +1,6 @@
 {
   "name": "next-js-boilerplate",
+  "version": "0.0.18",
   "author": "Ixartz (https://github.com/ixartz)",
   "engines": {
     "node": ">=20"
@@ -38,6 +39,7 @@
     "@hookform/resolvers": "^5.1.1",
     "@logtape/logtape": "^1.0.4",
     "@sentry/nextjs": "^9.37.0",
+    "@supabase/ssr": "^0.6.1",
     "@supabase/supabase-js": "^2.49.1",
     "@t3-oss/env-nextjs": "^0.13.8",
     "drizzle-orm": "^0.44.2",
@@ -121,6 +123,5 @@
       "@semantic-release/release-notes-generator",
       "@semantic-release/github"
     ]
-  },
-  "version": "0.0.18"
+  }
 }

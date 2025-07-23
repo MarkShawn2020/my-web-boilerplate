@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import React, { useState } from 'react';
 
 export const FAQ: React.FC = () => {
   const t = useTranslations('Pricing');
@@ -57,7 +57,7 @@ export const FAQ: React.FC = () => {
                   />
                 </svg>
               </button>
-              
+
               {openItems.has(index) && (
                 <div className="px-6 pb-4">
                   <p className="text-gray-600 leading-relaxed">

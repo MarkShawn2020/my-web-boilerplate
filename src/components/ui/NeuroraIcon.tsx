@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface NeuroraIconProps {
+type NeuroraIconProps = {
   className?: string;
-}
+};
 
-const NeuroraIcon: React.FC<NeuroraIconProps> = ({ className = "h-8 w-8" }) => {
+const NeuroraIcon: React.FC<NeuroraIconProps> = ({ className = 'h-8 w-8' }) => {
   return (
     <svg
       id="图层_1"

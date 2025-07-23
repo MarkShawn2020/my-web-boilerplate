@@ -1,18 +1,25 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { useTranslations } from 'next-intl';
+import { useAuthActions, useAuthUser } from '@/hooks/useAuthUser';
+import { useRouter } from '@/libs/I18nNavigation';
 import { cn } from '@/utils/Helpers';
-import { Button } from '../ui/Button';
-import { Container } from './Container';
-import { NeuroraIcon } from '../ui/NeuroraIcon';
-import { LocaleSwitcher } from '../LocaleSwitcher';
 import packageJson from '../../../package.json';
+import { LocaleSwitcher } from '../LocaleSwitcher';
+import { Button } from '../ui/Button';
+import { NeuroraIcon } from '../ui/NeuroraIcon';
+import { Container } from './Container';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const t = useTranslations('Header');
+  const router = useRouter();
+
+  // Auth state and actions
+  const { user, isAuthenticated, loading } = useAuthUser();
+  const { signOut } = useAuthActions();
 
   const navigation = [
     { name: t('features'), href: '/features' },
@@ -21,6 +28,23 @@ const Header = () => {
     { name: t('pricing'), href: '/pricing' },
     { name: t('blog'), href: '/blog' },
   ];
+
+  // Handle login button click
+  const handleLogin = () => {
+    router.push('/sign-in');
+  };
+
+  // Handle logout
+  const handleLogout = async () => {
+    await signOut();
+    setIsMenuOpen(false);
+  };
+
+  // Handle dashboard navigation
+  const handleDashboard = () => {
+    router.push('/dashboard');
+    setIsMenuOpen(false);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full bg-background-main border-b border-border-default/20 backdrop-blur-sm">
@@ -33,7 +57,8 @@ const Header = () => {
               <span className="text-xl font-bold">Neurora</span>
             </Link>
             <span className="ml-2 px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full border border-primary/20">
-              v{packageJson.version}
+              v
+              {packageJson.version}
             </span>
           </div>
 
@@ -55,12 +80,36 @@ const Header = () => {
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="secondary" size="md">
-              {t('login')}
-            </Button>
-            <Button variant="primary" size="md">
-              {t('try_now')}
-            </Button>
+            {loading
+              ? (
+                  <div className="w-20 h-10 bg-gray-200 animate-pulse rounded-md" />
+                )
+              : isAuthenticated && user
+                ? (
+                    <>
+                      <Button variant="secondary" size="md" onClick={handleDashboard}>
+                        Dashboard
+                      </Button>
+                      <div className="flex items-center space-x-2">
+                        <span className="text-sm text-gray-600">
+                          {user.profile?.fullName || user.email}
+                        </span>
+                        <Button variant="outline" size="md" onClick={handleLogout}>
+                          Sign Out
+                        </Button>
+                      </div>
+                    </>
+                  )
+                : (
+                    <>
+                      <Button variant="secondary" size="md" onClick={handleLogin}>
+                        {t('login')}
+                      </Button>
+                      <Button variant="primary" size="md" onClick={handleLogin}>
+                        {t('try_now')}
+                      </Button>
+                    </>
+                  )}
           </div>
 
           {/* Mobile Menu Button */}
@@ -119,12 +168,34 @@ const Header = () => {
               </Link>
             ))}
             <div className="flex flex-col space-y-3 pt-4 border-t border-border-default/20">
-              <Button variant="secondary" size="md" className="w-full">
-                {t('login')}
-              </Button>
-              <Button variant="primary" size="md" className="w-full">
-                {t('try_now')}
-              </Button>
+              {loading
+                ? (
+                    <div className="w-full h-10 bg-gray-200 animate-pulse rounded-md" />
+                  )
+                : isAuthenticated && user
+                  ? (
+                      <>
+                        <div className="text-sm text-gray-600 px-2 py-1">
+                          {user.profile?.fullName || user.email}
+                        </div>
+                        <Button variant="secondary" size="md" className="w-full" onClick={handleDashboard}>
+                          Dashboard
+                        </Button>
+                        <Button variant="outline" size="md" className="w-full" onClick={handleLogout}>
+                          Sign Out
+                        </Button>
+                      </>
+                    )
+                  : (
+                      <>
+                        <Button variant="secondary" size="md" className="w-full" onClick={handleLogin}>
+                          {t('login')}
+                        </Button>
+                        <Button variant="primary" size="md" className="w-full" onClick={handleLogin}>
+                          {t('try_now')}
+                        </Button>
+                      </>
+                    )}
             </div>
           </nav>
         </div>

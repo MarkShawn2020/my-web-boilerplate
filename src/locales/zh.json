@@ -63,25 +63,14 @@
     "content": "为企业活动创建了一套推广材料和品牌元素。精心设计了视觉统一的主题，包括标志、海报、横幅和数字资产。在融入客户品牌标识的同时，注入了现代和创新的设计理念。",
     "code_review_powered_by": "代码审查由以下提供支持"
   },
-  "SignIn": {
-    "meta_title": "登录",
-    "meta_description": "通过我们用户友好的登录流程，轻松登录您的账户。"
-  },
-  "SignUp": {
-    "meta_title": "注册",
-    "meta_description": "通过我们直观的注册流程，轻松创建账户。"
-  },
   "Dashboard": {
     "meta_title": "控制台",
     "hello_message": "您好，{email}！",
     "alternative_message": "想要使用相同技术栈更快地构建您的 SaaS？试试 <url></url>。"
   },
-  "UserProfile": {
-    "meta_title": "用户资料"
-  },
   "Footer": {
     "company_title": "公司",
-    "product_title": "产品", 
+    "product_title": "产品",
     "support_title": "支持",
     "newsletter_title": "订阅更新",
     "newsletter_description": "获取最新的产品更新和技术资讯。",
@@ -91,7 +80,7 @@
     "links": {
       "company": {
         "about": "关于我们",
-        "careers": "加入我们", 
+        "careers": "加入我们",
         "press": "媒体报道",
         "blog": "博客"
       },
@@ -104,7 +93,7 @@
       "support": {
         "help_center": "帮助中心",
         "contact": "联系我们",
-        "status": "服务状态", 
+        "status": "服务状态",
         "privacy": "隐私政策"
       },
       "legal": {
@@ -138,7 +127,7 @@
         "description": "基于最新的 Next.js 15 和 App Router，支持 React 19 并配置了 TypeScript，提供卓越的开发体验。"
       },
       "design": {
-        "title": "现代设计系统", 
+        "title": "现代设计系统",
         "description": "完整的设计令牌系统和组件库，遵循现代 UI/UX 设计原则，支持 Tailwind CSS v4。"
       },
       "security": {
@@ -190,7 +179,7 @@
   "notifications": {
     "close": "关闭",
     "success_title": "操作成功",
-    "error_title": "操作失败", 
+    "error_title": "操作失败",
     "warning_title": "注意",
     "info_title": "提示",
     "save_success": "保存成功",
@@ -376,6 +365,92 @@
       }
     }
   },
+  "Auth": {
+    "loading": "加载中..."
+  },
+  "SignIn": {
+    "meta_title": "登录 - Neurora",
+    "meta_description": "登录您的 Neurora 账户，使用 AI 智能创作工具",
+    "title": "登录",
+    "subtitle": "欢迎回来！请登录您的账户",
+    "email_label": "邮箱地址",
+    "email_placeholder": "请输入您的邮箱地址",
+    "password_label": "密码",
+    "password_placeholder": "请输入您的密码",
+    "remember_me": "记住我",
+    "forgot_password": "忘记密码？",
+    "sign_in_button": "登录",
+    "signing_in": "登录中...",
+    "or": "或",
+    "no_account": "还没有账户？",
+    "sign_up_link": "立即注册"
+  },
+  "SignUp": {
+    "meta_title": "注册 - Neurora",
+    "meta_description": "创建您的 Neurora 账户，开始使用 AI 智能创作工具",
+    "title": "创建账户",
+    "subtitle": "加入数千名创作者，使用 Neurora 创作",
+    "full_name_label": "姓名",
+    "full_name_placeholder": "请输入您的姓名",
+    "email_label": "邮箱地址",
+    "email_placeholder": "请输入您的邮箱地址",
+    "password_label": "密码",
+    "password_placeholder": "创建一个安全的密码",
+    "confirm_password_label": "确认密码",
+    "confirm_password_placeholder": "请再次输入密码",
+    "accept_terms_part1": "我同意",
+    "terms_of_service": "服务条款",
+    "and": "和",
+    "privacy_policy": "隐私政策",
+    "sign_up_button": "创建账户",
+    "creating_account": "创建账户中...",
+    "or": "或",
+    "have_account": "已有账户？",
+    "sign_in_link": "立即登录",
+    "check_email_title": "请检查您的邮箱",
+    "check_email_message": "我们已向您的邮箱发送了验证链接。请检查您的邮箱并点击链接激活您的账户。",
+    "back_to_sign_in": "返回登录"
+  },
+  "ResetPassword": {
+    "title": "重置密码",
+    "subtitle": "输入您的邮箱地址，我们将发送重置密码的链接",
+    "email_label": "邮箱地址",
+    "email_placeholder": "请输入您的邮箱地址",
+    "send_reset_email": "发送重置邮件",
+    "sending": "发送中...",
+    "back_to_sign_in": "返回登录",
+    "email_sent_title": "邮件已发送",
+    "email_sent_message": "如果该邮箱对应的账户存在，我们已向您发送了密码重置链接。"
+  },
+  "UserProfile": {
+    "meta_title": "个人设置 - Neurora",
+    "title": "个人设置",
+    "loading": "加载个人资料中...",
+    "profile_updated_success": "个人资料更新成功",
+    "email_label": "邮箱地址",
+    "email_help": "如需更改邮箱地址，请联系客服",
+    "full_name_label": "姓名",
+    "full_name_placeholder": "请输入您的姓名",
+    "avatar_url_label": "头像链接",
+    "avatar_url_placeholder": "https://example.com/avatar.jpg",
+    "locale_label": "语言",
+    "locale_zh": "中文",
+    "locale_en": "English (英文)",
+    "timezone_label": "时区",
+    "timezone_shanghai": "Asia/Shanghai (GMT+8)",
+    "timezone_new_york": "America/New_York (GMT-5)",
+    "timezone_london": "Europe/London (GMT+0)",
+    "timezone_tokyo": "Asia/Tokyo (GMT+9)",
+    "timezone_sydney": "Australia/Sydney (GMT+10)",
+    "update_profile": "更新资料",
+    "updating": "更新中...",
+    "account_info_title": "账户信息",
+    "user_id": "用户 ID",
+    "created_at": "创建时间",
+    "email_verified": "邮箱验证",
+    "verified": "已验证",
+    "not_verified": "未验证"
+  },
   "Pricing": {
     "meta_title": "定价 - Neurora AI 智能创作平台",
     "meta_description": "灵活的定价方案，满足内容创作者和团队需求。免费开始，支持 3 个项目，升级享受无限 AI 创作和协作功能。",
@@ -449,14 +524,14 @@
     "features_title": "连接您喜爱的平台",
     "features_description": "在所有主流平台上发布和管理您的内容",
     "supported_platforms": [
-      {"name": "微信公众号", "description": "公众号文章发布"},
-      {"name": "知乎", "description": "专业问答内容"},
-      {"name": "小红书", "description": "生活方式内容"},
-      {"name": "抖音", "description": "短视频内容"},
-      {"name": "微博", "description": "社交媒体营销"},
-      {"name": "B站", "description": "视频描述和评论"},
-      {"name": "WordPress", "description": "博客发布"},
-      {"name": "Medium", "description": "文章发布"}
+      { "name": "微信公众号", "description": "公众号文章发布" },
+      { "name": "知乎", "description": "专业问答内容" },
+      { "name": "小红书", "description": "生活方式内容" },
+      { "name": "抖音", "description": "短视频内容" },
+      { "name": "微博", "description": "社交媒体营销" },
+      { "name": "B站", "description": "视频描述和评论" },
+      { "name": "WordPress", "description": "博客发布" },
+      { "name": "Medium", "description": "文章发布" }
     ],
     "testimonial": {
       "quote": "Neurora 彻底改变了我们的内容创作方式。AI 助手非常直观，帮助我们在所有渠道保持内容的一致性。",

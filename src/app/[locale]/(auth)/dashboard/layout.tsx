@@ -1,6 +1,6 @@
-import { SignOutButton } from '@clerk/nextjs';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
+import { SignOutButton } from '@/components/auth/SignOutButton';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
 import { BaseTemplate } from '@/templates/BaseTemplate';
 
@@ -40,10 +40,8 @@ export default async function DashboardLayout(props: {
       rightNav={(
         <>
           <li>
-            <SignOutButton>
-              <button className="border-none text-gray-700 hover:text-gray-900" type="button">
-                {t('sign_out')}
-              </button>
+            <SignOutButton className="border-none text-gray-700 hover:text-gray-900">
+              {t('sign_out')}
             </SignOutButton>
           </li>
 
