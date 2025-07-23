@@ -1,8 +1,8 @@
 import type { NodePgDatabase } from 'drizzle-orm/node-postgres';
-import { join } from 'path';
+import { join } from 'node:path';
 import { drizzle } from 'drizzle-orm/node-postgres';
 import { migrate } from 'drizzle-orm/node-postgres/migrator';
-import * as schema from '../models/Schema';
+import * as schema from '@/models/Schema';
 import { EnvServer } from './EnvServer';
 
 // Stores the db connection in the global scope to prevent multiple instances due to hot reloading with Next.js

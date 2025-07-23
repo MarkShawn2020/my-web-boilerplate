@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { AuthService } from '../../../../libs/Auth';
+import { AuthService } from '@/libs/Auth';
 
 // GET /api/auth/profile?userId=xxx
 export async function GET(request: NextRequest) {
@@ -40,6 +40,13 @@ export async function POST(request: NextRequest) {
     }
 
     const profile = await AuthService.createUserProfile(userId, email, fullName);
+
+    if (!profile) {
+      return NextResponse.json(
+        { error: 'Failed to create user profile in database' },
+        { status: 500 },
+      );
+    }
 
     return NextResponse.json({ profile });
   } catch (error) {

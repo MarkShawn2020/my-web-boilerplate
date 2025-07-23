@@ -1,6 +1,6 @@
 import type { NextRequest } from 'next/server';
 import { NextResponse } from 'next/server';
-import { AuthService } from '../../../../libs/Auth';
+import { AuthService } from '@/libs/Auth';
 
 // GET /api/auth/user?userId=xxx
 export async function GET(request: NextRequest) {

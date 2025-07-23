@@ -1,6 +1,6 @@
-import type { AuthUser, UserPreferences, UserProfile } from '../types/Auth';
+import type { AuthUser, UserPreferences, UserProfile } from '@/types/Auth';
 import { eq } from 'drizzle-orm';
-import { userPreferences, userProfiles, userSubscriptions } from '../models/Schema';
+import { userPreferences, userProfiles, userSubscriptions } from '@/models/Schema';
 import { db, runMigrations } from './DB';
 import { supabaseServer } from './SupabaseServer';
 
@@ -12,7 +12,7 @@ export class AuthService {
     try {
       await runMigrations();
     } catch (error) {
-      console.error('Migration error:', error);
+      console.error('Migration error (may be safe to ignore if already applied):', error);
     }
   }
 
