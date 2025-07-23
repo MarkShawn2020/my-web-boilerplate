@@ -45,67 +45,84 @@
   --border-radius-lg: 1.5rem;
 }
 
-/* Typography System */
+/* Typography System - Lovpen Integration */
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap');
+
 @layer base {
+  :root {
+    --font-sans: 'Fira Code', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+  
   body {
-    @apply bg-background-main text-text-main font-sans antialiased;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-sans);
   }
 
-  /* Display Typography */
+  /* Display Typography - Lovpen Integration */
   .u-display-xl {
-    font-family: var(--font-serif, ui-serif);
+    font-family: var(--font-serif);
     font-size: clamp(2.5rem, 2.04rem + 1.95vw, 4rem);
     font-weight: 600;
-    color: var(--color-text-main);
+    color: var(--foreground);
     line-height: 1.1;
   }
 
   .u-display-l {
+    font-family: var(--font-sans);
     font-size: clamp(2rem, 1.69rem + 1.3vw, 3rem);
-    font-weight: 400;
-    color: var(--color-text-main);
+    font-weight: 500;
+    color: var(--foreground);
     line-height: 1.2;
   }
 
   .u-display-m {
-    font-family: var(--font-serif, ui-serif);
+    font-family: var(--font-serif);
     font-size: clamp(1.75rem, 1.67rem + 0.32vw, 2rem);
     font-weight: 600;
-    color: var(--color-text-main);
+    color: var(--foreground);
     line-height: 1.2;
   }
 
   .u-display-s {
+    font-family: var(--font-sans);
     font-size: clamp(1.25rem, 1.17rem + 0.32vw, 1.5rem);
-    font-weight: 400;
-    color: var(--color-text-main);
+    font-weight: 500;
+    color: var(--foreground);
     line-height: 1.3;
   }
 
-  /* Paragraph Typography */
+  /* Paragraph Typography - Lovpen Integration */
   .u-paragraph-l {
+    font-family: var(--font-sans);
     font-size: clamp(1.375rem, 1.33rem + 0.16vw, 1.5rem);
+    font-weight: 400;
     line-height: 1.4;
-    color: var(--color-text-main);
+    color: var(--foreground);
   }
 
   .u-paragraph-m {
+    font-family: var(--font-sans);
     font-size: clamp(1.125rem, 1.08rem + 0.16vw, 1.25rem);
+    font-weight: 400;
     line-height: 1.5;
-    color: var(--color-text-main);
+    color: var(--foreground);
   }
 
-  /* Link Styling */
+  /* Link Styling - Lovpen Integration */
   a {
-    color: inherit;
+    color: var(--primary);
     text-decoration: underline;
     text-underline-offset: 0.2em;
-    text-decoration-thickness: 0.06em;
-    transition: opacity 0.2s ease;
+    text-decoration-thickness: 0.08em;
+    text-decoration-color: var(--primary);
+    transition: all 0.2s ease;
   }
 
   a:hover {
+    color: var(--primary);
     opacity: 0.8;
+    text-decoration-thickness: 0.12em;
   }
 }
 
@@ -134,18 +151,43 @@
     }
   }
 
-  /* Background Utilities */
+  /* Background Utilities - Lovpen Integration */
   .u-bg-ivory-medium {
-    background-color: var(--color-background-ivory-medium);
+    background-color: var(--secondary);
   }
 
   .u-bg-oat {
-    background-color: var(--color-background-oat);
+    background-color: var(--muted);
+  }
+
+  .u-bg-cloud-light {
+    background-color: var(--accent);
   }
 
   .u-theme-dark {
-    background-color: var(--color-background-dark);
-    color: white;
+    background-color: var(--background);
+    color: var(--foreground);
+  }
+
+  /* Lovpen Swatch Utilities */
+  .u-bg-fig {
+    background-color: var(--chart-1);
+  }
+
+  .u-bg-olive {
+    background-color: var(--chart-2);
+  }
+
+  .u-bg-cactus {
+    background-color: var(--chart-3);
+  }
+
+  .u-bg-sky {
+    background-color: var(--chart-4);
+  }
+
+  .u-bg-heather {
+    background-color: var(--chart-5);
   }
 
   /* Spacing Utilities */
@@ -221,72 +263,83 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --radius: 0.75rem; /* Updated to match Lovpen border-radius-md */
+  
+  /* Lovpen Theme Integration - Light Mode */
+  --background: #f9f9f7; /* Lovpen warm off-white */
+  --foreground: #181818; /* Lovpen text main */
+  --card: #f9f9f7; /* Match background */
+  --card-foreground: #181818; /* Lovpen text main */
+  --popover: #f9f9f7; /* Match background */
+  --popover-foreground: #181818; /* Lovpen text main */
+  --primary: #d97757; /* Lovpen primary terracotta */
+  --primary-foreground: #f9f9f7; /* Light text on primary */
+  --secondary: #f0eee6; /* Lovpen ivory medium */
+  --secondary-foreground: #181818; /* Lovpen text main */
+  --muted: #f7f4ec; /* Lovpen oat */
+  --muted-foreground: #87867f; /* Lovpen text faded */
+  --accent: #e8e6dc; /* Lovpen cloud light */
+  --accent-foreground: #181818; /* Lovpen text main */
+  --destructive: #cc785c; /* Lovpen clay for destructive */
+  --border: #87867f; /* Lovpen border default */
+  --input: #f0eee6; /* Lovpen ivory medium */
+  --ring: #d97757; /* Lovpen primary for focus rings */
+  
+  /* Chart colors using Lovpen swatch */
+  --chart-1: #b49fd8; /* Lovpen fig */
+  --chart-2: #c2c07d; /* Lovpen olive */
+  --chart-3: #629a90; /* Lovpen cactus */
+  --chart-4: #97b5d5; /* Lovpen sky */
+  --chart-5: #d2bedf; /* Lovpen heather */
+  
+  /* Sidebar using Lovpen colors */
+  --sidebar: #f0eee6; /* Lovpen ivory medium */
+  --sidebar-foreground: #181818; /* Lovpen text main */
+  --sidebar-primary: #d97757; /* Lovpen primary */
+  --sidebar-primary-foreground: #f9f9f7; /* Light on primary */
+  --sidebar-accent: #e8e6dc; /* Lovpen cloud light */
+  --sidebar-accent-foreground: #181818; /* Lovpen text main */
+  --sidebar-border: #87867f; /* Lovpen border */
+  --sidebar-ring: #d97757; /* Lovpen primary */
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Lovpen Theme Integration - Dark Mode */
+  --background: #141413; /* Lovpen dark background */
+  --foreground: #f9f9f7; /* Lovpen light text on dark */
+  --card: #3d3d3a; /* Lovpen faded background */
+  --card-foreground: #f9f9f7; /* Light text */
+  --popover: #3d3d3a; /* Lovpen faded background */
+  --popover-foreground: #f9f9f7; /* Light text */
+  --primary: #d97757; /* Keep Lovpen primary consistent */
+  --primary-foreground: #f9f9f7; /* Light text on primary */
+  --secondary: #3d3d3a; /* Lovpen faded */
+  --secondary-foreground: #f9f9f7; /* Light text */
+  --muted: #3d3d3a; /* Lovpen faded */
+  --muted-foreground: #87867f; /* Lovpen text faded */
+  --accent: #3d3d3a; /* Lovpen faded */
+  --accent-foreground: #f9f9f7; /* Light text */
+  --destructive: #cc785c; /* Lovpen clay consistent */
+  --border: #87867f; /* Lovpen border consistent */
+  --input: #3d3d3a; /* Lovpen faded */
+  --ring: #d97757; /* Lovpen primary for focus */
+  
+  /* Dark mode chart colors - slightly muted versions */
+  --chart-1: #b49fd8; /* Lovpen fig */
+  --chart-2: #c2c07d; /* Lovpen olive */
+  --chart-3: #629a90; /* Lovpen cactus */
+  --chart-4: #97b5d5; /* Lovpen sky */
+  --chart-5: #d2bedf; /* Lovpen heather */
+  
+  /* Dark sidebar */
+  --sidebar: #3d3d3a; /* Lovpen faded */
+  --sidebar-foreground: #f9f9f7; /* Light text */
+  --sidebar-primary: #d97757; /* Lovpen primary */
+  --sidebar-primary-foreground: #f9f9f7; /* Light text */
+  --sidebar-accent: #3d3d3a; /* Lovpen faded */
+  --sidebar-accent-foreground: #f9f9f7; /* Light text */
+  --sidebar-border: #87867f; /* Lovpen border */
+  --sidebar-ring: #d97757; /* Lovpen primary */
 }
 
 @layer base {
