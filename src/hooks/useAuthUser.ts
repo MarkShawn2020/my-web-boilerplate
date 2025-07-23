@@ -11,7 +11,9 @@ export function useAuthUser() {
   return {
     user,
     loading,
-    isAuthenticated: !!user && !loading,
+    // If we have user data, consider authenticated (even if refreshing in background)
+    // Only show as not authenticated if we explicitly have no user AND we're not loading
+    isAuthenticated: !!user,
     profile: user?.profile,
     preferences: user?.preferences,
     subscription: user?.subscription,

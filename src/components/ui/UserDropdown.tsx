@@ -1,10 +1,19 @@
 'use client';
 
 import React, { useState } from 'react';
-import { useRouter } from '@/libs/I18nNavigation';
 import { useAuthActions, useAuthUser } from '@/hooks/useAuthUser';
-import { Avatar } from './Avatar';
-import { DropdownMenu, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator } from './DropdownMenu';
+import { useRouter } from '@/libs/I18nNavigation';
+import { Avatar, AvatarFallback, AvatarImage } from './Avatar';
+import { 
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuRadioGroup,
+  DropdownMenuRadioItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger
+} from './dropdown-menu';
 
 // Icons as SVG components
 const UserIcon = ({ className }: { className?: string }) => (
@@ -53,7 +62,7 @@ const UserDropdown = ({}: UserDropdownProps) => {
     if (user?.preferences?.theme) {
       return user.preferences.theme as 'system' | 'light' | 'dark';
     }
-    return localStorage?.getItem('theme') as 'system' | 'light' | 'dark' || 'system';
+    return (typeof window !== 'undefined' ? localStorage?.getItem('theme') : null) as 'system' | 'light' | 'dark' || 'system';
   });
 
   if (!isAuthenticated || !user) {
@@ -74,21 +83,23 @@ const UserDropdown = ({}: UserDropdownProps) => {
 
   const handleThemeChange = (newTheme: 'system' | 'light' | 'dark') => {
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme);
-    
-    // Apply theme immediately
-    const root = document.documentElement;
-    if (newTheme === 'dark') {
-      root.classList.add('dark');
-    } else if (newTheme === 'light') {
-      root.classList.remove('dark');
-    } else {
-      // System theme
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (prefersDark) {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('theme', newTheme);
+      
+      // Apply theme immediately
+      const root = document.documentElement;
+      if (newTheme === 'dark') {
         root.classList.add('dark');
-      } else {
+      } else if (newTheme === 'light') {
         root.classList.remove('dark');
+      } else {
+        // System theme
+        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if (prefersDark) {
+          root.classList.add('dark');
+        } else {
+          root.classList.remove('dark');
+        }
       }
     }
 
@@ -99,89 +110,89 @@ const UserDropdown = ({}: UserDropdownProps) => {
   const userDisplayName = user.profile?.fullName || user.email || 'User';
   const userEmail = user.email || '';
 
+  const getInitials = (name: string) => {
+    return name
+      .split(' ')
+      .map(n => n[0])
+      .join('')
+      .toUpperCase()
+      .slice(0, 2);
+  };
+
   return (
-    <DropdownMenu
-      trigger={
-        <Avatar
-          src={user.profile?.avatarUrl || undefined}
-          alt={userDisplayName}
-          fallback={userDisplayName}
-          size="md"
-        />
-      }
-      align="end"
-      className="w-64"
-    >
-      {/* User Info */}
-      <DropdownMenuLabel>
-        <div className="flex items-center space-x-2">
-          <UserIcon className="w-4 h-4" />
-          <span className="truncate">{userEmail}</span>
-        </div>
-      </DropdownMenuLabel>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Avatar className="cursor-pointer">
+          {user.profile?.avatarUrl && (
+            <AvatarImage 
+              src={user.profile.avatarUrl} 
+              alt={userDisplayName}
+            />
+          )}
+          <AvatarFallback>
+            {getInitials(userDisplayName)}
+          </AvatarFallback>
+        </Avatar>
+      </DropdownMenuTrigger>
       
-      <DropdownMenuSeparator />
-      
-      {/* Account Preferences */}
-      <DropdownMenuItem onClick={handlePreferences}>
-        <div className="flex items-center space-x-2">
+      <DropdownMenuContent className="w-64" align="end">
+        {/* User Info */}
+        <DropdownMenuLabel>
+          <div className="flex items-center space-x-2">
+            <UserIcon className="w-4 h-4" />
+            <span className="truncate">{userEmail}</span>
+          </div>
+        </DropdownMenuLabel>
+        
+        <DropdownMenuSeparator />
+        
+        {/* Account Preferences */}
+        <DropdownMenuItem onClick={handlePreferences}>
           <SettingsIcon className="w-4 h-4" />
           <span>Account Preferences</span>
-        </div>
-      </DropdownMenuItem>
-      
-      {/* All Projects */}
-      <DropdownMenuItem onClick={handleProjects}>
-        <div className="flex items-center space-x-2">
+        </DropdownMenuItem>
+        
+        {/* All Projects */}
+        <DropdownMenuItem onClick={handleProjects}>
           <FolderIcon className="w-4 h-4" />
           <span>All Projects</span>
-        </div>
-      </DropdownMenuItem>
-      
-      {/* Command Menu */}
-      <DropdownMenuItem>
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center space-x-2">
-            <CommandIcon className="w-4 h-4" />
-            <span>Command Menu</span>
-          </div>
-          <kbd className="text-xs bg-gray-100 px-1.5 py-0.5 rounded border dark:bg-gray-700">⌘K</kbd>
-        </div>
-      </DropdownMenuItem>
-      
-      <DropdownMenuSeparator />
-      
-      {/* Theme Section */}
-      <DropdownMenuLabel>
-        <span className="text-xs font-medium text-gray-500 dark:text-gray-400">Theme</span>
-      </DropdownMenuLabel>
-      
-      {/* Theme Options */}
-      {['system', 'light', 'dark'].map((themeOption) => (
-        <DropdownMenuItem
-          key={themeOption}
-          onClick={() => handleThemeChange(themeOption as 'system' | 'light' | 'dark')}
-        >
-          <div className="flex items-center space-x-2 w-full">
-            <div className="flex items-center justify-center w-4 h-4">
-              {theme === themeOption && (
-                <div className="w-2 h-2 bg-current rounded-full" />
-              )}
-            </div>
-            <span className="capitalize">{themeOption}</span>
-          </div>
         </DropdownMenuItem>
-      ))}
-      
-      <DropdownMenuSeparator />
-      
-      {/* Logout */}
-      <DropdownMenuItem onClick={handleLogout}>
-        <div className="flex items-center space-x-2 text-red-600 dark:text-red-400">
+        
+        {/* Command Menu */}
+        <DropdownMenuItem>
+          <CommandIcon className="w-4 h-4" />
+          <span>Command Menu</span>
+          <span className="ml-auto text-xs text-muted-foreground">⌘K</span>
+        </DropdownMenuItem>
+        
+        <DropdownMenuSeparator />
+        
+        {/* Theme Section */}
+        <DropdownMenuLabel>
+          <span className="text-xs font-medium text-muted-foreground">Theme</span>
+        </DropdownMenuLabel>
+        
+        {/* Theme Options */}
+        <DropdownMenuRadioGroup value={theme} onValueChange={(value) => handleThemeChange(value as 'system' | 'light' | 'dark')}>
+          <DropdownMenuRadioItem value="system">
+            <span>System</span>
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="light">
+            <span>Light</span>
+          </DropdownMenuRadioItem>
+          <DropdownMenuRadioItem value="dark">
+            <span>Dark</span>
+          </DropdownMenuRadioItem>
+        </DropdownMenuRadioGroup>
+        
+        <DropdownMenuSeparator />
+        
+        {/* Logout */}
+        <DropdownMenuItem onClick={handleLogout} variant="destructive">
           <LogoutIcon className="w-4 h-4" />
           <span>Logout</span>
-        </div>
-      </DropdownMenuItem>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
     </DropdownMenu>
   );
 };

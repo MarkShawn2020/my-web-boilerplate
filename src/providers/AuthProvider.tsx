@@ -76,59 +76,120 @@ type AuthAction
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
+// Helper function to get cached auth state
+function getCachedAuthState(): Partial<AuthState> {
+  if (typeof window === 'undefined') {
+    return {};
+  }
+  
+  try {
+    const cached = sessionStorage.getItem('auth-state');
+    if (cached) {
+      const parsed = JSON.parse(cached);
+      // Only use cached user data, not loading/error state
+      return {
+        user: parsed.user || null,
+        loading: !parsed.user, // If we have cached user, don't show loading
+      };
+    }
+  } catch (error) {
+    console.warn('Failed to parse cached auth state:', error);
+  }
+  
+  return {};
+}
+
+// Helper function to cache auth state
+function cacheAuthState(state: AuthState) {
+  if (typeof window === 'undefined') {
+    return;
+  }
+  
+  try {
+    sessionStorage.setItem('auth-state', JSON.stringify({
+      user: state.user,
+      // Don't cache loading/error states
+    }));
+  } catch (error) {
+    console.warn('Failed to cache auth state:', error);
+  }
+}
+
+const cachedState = getCachedAuthState();
 const initialState: AuthState = {
   user: null,
   loading: true,
   error: null,
+  ...cachedState,
 };
 
 function authReducer(state: AuthState, action: AuthAction): AuthState {
+  let newState: AuthState;
+  
   switch (action.type) {
     case 'SIGN_IN_START':
-      return {
+      newState = {
         ...state,
         loading: true,
         error: null,
       };
+      break;
     case 'SIGN_IN_SUCCESS':
-      return {
+      newState = {
         ...state,
         user: action.payload,
         loading: false,
         error: null,
       };
+      break;
     case 'SIGN_IN_ERROR':
-      return {
+      newState = {
         ...state,
         user: null,
         loading: false,
         error: action.payload,
       };
+      break;
     case 'SIGN_OUT':
-      return {
+      newState = {
         ...state,
         user: null,
         loading: false,
         error: null,
       };
+      // Clear cached auth state on sign out
+      if (typeof window !== 'undefined') {
+        sessionStorage.removeItem('auth-state');
+      }
+      break;
     case 'UPDATE_USER':
-      return {
+      newState = {
         ...state,
         user: action.payload,
       };
+      break;
     case 'SET_LOADING':
-      return {
+      newState = {
         ...state,
         loading: action.payload,
       };
+      break;
     case 'SET_ERROR':
-      return {
+      newState = {
         ...state,
         error: action.payload,
       };
+      break;
     default:
-      return state;
+      newState = state;
   }
+  
+  // Cache the state when user data changes
+  if (newState !== state && (action.type === 'SIGN_IN_SUCCESS' || action.type === 'SIGN_OUT' || action.type === 'UPDATE_USER')) {
+    cacheAuthState(newState);
+  }
+  
+  return newState;
 }
 
 // Helper function to fetch user data from API
@@ -172,6 +233,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     // Get initial session
     const loadUser = async () => {
       try {
+        // If we already have a cached user, don't show loading state
+        const hasCachedUser = !!state.user;
+        
+        if (!hasCachedUser) {
+          // Only set loading if we don't have cached data
+          dispatch({ type: 'SET_LOADING', payload: true });
+        }
+
         const { session, error } = await AuthClientService.getSession();
 
         if (error) {
@@ -183,13 +252,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         }
 
         if (session?.user) {
+          // If we have cached user but it's a different user, show loading
+          if (hasCachedUser && state.user?.id !== session.user.id) {
+            dispatch({ type: 'SET_LOADING', payload: true });
+          }
+          
           const completeUser = await fetchUserData(session.user.id);
           if (isMounted) {
             dispatch({ type: 'SIGN_IN_SUCCESS', payload: completeUser || session.user });
           }
         } else {
+          // No session, clear cached data
           if (isMounted) {
-            dispatch({ type: 'SET_LOADING', payload: false });
+            dispatch({ type: 'SIGN_OUT' });
           }
         }
       } catch (error) {

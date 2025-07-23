@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { useFormButtonState } from '@/hooks/useButtonState';
 import { CounterValidation } from '@/validations/CounterValidation';
 
@@ -83,8 +83,8 @@ export const CounterForm = () => {
       <div className="mt-2">
         <Button
           type="submit"
-          variant="primary"
-          size="md"
+          variant="default"
+          size="default"
           state={buttonState.state}
           disabled={isDisabled}
           disabledReason={disabledReason}

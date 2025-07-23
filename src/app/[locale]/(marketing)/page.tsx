@@ -1,6 +1,6 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import { Container } from '@/components/layout/Container';
-import { Button } from '@/components/ui/Button';
+import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardIcon } from '@/components/ui/Card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/Tabs';
 
@@ -74,7 +74,7 @@ export default async function Index(props: IIndexProps) {
                 {t('hero_description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="primary" size="lg">
+                <Button variant="default" size="lg">
                   {t('get_started')}
                 </Button>
                 <Button variant="secondary" size="lg">
@@ -199,7 +199,7 @@ export default async function Index(props: IIndexProps) {
               {t('cta_description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" size="lg">
+              <Button variant="default" size="lg">
                 {t('cta_start')}
               </Button>
               <Button variant="secondary" size="lg" className="bg-transparent border-white text-white hover:bg-white hover:text-background-dark">

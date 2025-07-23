@@ -1,66 +1,53 @@
-'use client';
+"use client"
 
-import React from 'react';
-import { cn } from '@/utils/Helpers';
+import * as AvatarPrimitive from "@radix-ui/react-avatar"
+import * as React from "react"
 
-interface AvatarProps {
-  src?: string;
-  alt?: string;
-  fallback?: string;
-  size?: 'sm' | 'md' | 'lg';
-  className?: string;
-  onClick?: () => void;
+import { cn } from "@/lib/utils"
+
+function Avatar({
+  className,
+  ...props
+}: React.ComponentProps<typeof AvatarPrimitive.Root>) {
+  return (
+    <AvatarPrimitive.Root
+      data-slot="avatar"
+      className={cn(
+        "relative flex size-8 shrink-0 overflow-hidden rounded-full",
+        className
+      )}
+      {...props}
+    />
+  )
 }
 
-const Avatar = ({ src, alt, fallback, size = 'md', className, onClick }: AvatarProps) => {
-  const sizeClasses = {
-    sm: 'w-8 h-8 text-sm',
-    md: 'w-10 h-10 text-base',
-    lg: 'w-12 h-12 text-lg',
-  };
-
-  const getInitials = (name?: string) => {
-    if (!name) return 'U';
-    return name
-      .split(' ')
-      .map(n => n[0])
-      .join('')
-      .toUpperCase()
-      .slice(0, 2);
-  };
-
-  const [imageError, setImageError] = React.useState(false);
-
-  const handleImageError = () => {
-    setImageError(true);
-  };
-
+function AvatarImage({
+  className,
+  ...props
+}: React.ComponentProps<typeof AvatarPrimitive.Image>) {
   return (
-    <div
+    <AvatarPrimitive.Image
+      data-slot="avatar-image"
+      className={cn("aspect-square size-full", className)}
+      {...props}
+    />
+  )
+}
+
+function AvatarFallback({
+  className,
+  ...props
+}: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+  return (
+    <AvatarPrimitive.Fallback
+      data-slot="avatar-fallback"
       className={cn(
-        'relative inline-flex items-center justify-center rounded-full bg-gray-100 font-medium text-gray-600 select-none overflow-hidden border border-gray-200',
-        sizeClasses[size],
-        onClick && 'cursor-pointer hover:bg-gray-200 transition-colors',
-        className,
+        "bg-muted flex size-full items-center justify-center rounded-full",
+        className
       )}
-      onClick={onClick}
-    >
-      {src && !imageError ? (
-        <img
-          src={src}
-          alt={alt || 'Avatar'}
-          className="w-full h-full object-cover rounded-full"
-          onError={handleImageError}
-        />
-      ) : (
-        <span className="font-semibold">
-          {getInitials(fallback || alt)}
-        </span>
-      )}
-    </div>
-  );
-};
+      {...props}
+    />
+  )
+}
 
-Avatar.displayName = 'Avatar';
-
-export { Avatar, type AvatarProps };
+export { Avatar, AvatarFallback, AvatarImage }
