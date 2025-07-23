@@ -12,6 +12,7 @@ import {Button} from '../ui/button';
 import {NeuroraIcon} from '../ui/NeuroraIcon';
 import {UserDropdown} from '../ui/UserDropdown';
 import {Container} from './Container';
+import {HeaderActionSkeleton} from './HeaderActionSkeleton';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -88,7 +89,7 @@ const Header = () => {
                     <div className="hidden lg:flex items-center space-x-4">
                         {!hasMounted || loading
                             ? (
-                                <div className="w-20 h-10 bg-gray-200 animate-pulse rounded-md"/>
+                                <HeaderActionSkeleton variant="desktop" />
                             )
                             : isAuthenticated && user
                                 ? (
@@ -169,7 +170,7 @@ const Header = () => {
                         <div className="flex flex-col space-y-3 pt-4 border-t border-border-default/20">
                             {!hasMounted || loading
                                 ? (
-                                    <div className="w-full h-10 bg-gray-200 animate-pulse rounded-md"/>
+                                    <HeaderActionSkeleton variant="mobile" />
                                 )
                                 : isAuthenticated && user
                                     ? (
