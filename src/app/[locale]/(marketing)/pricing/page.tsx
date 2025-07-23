@@ -4,11 +4,12 @@ import { getTranslations } from 'next-intl/server';
 import { PricingPageContent } from '@/components/pricing/PricingPageContent';
 
 type Props = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const t = await getTranslations({ locale: params.locale, namespace: 'Pricing' });
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const { locale } = await props.params;
+  const t = await getTranslations({ locale, namespace: 'Pricing' });
 
   return {
     title: t('meta_title'),
@@ -16,6 +17,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function PricingPage({ params: _params }: Props) {
+export default async function PricingPage(props: Props) {
   return <PricingPageContent />;
 }

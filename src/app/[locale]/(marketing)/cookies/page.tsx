@@ -4,11 +4,12 @@ import { getTranslations } from 'next-intl/server';
 import { LegalPage } from '@/components/legal/LegalPage';
 
 type Props = {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 };
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const t = await getTranslations({ locale: params.locale, namespace: 'CookiePolicy' });
+export async function generateMetadata(props: Props): Promise<Metadata> {
+  const { locale } = await props.params;
+  const t = await getTranslations({ locale, namespace: 'CookiePolicy' });
 
   return {
     title: t('meta_title'),
@@ -16,8 +17,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   };
 }
 
-export default async function CookiesPage({ params }: Props) {
-  const t = await getTranslations({ locale: params.locale, namespace: 'CookiePolicy' });
+export default async function CookiesPage(props: Props) {
+  const { locale } = await props.params;
+  const t = await getTranslations({ locale, namespace: 'CookiePolicy' });
 
   const sections = [
     {
