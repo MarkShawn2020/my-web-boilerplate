@@ -6,7 +6,7 @@
   },
   "scripts": {
     "dev:spotlight": "npx @spotlightjs/sidecar",
-    "dev:next": "next dev --turbopack",
+    "dev:next": "next dev",
     "dev": "run-p dev:*",
     "build:next": "next build",
     "build": "run-p build:* --race",
