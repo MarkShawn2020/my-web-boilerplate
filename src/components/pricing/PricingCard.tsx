@@ -1,7 +1,7 @@
 'use client';
 
+import { useLocale, useTranslations } from 'next-intl';
 import React from 'react';
-import { useTranslations, useLocale } from 'next-intl';
 
 type BillingCycle = 'monthly' | 'yearly';
 
@@ -23,7 +23,7 @@ export const PricingCard: React.FC<PricingCardProps> = ({
     if (planKey === 'free') {
       return t('plans.free.price_label');
     }
-    
+
     if (billingCycle === 'yearly') {
       return t(`plans.${planKey}.price_label_yearly`);
     } else {
@@ -32,15 +32,20 @@ export const PricingCard: React.FC<PricingCardProps> = ({
   };
 
   const getAnnualPriceNote = () => {
-    if (planKey === 'free' || billingCycle === 'monthly') return null;
-    
+    if (planKey === 'free' || billingCycle === 'monthly') {
+      return null;
+    }
+
     const yearlyPrice = t(`plans.${planKey}.price_yearly`);
     const currency = locale === 'zh' ? '¥' : '$';
-    const annualTotal = parseInt(yearlyPrice) * 12;
-    
+    const annualTotal = Number.parseInt(yearlyPrice) * 12;
+
     return (
       <p className="text-sm text-gray-500 mt-1">
-        {currency}{annualTotal} billed annually
+        {currency}
+        {annualTotal}
+        {' '}
+        billed annually
       </p>
     );
   };
@@ -49,10 +54,11 @@ export const PricingCard: React.FC<PricingCardProps> = ({
 
   return (
     <div className={`relative rounded-2xl border bg-white p-8 shadow-sm ${
-      isRecommended 
-        ? 'border-primary ring-1 ring-primary' 
+      isRecommended
+        ? 'border-primary ring-1 ring-primary'
         : 'border-gray-200'
-    }`}>
+    }`}
+    >
       {/* Recommended Badge */}
       {isRecommended && (
         <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
@@ -67,14 +73,14 @@ export const PricingCard: React.FC<PricingCardProps> = ({
         <h3 className="text-xl font-semibold text-text-main mb-2">
           {t(`plans.${planKey}.name`)}
         </h3>
-        
+
         <div className="mb-4">
           <div className="text-4xl font-bold text-text-main">
             {getPriceDisplay()}
           </div>
           {getAnnualPriceNote()}
         </div>
-        
+
         <p className="text-gray-600 text-sm">
           {t(`plans.${planKey}.description`)}
         </p>

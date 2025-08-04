@@ -37,8 +37,8 @@ export const ServerButton = ({
     lg: 'px-8 py-4 text-lg rounded-lg gap-3',
   };
 
-  const disabledStyles = disabled 
-    ? 'opacity-50 pointer-events-none cursor-not-allowed' 
+  const disabledStyles = disabled
+    ? 'opacity-50 pointer-events-none cursor-not-allowed'
     : '';
 
   const combinedClassName = cn(

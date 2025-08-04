@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
 import { useTranslations } from 'next-intl';
+import React from 'react';
 
 type BillingCycle = 'monthly' | 'yearly';
 
@@ -22,7 +22,7 @@ export const BillingToggle: React.FC<BillingToggleProps> = ({
         <span className={`text-sm font-medium ${billingCycle === 'monthly' ? 'text-text-main' : 'text-gray-500'}`}>
           {t('billing_monthly')}
         </span>
-        
+
         <button
           onClick={() => onBillingCycleChange(billingCycle === 'monthly' ? 'yearly' : 'monthly')}
           className="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-200 transition-colors focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2"
@@ -36,7 +36,7 @@ export const BillingToggle: React.FC<BillingToggleProps> = ({
             }`}
           />
         </button>
-        
+
         <div className="flex items-center space-x-2">
           <span className={`text-sm font-medium ${billingCycle === 'yearly' ? 'text-text-main' : 'text-gray-500'}`}>
             {t('billing_yearly')}

@@ -7,27 +7,27 @@ import { cn } from '@/utils/Helpers';
 const Spinner = ({ size }: { size: 'sm' | 'md' | 'lg' }) => {
   const spinnerSizes = {
     sm: 'w-4 h-4',
-    md: 'w-5 h-5', 
+    md: 'w-5 h-5',
     lg: 'w-6 h-6',
   };
 
   return (
-    <svg 
+    <svg
       className={cn('animate-spin', spinnerSizes[size])}
-      fill="none" 
+      fill="none"
       viewBox="0 0 24 24"
     >
-      <circle 
-        className="opacity-25" 
-        cx="12" 
-        cy="12" 
-        r="10" 
-        stroke="currentColor" 
+      <circle
+        className="opacity-25"
+        cx="12"
+        cy="12"
+        r="10"
+        stroke="currentColor"
         strokeWidth="4"
       />
-      <path 
-        className="opacity-75" 
-        fill="currentColor" 
+      <path
+        className="opacity-75"
+        fill="currentColor"
         d="m4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
       />
     </svg>
@@ -50,21 +50,7 @@ type ButtonProps = {
   disabled?: boolean;
 };
 
-const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
-  className,
-  variant = 'primary',
-  size = 'md',
-  state = 'idle',
-  loading = false,
-  asChild = false,
-  href,
-  loadingText,
-  disabledReason,
-  disabled = false,
-  children,
-  onClick,
-  ...props
-}, ref) => {
+const Button = ({ ref, className, variant = 'primary', size = 'md', state = 'idle', loading = false, asChild = false, href, loadingText, disabledReason, disabled = false, children, onClick, ...props }: ButtonProps & { ref?: React.RefObject<HTMLButtonElement | null> }) => {
   // Determine if button should be disabled
   const isDisabled = disabled || loading || state === 'loading';
   const isLoading = loading || state === 'loading';
@@ -91,8 +77,8 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
   };
 
   // Disabled styles
-  const disabledStyles = isDisabled 
-    ? 'opacity-50 pointer-events-none cursor-not-allowed' 
+  const disabledStyles = isDisabled
+    ? 'opacity-50 pointer-events-none cursor-not-allowed'
     : 'hover:scale-[0.98] active:scale-95';
 
   const combinedClassName = cn(
@@ -177,7 +163,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(({
       )}
     </button>
   );
-});
+};
 
 Button.displayName = 'Button';
 

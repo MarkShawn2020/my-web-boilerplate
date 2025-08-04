@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useState } from 'react';
 import { useTranslations } from 'next-intl';
+import React, { useState } from 'react';
 import { Container } from '@/components/layout/Container';
 import { BillingToggle } from './BillingToggle';
-import { PricingCard } from './PricingCard';
-import { PlatformGrid } from './PlatformGrid';
-import { Testimonial } from './Testimonial';
-import { FeatureComparison } from './FeatureComparison';
 import { FAQ } from './FAQ';
+import { FeatureComparison } from './FeatureComparison';
+import { PlatformGrid } from './PlatformGrid';
+import { PricingCard } from './PricingCard';
+import { Testimonial } from './Testimonial';
 
 type BillingCycle = 'monthly' | 'yearly';
 

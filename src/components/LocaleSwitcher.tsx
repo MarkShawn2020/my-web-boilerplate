@@ -1,7 +1,7 @@
 'use client';
 
 import { useLocale } from 'next-intl';
-import { useRouter, usePathname } from '@/libs/I18nNavigation';
+import { usePathname, useRouter } from '@/libs/I18nNavigation';
 
 export const LocaleSwitcher = () => {
   const router = useRouter();
@@ -32,8 +32,8 @@ export const LocaleSwitcher = () => {
         onClick={() => handleLocaleChange(otherLocale)}
         className="text-text-faded hover:text-text-main transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-primary/20 rounded px-1"
         aria-label={
-          locale === 'zh' 
-            ? `Switch to English` 
+          locale === 'zh'
+            ? `Switch to English`
             : `切换到中文`
         }
         title={

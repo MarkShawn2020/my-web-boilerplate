@@ -81,7 +81,7 @@
   },
   "Footer": {
     "company_title": "公司",
-    "product_title": "产品", 
+    "product_title": "产品",
     "support_title": "支持",
     "newsletter_title": "订阅更新",
     "newsletter_description": "获取最新的产品更新和技术资讯。",
@@ -91,7 +91,7 @@
     "links": {
       "company": {
         "about": "关于我们",
-        "careers": "加入我们", 
+        "careers": "加入我们",
         "press": "媒体报道",
         "blog": "博客"
       },
@@ -104,7 +104,7 @@
       "support": {
         "help_center": "帮助中心",
         "contact": "联系我们",
-        "status": "服务状态", 
+        "status": "服务状态",
         "privacy": "隐私政策"
       },
       "legal": {
@@ -138,7 +138,7 @@
         "description": "基于最新的 Next.js 15 和 App Router，支持 React 19 并配置了 TypeScript，提供卓越的开发体验。"
       },
       "design": {
-        "title": "现代设计系统", 
+        "title": "现代设计系统",
         "description": "完整的设计令牌系统和组件库，遵循现代 UI/UX 设计原则，支持 Tailwind CSS v4。"
       },
       "security": {
@@ -190,7 +190,7 @@
   "notifications": {
     "close": "关闭",
     "success_title": "操作成功",
-    "error_title": "操作失败", 
+    "error_title": "操作失败",
     "warning_title": "注意",
     "info_title": "提示",
     "save_success": "保存成功",
@@ -449,14 +449,14 @@
     "features_title": "连接您喜爱的平台",
     "features_description": "在所有主流平台上发布和管理您的内容",
     "supported_platforms": [
-      {"name": "微信公众号", "description": "公众号文章发布"},
-      {"name": "知乎", "description": "专业问答内容"},
-      {"name": "小红书", "description": "生活方式内容"},
-      {"name": "抖音", "description": "短视频内容"},
-      {"name": "微博", "description": "社交媒体营销"},
-      {"name": "B站", "description": "视频描述和评论"},
-      {"name": "WordPress", "description": "博客发布"},
-      {"name": "Medium", "description": "文章发布"}
+      { "name": "微信公众号", "description": "公众号文章发布" },
+      { "name": "知乎", "description": "专业问答内容" },
+      { "name": "小红书", "description": "生活方式内容" },
+      { "name": "抖音", "description": "短视频内容" },
+      { "name": "微博", "description": "社交媒体营销" },
+      { "name": "B站", "description": "视频描述和评论" },
+      { "name": "WordPress", "description": "博客发布" },
+      { "name": "Medium", "description": "文章发布" }
     ],
     "testimonial": {
       "quote": "Neurora 彻底改变了我们的内容创作方式。AI 助手非常直观，帮助我们在所有渠道保持内容的一致性。",

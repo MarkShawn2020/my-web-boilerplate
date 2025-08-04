@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useCallback, useRef } from 'react';
 import { useTranslations } from 'next-intl';
+import { useCallback, useRef, useState } from 'react';
 
 type ButtonState = 'idle' | 'loading' | 'success' | 'error';
 
@@ -9,19 +9,19 @@ type ButtonStateConfig = {
   // 基础配置
   id: string;
   initialState?: ButtonState;
-  
+
   // 权限控制
   permissions?: string[];
   requiredRole?: string;
-  
+
   // 表单验证
   validationFields?: string[];
   formRef?: React.RefObject<HTMLFormElement>;
-  
+
   // 状态持续时间
   successDuration?: number;
   errorDuration?: number;
-  
+
   // 回调函数
   onStateChange?: (state: ButtonState, id: string) => void;
   onError?: (error: Error, id: string) => void;
@@ -40,12 +40,12 @@ type ButtonStateReturn = {
   isLoading: boolean;
   isDisabled: boolean;
   disabledReason?: string;
-  
+
   // 动作
   executeAsync: <T = any>(action: () => Promise<T>) => Promise<AsyncActionResult<T>>;
   setState: (state: ButtonState) => void;
   reset: () => void;
-  
+
   // 验证
   validateForm: () => boolean;
   checkPermissions: () => boolean;
@@ -59,7 +59,7 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
   const [state, setState] = useState<ButtonState>(config.initialState || 'idle');
   const timeoutRef = useRef<NodeJS.Timeout>();
   const t = useTranslations('button_states');
-  
+
   // 清理定时器
   const clearTimeout = useCallback(() => {
     if (timeoutRef.current) {
@@ -75,7 +75,7 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
     }
 
     const formData = new FormData(config.formRef.current);
-    const isValid = config.validationFields.every(field => {
+    const isValid = config.validationFields.every((field) => {
       const value = formData.get(field);
       return value && value.toString().trim() !== '';
     });
@@ -98,7 +98,7 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
   // 计算禁用状态和原因
   const getDisabledState = useCallback(() => {
     const isLoading = state === 'loading';
-    
+
     if (isLoading) {
       return { isDisabled: true, disabledReason: t('disabled_loading') };
     }
@@ -121,7 +121,7 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
 
     // 自动重置成功/错误状态
     clearTimeout();
-    
+
     if (newState === 'success') {
       timeoutRef.current = setTimeout(() => {
         setState('idle');
@@ -137,10 +137,10 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
 
   // 执行异步操作
   const executeAsync = useCallback(async <T = any>(
-    action: () => Promise<T>
+    action: () => Promise<T>,
   ): Promise<AsyncActionResult<T>> => {
     const { isDisabled } = getDisabledState();
-    
+
     if (isDisabled) {
       return { success: false, error: new Error(t('disabled_loading')) };
     }
@@ -148,16 +148,16 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
     try {
       setStateWithCallback('loading');
       const result = await action();
-      
+
       setStateWithCallback('success');
       config.onSuccess?.(result, config.id);
-      
+
       return { success: true, data: result };
     } catch (error) {
       const err = error as Error;
       setStateWithCallback('error');
       config.onError?.(err, config.id);
-      
+
       return { success: false, error: err };
     }
   }, [getDisabledState, setStateWithCallback, config, t]);
@@ -176,12 +176,12 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
     isLoading: state === 'loading',
     isDisabled,
     disabledReason,
-    
+
     // 动作
     executeAsync,
     setState: setStateWithCallback,
     reset,
-    
+
     // 验证
     validateForm,
     checkPermissions,
@@ -193,18 +193,22 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
  * 用于管理多个按钮的状态，确保同一时间只有一个按钮处于loading状态
  */
 export const useMultiButtonState = (configs: ButtonStateConfig[]) => {
-  const buttonStates = configs.map(config => useButtonState(config));
+  // 必须在组件顶层调用所有hooks
+  const hookResults = configs.map((config) => {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    return useButtonState(config);
+  });
   const t = useTranslations('button_states');
-  
+
   // 检查是否有任何按钮正在loading
-  const hasLoadingButton = buttonStates.some(button => button.isLoading);
-  
+  const hasLoadingButton = hookResults.some(button => button.isLoading);
+
   // 为每个按钮添加全局loading检查
-  const enhancedStates = buttonStates.map((buttonState, index) => ({
+  const enhancedStates = hookResults.map(buttonState => ({
     ...buttonState,
     isDisabled: buttonState.isDisabled || (hasLoadingButton && !buttonState.isLoading),
-    disabledReason: buttonState.isDisabled 
-      ? buttonState.disabledReason 
+    disabledReason: buttonState.isDisabled
+      ? buttonState.disabledReason
       : hasLoadingButton && !buttonState.isLoading
         ? t('disabled_other_loading')
         : undefined,
@@ -213,7 +217,7 @@ export const useMultiButtonState = (configs: ButtonStateConfig[]) => {
   return {
     buttons: enhancedStates,
     hasLoadingButton,
-    resetAll: () => buttonStates.forEach(button => button.reset()),
+    resetAll: () => hookResults.forEach(button => button.reset()),
   };
 };
 
@@ -223,7 +227,7 @@ export const useMultiButtonState = (configs: ButtonStateConfig[]) => {
  */
 export const useFormButtonState = (
   formRef: React.RefObject<HTMLFormElement>,
-  validationFields: string[] = []
+  validationFields: string[] = [],
 ) => {
   return useButtonState({
     id: 'form-submit',

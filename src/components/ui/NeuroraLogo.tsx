@@ -1,10 +1,10 @@
 import React from 'react';
 
-interface NeuroraLogoProps {
+type NeuroraLogoProps = {
   className?: string;
-}
+};
 
-const NeuroraLogo: React.FC<NeuroraLogoProps> = ({ className = "h-8 w-auto" }) => {
+const NeuroraLogo: React.FC<NeuroraLogoProps> = ({ className = 'h-8 w-auto' }) => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

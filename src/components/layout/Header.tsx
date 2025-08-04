@@ -1,14 +1,14 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useState } from 'react';
-import { useTranslations } from 'next-intl';
 import { cn } from '@/utils/Helpers';
-import { Button } from '../ui/Button';
-import { Container } from './Container';
-import { NeuroraIcon } from '../ui/NeuroraIcon';
-import { LocaleSwitcher } from '../LocaleSwitcher';
 import packageJson from '../../../package.json';
+import { LocaleSwitcher } from '../LocaleSwitcher';
+import { Button } from '../ui/Button';
+import { NeuroraIcon } from '../ui/NeuroraIcon';
+import { Container } from './Container';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,7 +33,8 @@ const Header = () => {
               <span className="text-xl font-bold">Neurora</span>
             </Link>
             <span className="ml-2 px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full border border-primary/20">
-              v{packageJson.version}
+              v
+              {packageJson.version}
             </span>
           </div>
 

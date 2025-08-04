@@ -50,7 +50,7 @@ export const CounterForm = () => {
   // 计算禁用状态
   const isFormInvalid = Object.keys(form.formState.errors).length > 0;
   const isDisabled = buttonState.isDisabled || isFormInvalid || form.formState.isSubmitting;
-  
+
   let disabledReason = buttonState.disabledReason;
   if (isFormInvalid) {
     disabledReason = t('error_increment_range');
