@@ -11,18 +11,18 @@
   "RootLayout": {
     "home_link": "首页",
     "about_link": "关于我们",
-    "counter_link": "计数器",
+    "transcripts_link": "我的转录",
     "portfolio_link": "作品集",
     "sign_in_link": "登录",
     "sign_up_link": "注册"
   },
   "BaseTemplate": {
-    "description": "Neurora，为创作者而生的 AI 智能创作平台",
+    "description": "PodFast - 快速将音频、文档转换为结构化对话记录",
     "made_with": "由 <author></author> 精心打造。"
   },
   "Index": {
-    "meta_title": "Neurora - 为创作者而生的 AI 智能创作平台",
-    "meta_description": "Neurora，专为知识博主和内容创作者打造的 AI 智能创作平台，让一部分人先机械飞升，最大化思想者的价值。",
+    "meta_title": "PodFast - 快速转录和编辑对话记录",
+    "meta_description": "PodFast 帮助您快速将音频、PDF、Word文档转换为结构化的对话记录，支持发言人编辑、内容合并和Markdown导出。",
     "sponsors_title": "合作伙伴"
   },
   "Counter": {
@@ -120,66 +120,66 @@
     "sign_out": "退出登录"
   },
   "HomePage": {
-    "hero_title": "Neurora - 为创作者而生",
-    "hero_description": "专为知识博主和内容创作者打造的 AI 智能创作平台，让一部分人先机械飞升，最大化思想者的价值。",
+    "hero_title": "PodFast - 快速转录管理",
+    "hero_description": "快速将音频、PDF、Word文档转换为结构化的对话记录。编辑发言人、合并内容，一键导出为Markdown格式。",
     "get_started": "立即开始",
     "view_docs": "查看文档",
-    "hero_card_title": "AI 创作平台",
-    "hero_card_subtitle": "智能 • 高效 • 专业",
-    "features_title": "为创作者量身打造",
-    "features_description": "集成先进的 AI 技术，提供完整的创作工具链，助力内容创作者实现价值最大化。",
-    "cta_title": "准备开始创作了吗？",
-    "cta_description": "加入数千名创作者，使用 Neurora 打造专业内容，释放创作潜能。",
+    "hero_card_title": "转录编辑器",
+    "hero_card_subtitle": "快速 • 灵活 • 专业",
+    "features_title": "强大的转录功能",
+    "features_description": "高效管理和编辑转录内容所需的一切功能。",
+    "cta_title": "准备转换您的内容了吗？",
+    "cta_description": "立即开始将您的媒体文件转换为可编辑的转录文本。",
     "cta_start": "立即开始",
     "cta_github": "了解更多",
+    "use_cases_title": "适用场景",
+    "use_cases_description": "PodFast 为各种内容创作需求而设计",
     "features": {
       "nextjs": {
-        "title": "Next.js 15 + App Router",
-        "description": "基于最新的 Next.js 15 和 App Router，支持 React 19 并配置了 TypeScript，提供卓越的开发体验。"
+        "title": "智能文件解析",
+        "description": "自动解析 DOCX、PDF、TXT 和 Markdown 文件。智能提取发言人信息和内容结构。"
       },
       "design": {
-        "title": "现代设计系统",
-        "description": "完整的设计令牌系统和组件库，遵循现代 UI/UX 设计原则，支持 Tailwind CSS v4。"
+        "title": "发言人管理",
+        "description": "单独编辑、向后全部或全局修改发言人名称。保持转录内容的组织性和一致性。"
       },
       "security": {
-        "title": "企业级安全认证",
-        "description": "集成 Clerk 认证系统，支持多因素认证、社交登录等企业级安全特性。"
+        "title": "内容合并",
+        "description": "选择并合并相邻的发言内容。完美清理碎片化的转录文本。"
       },
       "performance": {
-        "title": "性能优先",
-        "description": "使用现代构建工具优化，支持 Turbopack、代码分割和性能监控，确保极致体验。"
+        "title": "Markdown 导出",
+        "description": "将编辑后的转录导出为干净的 Markdown 格式，包含正确的发言人格式和结构。"
       },
       "i18n": {
-        "title": "国际化就绪",
-        "description": "内置 next-intl 国际化支持，配合 Crowdin 实现专业的多语言工作流。"
+        "title": "多格式支持",
+        "description": "支持各种媒体格式，包括文档、演示文稿和音频转录。"
       },
       "testing": {
-        "title": "质量保证",
-        "description": "完整的测试套件，包含 Vitest、React Testing Library 和 Playwright 端到端测试。"
+        "title": "快速处理",
+        "description": "快速的文件上传和处理。几秒钟内准备好您的转录文本。"
       }
     },
-    "use_cases_title": "适合各种创作场景",
-    "use_cases_description": "无论您是个人知识博主还是企业内容团队，Neurora 都能与您一起扩展创作边界。",
     "tabs": {
       "individual": {
-        "label": "个人博主",
-        "title": "个人知识分享",
-        "description": "专为个人知识博主设计，提供内容创作、SEO优化和粉丝互动工具，助力个人品牌建设。"
+        "label": "播客创作者",
+        "title": "为播客创作者打造",
+        "description": "将播客录音转换为可编辑的转录文本。非常适合制作节目笔记、博客文章和内容再利用。"
       },
       "team": {
-        "label": "团队协作",
-        "title": "团队内容创作",
-        "description": "支持多人协作编辑、版本控制和内容审核流程，适合内容团队高效协作创作。"
+        "label": "研究人员",
+        "title": "为研究团队打造",
+        "description": "转录访谈和焦点小组讨论。编辑发言人标签并导出干净的转录文本用于分析。"
       },
       "enterprise": {
-        "label": "企业级",
-        "title": "企业内容营销",
-        "description": "企业级安全和管理功能，支持品牌一致性管理、多渠道发布和数据分析。"
+        "label": "内容团队",
+        "title": "为内容创作者打造",
+        "description": "将网络研讨会、会议和演示转换为结构化内容，用于博客、文章和文档。"
       },
       "education": {
-        "label": "教育培训",
-        "title": "在线教育内容",
-        "description": "专门为教育工作者打造，支持课程内容创作、学习路径设计和学员互动。"
+        "label": "教育工作者",
+        "title": "为教育而设计",
+        "description": "将讲座和教育内容转换为可读的转录文本，供学生和在线课程使用。"
       }
     }
   },
@@ -449,14 +449,38 @@
     "features_title": "连接您喜爱的平台",
     "features_description": "在所有主流平台上发布和管理您的内容",
     "supported_platforms": [
-      { "name": "微信公众号", "description": "公众号文章发布" },
-      { "name": "知乎", "description": "专业问答内容" },
-      { "name": "小红书", "description": "生活方式内容" },
-      { "name": "抖音", "description": "短视频内容" },
-      { "name": "微博", "description": "社交媒体营销" },
-      { "name": "B站", "description": "视频描述和评论" },
-      { "name": "WordPress", "description": "博客发布" },
-      { "name": "Medium", "description": "文章发布" }
+      {
+        "name": "微信公众号",
+        "description": "公众号文章发布"
+      },
+      {
+        "name": "知乎",
+        "description": "专业问答内容"
+      },
+      {
+        "name": "小红书",
+        "description": "生活方式内容"
+      },
+      {
+        "name": "抖音",
+        "description": "短视频内容"
+      },
+      {
+        "name": "微博",
+        "description": "社交媒体营销"
+      },
+      {
+        "name": "B站",
+        "description": "视频描述和评论"
+      },
+      {
+        "name": "WordPress",
+        "description": "博客发布"
+      },
+      {
+        "name": "Medium",
+        "description": "文章发布"
+      }
     ],
     "testimonial": {
       "quote": "Neurora 彻底改变了我们的内容创作方式。AI 助手非常直观，帮助我们在所有渠道保持内容的一致性。",

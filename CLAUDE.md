@@ -9,6 +9,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run build` - Build production application
 - `npm run start` - Start production server
 - `npm run clean` - Remove build artifacts (.next, out, coverage)
+- 不要使用dev脚本，因为本地正在运行
 
 ### Code Quality
 - `npm run lint` - Run ESLint on entire codebase

@@ -74,10 +74,10 @@ export default async function Index(props: IIndexProps) {
                 {t('hero_description')}
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="primary" size="lg">
+                <Button variant="primary" size="lg" href={`/${locale}/sign-up`}>
                   {t('get_started')}
                 </Button>
-                <Button variant="secondary" size="lg">
+                <Button variant="secondary" size="lg" href={`/${locale}/dashboard`}>
                   {t('view_docs')}
                 </Button>
               </div>
@@ -199,10 +199,10 @@ export default async function Index(props: IIndexProps) {
               {t('cta_description')}
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="primary" size="lg">
+              <Button variant="primary" size="lg" href={`/${locale}/sign-up`}>
                 {t('cta_start')}
               </Button>
-              <Button variant="secondary" size="lg" className="bg-transparent border-white text-white hover:bg-white hover:text-background-dark">
+              <Button variant="secondary" size="lg" className="bg-transparent border-white text-white hover:bg-white hover:text-background-dark" href="https://github.com">
                 {t('cta_github')}
               </Button>
             </div>

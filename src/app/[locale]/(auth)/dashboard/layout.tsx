@@ -1,19 +1,22 @@
-import { SignOutButton } from '@clerk/nextjs';
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+'use client';
+
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { LocaleSwitcher } from '@/components/LocaleSwitcher';
+import { createClient } from '@/libs/supabase/client';
 import { BaseTemplate } from '@/templates/BaseTemplate';
 
-export default async function DashboardLayout(props: {
+export default function DashboardLayout(props: {
   children: React.ReactNode;
-  params: Promise<{ locale: string }>;
 }) {
-  const { locale } = await props.params;
-  setRequestLocale(locale);
-  const t = await getTranslations({
-    locale,
-    namespace: 'DashboardLayout',
-  });
+  const router = useRouter();
+  const supabase = createClient();
+
+  const handleSignOut = async () => {
+    await supabase.auth.signOut();
+    router.push('/sign-in');
+    router.refresh();
+  };
 
   return (
     <BaseTemplate
@@ -24,15 +27,15 @@ export default async function DashboardLayout(props: {
               href="/dashboard/"
               className="border-none text-gray-700 hover:text-gray-900"
             >
-              {t('dashboard_link')}
+              Dashboard
             </Link>
           </li>
           <li>
             <Link
-              href="/dashboard/user-profile/"
+              href="/dashboard/transcripts"
               className="border-none text-gray-700 hover:text-gray-900"
             >
-              {t('user_profile_link')}
+              My Transcripts
             </Link>
           </li>
         </>
@@ -40,11 +43,13 @@ export default async function DashboardLayout(props: {
       rightNav={(
         <>
           <li>
-            <SignOutButton>
-              <button className="border-none text-gray-700 hover:text-gray-900" type="button">
-                {t('sign_out')}
-              </button>
-            </SignOutButton>
+            <button
+              className="border-none text-gray-700 hover:text-gray-900"
+              type="button"
+              onClick={handleSignOut}
+            >
+              Sign out
+            </button>
           </li>
 
           <li>

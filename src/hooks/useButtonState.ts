@@ -57,11 +57,11 @@ type ButtonStateReturn = {
  */
 export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => {
   const [state, setState] = useState<ButtonState>(config.initialState || 'idle');
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const t = useTranslations('button_states');
 
   // 清理定时器
-  const clearTimeout = useCallback(() => {
+  const clearTimeoutRef = useCallback(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = undefined;
@@ -120,7 +120,7 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
     config.onStateChange?.(newState, config.id);
 
     // 自动重置成功/错误状态
-    clearTimeout();
+    clearTimeoutRef();
 
     if (newState === 'success') {
       timeoutRef.current = setTimeout(() => {
@@ -164,7 +164,7 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
 
   // 重置状态
   const reset = useCallback(() => {
-    clearTimeout();
+    clearTimeoutRef();
     setState(config.initialState || 'idle');
   }, [clearTimeout, config.initialState]);
 

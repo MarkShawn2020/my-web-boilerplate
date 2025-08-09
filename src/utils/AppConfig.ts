@@ -1,8 +1,6 @@
-import type { LocalizationResource } from '@clerk/types';
 import type { LocalePrefixMode } from 'next-intl/routing';
-import { enUS, zhCN } from '@clerk/localizations';
 
-const localePrefix: LocalePrefixMode = 'as-needed';
+const localePrefix: LocalePrefixMode = 'always';
 
 // Helper function to detect user's preferred language
 export const detectUserLocale = (acceptLanguage?: string | null): string => {
@@ -13,7 +11,7 @@ export const detectUserLocale = (acceptLanguage?: string | null): string => {
   // Parse Accept-Language header and check for Chinese variants
   const languages = acceptLanguage
     .split(',')
-    .map(lang => lang.split(';')[0].trim().toLowerCase());
+    .map(lang => lang.split(';')[0]?.trim().toLowerCase() || '');
 
   // Check for any Chinese variant (zh, zh-CN, zh-Hans, zh-TW, zh-Hant, etc.)
   const hasChineseVariant = languages.some(lang =>
@@ -24,18 +22,8 @@ export const detectUserLocale = (acceptLanguage?: string | null): string => {
 };
 
 export const AppConfig = {
-  name: 'Neurora',
+  name: 'PodFast',
   locales: ['zh', 'en'],
-  defaultLocale: 'zh', // Default to Chinese for Neurora's primary audience
+  defaultLocale: 'zh', // Default to Chinese
   localePrefix,
-};
-
-const supportedLocales: Record<string, LocalizationResource> = {
-  zh: zhCN,
-  en: enUS,
-};
-
-export const ClerkLocalizations = {
-  defaultLocale: zhCN,
-  supportedLocales,
 };

@@ -1,6 +1,6 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React, { useState } from 'react';
 import { cn } from '@/utils/Helpers';
@@ -13,13 +13,14 @@ import { Container } from './Container';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const t = useTranslations('Header');
+  const locale = useLocale();
 
   const navigation = [
-    { name: t('features'), href: '/features' },
-    { name: t('cases'), href: '/cases' },
-    { name: t('community'), href: '/community' },
-    { name: t('pricing'), href: '/pricing' },
-    { name: t('blog'), href: '/blog' },
+    { name: t('features'), href: `/${locale}/features` },
+    { name: t('cases'), href: `/${locale}/cases` },
+    { name: t('community'), href: `/${locale}/community` },
+    { name: t('pricing'), href: `/${locale}/pricing` },
+    { name: t('blog'), href: `/${locale}/blog` },
   ];
 
   return (
@@ -28,9 +29,9 @@ const Header = () => {
         <div className="flex items-center justify-between py-4 lg:py-6">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="flex items-center space-x-2 no-underline" style={{ color: 'var(--color-primary, #d97757)' }}>
+            <Link href={`/${locale}`} className="flex items-center space-x-2 no-underline" style={{ color: 'var(--color-primary, #d97757)' }}>
               <NeuroraIcon className="h-8 w-8" />
-              <span className="text-xl font-bold">Neurora</span>
+              <span className="text-xl font-bold">PodFast</span>
             </Link>
             <span className="ml-2 px-2 py-1 text-xs font-medium bg-primary/10 text-primary rounded-full border border-primary/20">
               v
@@ -56,10 +57,10 @@ const Header = () => {
 
           {/* Desktop Actions */}
           <div className="hidden lg:flex items-center space-x-4">
-            <Button variant="secondary" size="md">
+            <Button variant="secondary" size="md" href={`/${locale}/sign-in`}>
               {t('login')}
             </Button>
-            <Button variant="primary" size="md">
+            <Button variant="primary" size="md" href={`/${locale}/sign-up`}>
               {t('try_now')}
             </Button>
           </div>
@@ -120,10 +121,10 @@ const Header = () => {
               </Link>
             ))}
             <div className="flex flex-col space-y-3 pt-4 border-t border-border-default/20">
-              <Button variant="secondary" size="md" className="w-full">
+              <Button variant="secondary" size="md" className="w-full" href={`/${locale}/sign-in`}>
                 {t('login')}
               </Button>
-              <Button variant="primary" size="md" className="w-full">
+              <Button variant="primary" size="md" className="w-full" href={`/${locale}/sign-up`}>
                 {t('try_now')}
               </Button>
             </div>

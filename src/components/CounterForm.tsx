@@ -18,7 +18,7 @@ export const CounterForm = () => {
     },
   });
   const router = useRouter();
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLFormElement>(null!);
 
   // 使用统一的按钮状态管理
   const buttonState = useFormButtonState(formRef, ['increment']);
@@ -66,7 +66,6 @@ export const CounterForm = () => {
           {t('label_increment')}
           <input
             id="increment"
-            name="increment"
             type="number"
             className="ml-2 w-32 appearance-none rounded-sm border border-gray-200 px-2 py-1 text-sm leading-tight text-gray-700 focus:outline-hidden focus:ring-3 focus:ring-blue-300/50"
             {...form.register('increment')}

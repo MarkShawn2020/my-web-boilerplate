@@ -31,6 +31,7 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onClose }) => {
 
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [toast.id, toast.duration, onClose]);
 
   const getToastStyles = () => {
@@ -61,8 +62,8 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onClose }) => {
     }
   };
 
-  const title = toast.titleKey ? t(toast.titleKey) : toast.title;
-  const message = toast.messageKey ? t(toast.messageKey) : toast.message;
+  const title = toast.titleKey ? t(toast.titleKey as any) : toast.title;
+  const message = toast.messageKey ? t(toast.messageKey as any) : toast.message;
 
   return (
     <div className={`

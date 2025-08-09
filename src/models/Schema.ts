@@ -1,18 +1,49 @@
-import { integer, pgTable, serial, timestamp } from 'drizzle-orm/pg-core';
+import { integer, jsonb, pgTable, serial, text, timestamp, uuid, varchar } from 'drizzle-orm/pg-core';
 
-// This file defines the structure of your database tables using the Drizzle ORM.
+// Transcripts table - stores transcript sessions
+export const transcripts = pgTable('transcripts', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  userId: varchar('user_id', { length: 255 }).notNull(),
+  title: varchar('title', { length: 500 }).notNull(),
+  originalFileName: varchar('original_file_name', { length: 500 }),
+  fileType: varchar('file_type', { length: 50 }), // docx, pdf, mp3, etc.
+  metadata: jsonb('metadata').$type<{
+    duration?: number;
+    fileSize?: number;
+    [key: string]: any;
+  }>(),
+  status: varchar('status', { length: 50 }).default('processing'), // processing, completed, error
+  updatedAt: timestamp('updated_at', { mode: 'date' })
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
+  createdAt: timestamp('created_at', { mode: 'date' }).defaultNow().notNull(),
+});
 
-// To modify the database schema:
-// 1. Update this file with your desired changes.
-// 2. Generate a new migration by running: `npm run db:generate`
+// Utterances table - stores individual speech records
+export const utterances = pgTable('utterances', {
+  id: uuid('id').primaryKey().defaultRandom(),
+  transcriptId: uuid('transcript_id')
+    .notNull()
+    .references(() => transcripts.id, { onDelete: 'cascade' }),
+  speaker: varchar('speaker', { length: 255 }).notNull().default('Speaker'),
+  content: text('content').notNull(),
+  startTime: integer('start_time'), // in milliseconds
+  endTime: integer('end_time'), // in milliseconds
+  orderIndex: integer('order_index').notNull(), // for maintaining order
+  metadata: jsonb('metadata').$type<{
+    confidence?: number;
+    language?: string;
+    [key: string]: any;
+  }>(),
+  updatedAt: timestamp('updated_at', { mode: 'date' })
+    .defaultNow()
+    .$onUpdate(() => new Date())
+    .notNull(),
+  createdAt: timestamp('created_at', { mode: 'date' }).defaultNow().notNull(),
+});
 
-// The generated migration file will reflect your schema changes.
-// The migration is automatically applied during the next database interaction,
-// so there's no need to run it manually or restart the Next.js server.
-
-// Need a database for production? Check out https://www.prisma.io/?via=nextjsboilerplate
-// Tested and compatible with Next.js Boilerplate
-
+// Keep the counter schema for demo purposes (can be removed later)
 export const counterSchema = pgTable('counter', {
   id: serial('id').primaryKey(),
   count: integer('count').default(0),

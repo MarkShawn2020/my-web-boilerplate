@@ -11,18 +11,18 @@
   "RootLayout": {
     "home_link": "Home",
     "about_link": "About",
-    "counter_link": "Counter",
+    "transcripts_link": "My Transcripts",
     "portfolio_link": "Portfolio",
     "sign_in_link": "Sign in",
     "sign_up_link": "Sign up"
   },
   "BaseTemplate": {
-    "description": "Neurora - AI-powered creation platform for creators",
+    "description": "PodFast - Fast transcript and dialogue management",
     "made_with": "Crafted with <author></author>."
   },
   "Index": {
-    "meta_title": "Neurora - AI Creation Platform for Content Creators",
-    "meta_description": "Neurora is built for creators. An AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators.",
+    "meta_title": "PodFast - Fast Transcript Editor for Podcasts and Documents",
+    "meta_description": "PodFast helps you quickly convert audio, PDF, and Word documents into structured dialogue records with speaker editing, content merging, and Markdown export.",
     "sponsors_title": "Partners"
   },
   "Counter": {
@@ -44,8 +44,8 @@
   },
   "About": {
     "meta_title": "About",
-    "meta_description": "Learn about Neurora team and our mission",
-    "about_paragraph": "Welcome to Neurora! We are a passionate team dedicated to building the most advanced AI-powered creation platform for creators.",
+    "meta_description": "Learn about PodFast and our mission",
+    "about_paragraph": "Welcome to PodFast! We're dedicated to making transcript editing fast and efficient for content creators, podcasters, and researchers.",
     "translation_powered_by": "Translation powered by"
   },
   "Portfolio": {
@@ -120,66 +120,66 @@
     "sign_out": "Sign out"
   },
   "HomePage": {
-    "hero_title": "Neurora - Built for Creators",
-    "hero_description": "An AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators to maximize the value of thinkers.",
+    "hero_title": "PodFast - Fast Transcript Management",
+    "hero_description": "Quickly convert audio, PDF, and Word documents into structured dialogue records. Edit speakers, merge content, and export to Markdown with ease.",
     "get_started": "Get Started",
     "view_docs": "View Documentation",
-    "hero_card_title": "AI Creation Platform",
-    "hero_card_subtitle": "Smart • Efficient • Professional",
-    "features_title": "Tailored for Content Creators",
-    "features_description": "Integrated with advanced AI technology, providing a complete creation toolkit to help content creators maximize their value.",
-    "cta_title": "Ready to Start Creating?",
-    "cta_description": "Join thousands of creators using Neurora to craft professional content and unlock your creative potential.",
+    "hero_card_title": "Transcript Editor",
+    "hero_card_subtitle": "Fast • Flexible • Professional",
+    "features_title": "Powerful Transcript Features",
+    "features_description": "Everything you need to manage and edit transcripts efficiently.",
+    "cta_title": "Ready to Transform Your Content?",
+    "cta_description": "Start converting your media files into editable transcripts today.",
     "cta_start": "Get Started",
     "cta_github": "Learn More",
+    "use_cases_title": "Perfect For",
+    "use_cases_description": "PodFast is designed for various content creation needs",
     "features": {
       "nextjs": {
-        "title": "AI-Powered Creation Engine",
-        "description": "Advanced artificial intelligence that understands your content needs, generating high-quality drafts, suggestions, and optimizations tailored to your unique voice and style."
+        "title": "Smart File Parsing",
+        "description": "Automatically parse DOCX, PDF, TXT, and markdown files. Extract speaker information and content structure intelligently."
       },
       "design": {
-        "title": "Professional Content Studio",
-        "description": "Complete content creation toolkit with modern editing interface, collaborative features, and professional templates designed for knowledge creators."
+        "title": "Speaker Management",
+        "description": "Edit speaker names individually, forward from a point, or globally. Keep your transcripts organized and consistent."
       },
       "security": {
-        "title": "Enterprise-Grade Security",
-        "description": "Built-in security with encrypted data storage, secure collaboration, and privacy-first approach to protect your intellectual property and content."
+        "title": "Content Merging",
+        "description": "Select and merge adjacent utterances to combine related content. Perfect for cleaning up fragmented transcripts."
       },
       "performance": {
-        "title": "Lightning-Fast Performance",
-        "description": "Optimized for speed and efficiency with real-time collaboration, instant previews, and seamless publishing across multiple platforms."
+        "title": "Markdown Export",
+        "description": "Export your edited transcripts to clean Markdown format with proper speaker formatting and structure."
       },
       "i18n": {
-        "title": "Global Publishing Ready",
-        "description": "Multi-language support with automated translation capabilities and localization tools to reach global audiences effortlessly."
+        "title": "Multi-format Support",
+        "description": "Support for various media formats including documents, presentations, and audio transcripts."
       },
       "testing": {
-        "title": "Quality Assurance",
-        "description": "Built-in content validation, plagiarism detection, SEO optimization, and analytics to ensure your content meets the highest standards."
+        "title": "Fast Processing",
+        "description": "Quick file upload and processing. Get your transcripts ready in seconds, not minutes."
       }
     },
-    "use_cases_title": "Perfect for Every Creator",
-    "use_cases_description": "Whether you're an individual blogger or an enterprise content team, Neurora scales with your creative ambitions.",
     "tabs": {
       "individual": {
-        "label": "Individual",
-        "title": "Personal Knowledge Sharing",
-        "description": "Designed for individual knowledge bloggers with content creation tools, SEO optimization, and audience engagement features to build your personal brand."
+        "label": "Podcasters",
+        "title": "For Podcast Creators",
+        "description": "Convert your podcast recordings into editable transcripts. Perfect for show notes, blog posts, and content repurposing."
       },
       "team": {
-        "label": "Team",
-        "title": "Collaborative Content Creation",
-        "description": "Multi-user collaboration with version control and content review workflows, perfect for content teams working together efficiently."
+        "label": "Researchers",
+        "title": "For Research Teams",
+        "description": "Transcribe interviews and focus groups. Edit speaker labels and export clean transcripts for analysis."
       },
       "enterprise": {
-        "label": "Enterprise",
-        "title": "Enterprise Content Marketing",
-        "description": "Enterprise-grade security and management features with brand consistency controls, multi-channel publishing, and advanced analytics."
+        "label": "Content Teams",
+        "title": "For Content Creators",
+        "description": "Transform webinars, meetings, and presentations into structured content for blogs, articles, and documentation."
       },
       "education": {
-        "label": "Education",
-        "title": "Educational Content",
-        "description": "Specially designed for educators with course content creation, learning path design, and student interaction capabilities."
+        "label": "Educators",
+        "title": "For Education",
+        "description": "Convert lectures and educational content into readable transcripts for students and online courses."
       }
     }
   },
@@ -449,14 +449,38 @@
     "features_title": "Connect your favorite platforms",
     "features_description": "Publish and manage your content across all major platforms",
     "supported_platforms": [
-      { "name": "WordPress", "description": "Blog publishing" },
-      { "name": "Medium", "description": "Article publishing" },
-      { "name": "LinkedIn", "description": "Professional content" },
-      { "name": "Twitter/X", "description": "Social media posts" },
-      { "name": "Facebook", "description": "Social media marketing" },
-      { "name": "Instagram", "description": "Visual content" },
-      { "name": "YouTube", "description": "Video descriptions" },
-      { "name": "TikTok", "description": "Short-form content" }
+      {
+        "name": "WordPress",
+        "description": "Blog publishing"
+      },
+      {
+        "name": "Medium",
+        "description": "Article publishing"
+      },
+      {
+        "name": "LinkedIn",
+        "description": "Professional content"
+      },
+      {
+        "name": "Twitter/X",
+        "description": "Social media posts"
+      },
+      {
+        "name": "Facebook",
+        "description": "Social media marketing"
+      },
+      {
+        "name": "Instagram",
+        "description": "Visual content"
+      },
+      {
+        "name": "YouTube",
+        "description": "Video descriptions"
+      },
+      {
+        "name": "TikTok",
+        "description": "Short-form content"
+      }
     ],
     "testimonial": {
       "quote": "Neurora has transformed how we create content. The AI assistance is incredibly intuitive and helps us maintain consistency across all our channels.",

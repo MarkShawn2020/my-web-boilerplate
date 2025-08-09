@@ -1,10 +1,11 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import Link from 'next/link';
 
 export const DemoBanner = () => {
   const t = useTranslations('DemoBanner');
+  const locale = useLocale();
 
   return (
     <div className="sticky top-0 z-50 bg-background-dark p-4 text-center text-base font-medium text-white border-b border-border-default/20">
@@ -13,7 +14,7 @@ export const DemoBanner = () => {
         <span>{t('demo_text')}</span>
         <span>-</span>
         <Link
-          href="/sign-up"
+          href={`/${locale}/sign-up`}
           className="text-primary hover:opacity-80 transition-opacity underline underline-offset-2 font-semibold"
         >
           {t('try_auth')}
