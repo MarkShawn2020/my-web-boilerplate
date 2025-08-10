@@ -58,6 +58,7 @@ export type AuthState = {
 
 export type AuthContextType = {
   signIn: (email: string, password: string) => Promise<{ error?: string }>;
+  signInWithGoogle: (redirectTo?: string) => Promise<{ error?: string }>;
   signUp: (email: string, password: string, fullName?: string, options?: { redirectTo?: string }) => Promise<{ error?: string }>;
   signOut: () => Promise<void>;
   resetPassword: (email: string) => Promise<{ error?: string }>;
@@ -425,14 +426,38 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, []); // Keep empty dependency array but remove state references
 
   const signIn = async (email: string, password: string) => {
+    console.log('🔑 AuthProvider signIn called with:', { email });
     dispatch({ type: 'SIGN_IN_START' });
+    
+    console.log('🌐 Calling AuthClientService.signIn...');
     const result = await AuthClientService.signIn(email, password);
+    console.log('📋 AuthClientService result:', result);
 
     if (result.error) {
+      console.error('❌ AuthProvider signIn error:', result.error);
       dispatch({ type: 'SIGN_IN_ERROR', payload: result.error });
       return { error: result.error };
     }
 
+    console.log('✅ AuthProvider signIn successful, waiting for auth state change...');
+    return {};
+  };
+
+  const signInWithGoogle = async (redirectTo?: string) => {
+    console.log('🔑 AuthProvider signInWithGoogle called');
+    dispatch({ type: 'SIGN_IN_START' });
+    
+    console.log('🌐 Calling AuthClientService.signInWithGoogle...');
+    const result = await AuthClientService.signInWithGoogle(redirectTo);
+    console.log('📋 AuthClientService Google OAuth result:', result);
+
+    if (result.error) {
+      console.error('❌ AuthProvider Google OAuth error:', result.error);
+      dispatch({ type: 'SIGN_IN_ERROR', payload: result.error });
+      return { error: result.error };
+    }
+
+    console.log('✅ AuthProvider Google OAuth initiated successfully');
     return {};
   };
 
@@ -528,6 +553,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const value: AuthContextType = {
     ...state,
     signIn,
+    signInWithGoogle,
     signUp,
     signOut,
     resetPassword,

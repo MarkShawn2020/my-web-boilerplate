@@ -1,8 +1,69 @@
-@layer theme, base, clerk, components, utilities; /* Ensure Clerk is compatible with Tailwind CSS v4 */
+@layer theme, base, components, utilities;
 
 @import 'tailwindcss';
 
 @import "tw-animate-css";
+
+/* 专业登录注册页面动画 */
+@layer utilities {
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+  
+  @keyframes glow {
+    0%, 100% { opacity: 0.8; }
+    50% { opacity: 1; }
+  }
+  
+  @keyframes slide-in-from-top {
+    0% { transform: translateY(-10px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+  @keyframes slide-in-from-left {
+    0% { transform: translateX(-10px); opacity: 0; }
+    100% { transform: translateX(0); opacity: 1; }
+  }
+  
+  @keyframes zoom-in {
+    0% { transform: scale(0.8); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+  
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  .animate-glow {
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  .animate-in {
+    animation-fill-mode: forwards;
+  }
+  
+  .slide-in-from-top-2 {
+    animation: slide-in-from-top 0.2s ease-out forwards;
+  }
+  
+  .slide-in-from-left-2 {
+    animation: slide-in-from-left 0.2s ease-out forwards;
+  }
+  
+  .zoom-in {
+    animation: zoom-in 0.5s ease-out forwards;
+  }
+}
 
 @custom-variant dark (&:is(.dark *));
 

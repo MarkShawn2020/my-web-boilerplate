@@ -7,7 +7,7 @@ async function applyInsertPolicy() {
     console.log('Applying INSERT policy for user_profiles...');
     
     // Use the SQL editor/rpc approach with the regular supabase client
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('user_profiles')
       .select('id')
       .limit(0); // Just test the connection

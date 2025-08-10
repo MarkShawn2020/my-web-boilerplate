@@ -57,11 +57,11 @@ type ButtonStateReturn = {
  */
 export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => {
   const [state, setState] = useState<ButtonState>(config.initialState || 'idle');
-  const timeoutRef = useRef<NodeJS.Timeout>();
+  const timeoutRef = useRef<NodeJS.Timeout | undefined>(undefined);
   const t = useTranslations('button_states');
 
   // 清理定时器
-  const clearTimeout = useCallback(() => {
+  const clearCurrentTimeout = useCallback(() => {
     if (timeoutRef.current) {
       clearTimeout(timeoutRef.current);
       timeoutRef.current = undefined;
@@ -120,7 +120,7 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
     config.onStateChange?.(newState, config.id);
 
     // 自动重置成功/错误状态
-    clearTimeout();
+    clearCurrentTimeout();
 
     if (newState === 'success') {
       timeoutRef.current = setTimeout(() => {
@@ -133,7 +133,7 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
         config.onStateChange?.('idle', config.id);
       }, config.errorDuration || 3000);
     }
-  }, [config, clearTimeout]);
+  }, [config, clearCurrentTimeout]);
 
   // 执行异步操作
   const executeAsync = useCallback(async <T = any>(
@@ -164,9 +164,9 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
 
   // 重置状态
   const reset = useCallback(() => {
-    clearTimeout();
+    clearCurrentTimeout();
     setState(config.initialState || 'idle');
-  }, [clearTimeout, config.initialState]);
+  }, [clearCurrentTimeout, config.initialState]);
 
   const { isDisabled, disabledReason } = getDisabledState();
 
@@ -200,7 +200,7 @@ export const useMultiButtonState = (configs: ButtonStateConfig[]) => {
   const hasLoadingButton = buttonStates.some(button => button.isLoading);
 
   // 为每个按钮添加全局loading检查
-  const enhancedStates = buttonStates.map((buttonState, index) => ({
+  const enhancedStates = buttonStates.map((buttonState) => ({
     ...buttonState,
     isDisabled: buttonState.isDisabled || (hasLoadingButton && !buttonState.isLoading),
     disabledReason: buttonState.isDisabled

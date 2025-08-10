@@ -10,17 +10,59 @@ export class AuthClientService {
    */
   static async signIn(email: string, password: string) {
     try {
+      console.log('🔧 AuthClientService.signIn called with:', { email });
+      console.log('🌐 Calling supabase.auth.signInWithPassword...');
+      
       const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
 
+      console.log('📊 Supabase auth response:', { user: data.user?.id, error: error?.message });
+
       if (error) {
+        console.error('❌ Supabase auth error:', error.message);
         return { error: error.message };
       }
 
+      console.log('✅ Supabase auth successful for user:', data.user?.id);
       return { user: data.user };
     } catch (error) {
+      console.error('💥 AuthClientService unexpected error:', error);
+      return { error: 'An unexpected error occurred' };
+    }
+  }
+
+  /**
+   * Sign in with Google OAuth
+   */
+  static async signInWithGoogle(redirectTo?: string) {
+    try {
+      console.log('🔧 AuthClientService.signInWithGoogle called');
+      console.log('🌐 Calling supabase.auth.signInWithOAuth...');
+      
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: redirectTo || `${window.location.origin}/dashboard`,
+          queryParams: {
+            access_type: 'offline',
+            prompt: 'consent',
+          },
+        },
+      });
+
+      console.log('📊 Google OAuth response:', { data, error: error?.message });
+
+      if (error) {
+        console.error('❌ Google OAuth error:', error.message);
+        return { error: error.message };
+      }
+
+      console.log('✅ Google OAuth initiated successfully');
+      return { data };
+    } catch (error) {
+      console.error('💥 AuthClientService Google OAuth unexpected error:', error);
       return { error: 'An unexpected error occurred' };
     }
   }

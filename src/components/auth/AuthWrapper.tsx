@@ -2,8 +2,8 @@
 
 import React, { useState } from 'react';
 import { ResetPasswordForm } from './ResetPasswordForm';
-import { SignInForm } from './SignInForm';
-import { SignUpForm } from './SignUpForm';
+import { EnhancedSignInForm } from './EnhancedSignInForm';
+import { EnhancedSignUpForm } from './EnhancedSignUpForm';
 
 type AuthMode = 'signin' | 'signup' | 'reset';
 
@@ -27,7 +27,7 @@ export function AuthWrapper({
   switch (mode) {
     case 'signup':
       return (
-        <SignUpForm
+        <EnhancedSignUpForm
           redirectTo={redirectTo}
           onSuccess={onSuccess}
           onSignIn={() => handleModeChange('signin')}
@@ -43,7 +43,7 @@ export function AuthWrapper({
     case 'signin':
     default:
       return (
-        <SignInForm
+        <EnhancedSignInForm
           redirectTo={redirectTo}
           onSuccess={onSuccess}
           onForgotPassword={() => handleModeChange('reset')}

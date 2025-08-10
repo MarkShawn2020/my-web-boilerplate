@@ -1,6 +1,4 @@
-import type { LocalizationResource } from '@clerk/types';
 import type { LocalePrefixMode } from 'next-intl/routing';
-import { enUS, zhCN } from '@clerk/localizations';
 
 const localePrefix: LocalePrefixMode = 'as-needed';
 
@@ -29,14 +27,4 @@ export const AppConfig = {
   locales: ['zh', 'en'],
   defaultLocale: 'zh', // Default to Chinese for Neurora's primary audience
   localePrefix,
-};
-
-const supportedLocales: Record<string, LocalizationResource> = {
-  zh: zhCN,
-  en: enUS,
-};
-
-export const ClerkLocalizations = {
-  defaultLocale: zhCN,
-  supportedLocales,
 };

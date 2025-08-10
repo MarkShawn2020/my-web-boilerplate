@@ -49,6 +49,32 @@ export default async function middleware(
 
   // Handle authentication for protected routes
   if (isProtectedRoute(pathname)) {
+    // Check for just_signed_in flag to allow newly signed in users
+    const justSignedIn = request.nextUrl.searchParams.get('just_signed_in');
+    
+    if (justSignedIn === 'true') {
+      console.log('🔐 Middleware: Allowing access due to just_signed_in flag, bypassing auth check');
+      // 设置临时认证cookie并清理URL
+      const cleanUrl = new URL(request.url);
+      cleanUrl.searchParams.delete('just_signed_in');
+      
+      const response = NextResponse.redirect(cleanUrl);
+      // 设置临时认证标记，有效期5秒，足够session同步
+      response.cookies.set('temp_auth_bypass', 'true', { 
+        maxAge: 5,
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production'
+      });
+      return response;
+    }
+
+    // 检查临时认证bypass标记
+    const tempAuthBypass = request.cookies.get('temp_auth_bypass');
+    if (tempAuthBypass && tempAuthBypass.value === 'true') {
+      console.log('🔐 Middleware: Allowing access due to temp auth bypass');
+      return NextResponse.next();
+    }
+
     // Create Supabase client for server-side auth
     const supabase = createServerClient(
       process.env.NEXT_PUBLIC_SUPABASE_URL!,

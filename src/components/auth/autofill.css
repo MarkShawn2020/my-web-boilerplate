@@ -1,0 +1,41 @@
+/*
+  定义一个名为 onAutoFillStart 的动画。
+  这个动画本身几乎不做任何事情，它的唯一目的就是为了能被 onAnimationStart 事件捕获。
+*/
+@keyframes onAutoFillStart {
+    from {
+        /* 动画可以为空，但定义 from 和 to 可以确保它是一个合法的动画 */
+    }
+    to {
+        /* 动画可以为空 */
+    }
+}
+
+/*
+  -webkit-autofill 是一个伪类选择器。
+  当浏览器（如Chrome, Safari, Edge）自动填充一个 <input> 元素时，
+  会自动给这个元素应用此伪类。
+*/
+input:-webkit-autofill {
+    /*
+      将我们上面定义的动画应用到被自动填充的输入框上。
+      这意味着一旦浏览器填充了输入框，onAutoFillStart 动画就会立即开始。
+    */
+    animation-name: onAutoFillStart;
+
+    /*
+      可选：添加这个可以防止浏览器改变输入框的背景色。
+      这部分与功能无关，纯粹是为了样式。
+    */
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/*
+  为 Firefox 浏览器添加兼容性处理。
+  Firefox 使用不同的伪类，并且可能不会触发动画事件，
+  但加上这个可以帮助处理一些样式问题。
+  注意：这个方案主要对 -webkit- 浏览器最有效。
+*/
+input:-moz-autofill {
+    animation-name: onAutoFillStart;
+}

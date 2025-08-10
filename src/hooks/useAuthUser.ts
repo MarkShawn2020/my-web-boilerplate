@@ -24,10 +24,11 @@ export function useAuthUser() {
  * Hook for authentication actions
  */
 export function useAuthActions() {
-  const { signIn, signUp, signOut, resetPassword, updateProfile, updatePreferences, refreshUser } = useAuth();
+  const { signIn, signInWithGoogle, signUp, signOut, resetPassword, updateProfile, updatePreferences, refreshUser } = useAuth();
 
   return {
     signIn,
+    signInWithGoogle,
     signUp,
     signOut,
     resetPassword,
