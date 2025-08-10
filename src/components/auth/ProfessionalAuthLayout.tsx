@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import Link from 'next/link';
 
 type ProfessionalAuthLayoutProps = {
   children: React.ReactNode;
@@ -30,7 +31,7 @@ export function ProfessionalAuthLayout({
         {/* 品牌内容 */}
         <div className="relative z-10 text-center px-8 max-w-md">
           {/* Logo区域 - Lovpen 设计美学 */}
-          <div className="mb-8">
+          <Link href="/" className="block mb-8 cursor-pointer transition-transform hover:scale-105 no-underline">
             <div className="w-16 h-16 mx-auto mb-4 backdrop-blur-sm rounded-xl flex items-center justify-center border" 
                  style={{ 
                    backgroundColor: 'rgba(249, 249, 247, 0.2)', 
@@ -47,7 +48,7 @@ export function ProfessionalAuthLayout({
             <p className="text-lg" style={{ color: 'rgba(249, 249, 247, 0.8)' }}>
               为创作者而生的 AI 智能创作平台
             </p>
-          </div>
+          </Link>
 
           {/* 价值主张 - Lovpen 色彩点缀 */}
           <div className="space-y-4">
@@ -82,7 +83,7 @@ export function ProfessionalAuthLayout({
            style={{ backgroundColor: '#F9F9F7' }}>
         <div className="mx-auto w-full max-w-sm lg:w-96">
           {/* 移动端Logo - Lovpen 风格 */}
-          <div className="lg:hidden text-center mb-8">
+          <Link href="/" className="lg:hidden block text-center mb-8 transition-transform hover:scale-105 no-underline">
             <div className="w-12 h-12 mx-auto mb-4 rounded-xl flex items-center justify-center" 
                  style={{ backgroundColor: '#D97757' }}>
               <svg className="w-6 h-6" fill="#F9F9F7" viewBox="0 0 24 24">
@@ -96,7 +97,7 @@ export function ProfessionalAuthLayout({
                 }}>
               Neurora
             </h1>
-          </div>
+          </Link>
 
           {/* 标题区域 - Lovpen 色彩 */}
           <div className="text-center lg:text-left mb-8">

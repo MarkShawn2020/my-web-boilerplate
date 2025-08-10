@@ -1,4 +1,5 @@
 import { getTranslations, setRequestLocale } from 'next-intl/server';
+import Link from 'next/link';
 import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/Card';
@@ -95,20 +96,24 @@ export default async function Index(props: IIndexProps) {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                variant="default" 
-                size="lg" 
-                className="bg-primary hover:bg-primary/90 transition-colors"
-              >
-                {t('get_started')}
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-              >
-                {t('view_docs')}
-              </Button>
+              <Link href={`/${locale}/sign-up`}>
+                <Button 
+                  variant="default" 
+                  size="lg" 
+                  className="bg-primary hover:bg-primary/90 transition-colors"
+                >
+                  {t('get_started')}
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </Button>
+              </Link>
+              <Link href={`/${locale}/about`}>
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                >
+                  {t('view_docs')}
+                </Button>
+              </Link>
             </div>
           </div>
         </Container>
@@ -322,19 +327,23 @@ export default async function Index(props: IIndexProps) {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button 
-                variant="default" 
-                size="lg"
-                className="bg-text-main hover:bg-text-main/90 text-white transition-colors"
-              >
-                {t('cta_start')}
-              </Button>
-              <Button 
-                variant="outline" 
-                size="lg"
-              >
-                {t('cta_github')}
-              </Button>
+              <Link href={`/${locale}/sign-up`}>
+                <Button 
+                  variant="default" 
+                  size="lg"
+                  className="bg-text-main hover:bg-text-main/90 text-white transition-colors"
+                >
+                  {t('cta_start')}
+                </Button>
+              </Link>
+              <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
+                <Button 
+                  variant="outline" 
+                  size="lg"
+                >
+                  {t('cta_github')}
+                </Button>
+              </Link>
             </div>
           </div>
         </Container>
