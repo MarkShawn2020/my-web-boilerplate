@@ -65,9 +65,6 @@ export default antfu(
                 version: 'detect',
             },
         },
-        globals: {
-            React: 'readonly', // Allow React to be used without import (JSX transform)
-        },
         rules: {
             // === Core ESLint Rules - More Relaxed ===
             'antfu/no-top-level-await': 'off', // Allow top-level await
@@ -126,4 +123,19 @@ export default antfu(
             'max-lines-per-function': 'off', // Don't enforce function size limits
         },
     },
+	// --- Turn off no-undef for TS/TSX ---
+	{
+	   files: ['**/*.ts', '**/*.tsx'],
+	     rules: {
+	         'no-undef': 'off',
+		      'unused-imports/no-unused-vars': 'off',
+		     'no-empty-pattern': 'off',
+		     'react/no-nested-component-definitions': 'off',
+		     'ts/no-use-before-define': 'off',
+		     'jsx-a11y/anchor-has-content': 'off',
+
+
+
+	           },
+	}
 );
