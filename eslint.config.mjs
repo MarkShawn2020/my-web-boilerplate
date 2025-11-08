@@ -137,5 +137,16 @@ export default antfu(
 
 
 	           },
+	},
+	// --- Relax rules for shadcn/ui components ---
+	{
+		files: ['src/components/ui/**/*.{ts,tsx}'],
+		rules: {
+			'perfectionist/sort-imports': 'off',
+			'perfectionist/sort-named-exports': 'off',
+			'import/consistent-type-specifier-style': 'off',
+			'ts/no-import-type-side-effects': 'off',
+			'jsx-a11y/no-noninteractive-element-interactions': 'off',
+		},
 	}
 );

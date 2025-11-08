@@ -13,10 +13,10 @@ import {
 } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
+import { Button } from '@/components/Button';
+import { Card, CardContent, CardHeader } from '@/components/Card';
 import { Container } from '@/components/layout/Container';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader } from '@/components/ui/Card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/Tabs';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/Tabs';
 
 type IIndexProps = {
   params: Promise<{ locale: string }>;

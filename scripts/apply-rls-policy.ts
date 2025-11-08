@@ -1,4 +1,5 @@
 #!/usr/bin/env tsx
+/* eslint-disable no-console */
 
 import { supabaseAdmin } from '../src/libs/SupabaseServer';
 

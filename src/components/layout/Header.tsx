@@ -7,8 +7,9 @@ import {useAuthUser} from '@/hooks/useAuthUser';
 import {useRouter} from '@/libs/I18nNavigation';
 import {cn} from '@/utils/Helpers';
 import packageJson from '../../../package.json';
+import {Button} from '../Button';
 import {LocaleSwitcher} from '../LocaleSwitcher';
-import {Button} from '../ui/button';
+import {NeuroraIcon} from '../NeuroraIcon';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -17,8 +18,7 @@ import {
     DropdownMenuSeparator,
     DropdownMenuTrigger
 } from '../ui/dropdown-menu';
-import {NeuroraIcon} from '../ui/NeuroraIcon';
-import {UserDropdown} from '../ui/UserDropdown';
+import {UserDropdown} from '../UserDropdown';
 import {Container} from './Container';
 import {HeaderActionSkeleton} from './HeaderActionSkeleton';
 
@@ -113,8 +113,6 @@ const Header = () => {
             </DropdownMenuContent>
         </DropdownMenu>
     );
-
-    console.log({hasMounted, loading})
 
     return (
         <header

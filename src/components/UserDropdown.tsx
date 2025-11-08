@@ -14,7 +14,7 @@ import {
   DropdownMenuRadioItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger
-} from './dropdown-menu';
+} from './ui/dropdown-menu';
 
 // Icons as SVG components
 const UserIcon = ({ className }: { className?: string }) => (

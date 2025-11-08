@@ -192,8 +192,7 @@ export const useButtonState = (config: ButtonStateConfig): ButtonStateReturn => 
  * 多按钮状态管理Hook
  * 用于管理多个按钮的状态，确保同一时间只有一个按钮处于loading状态
  */
-export const useMultiButtonState = (configs: ButtonStateConfig[]) => {
-  const buttonStates = configs.map(config => useButtonState(config));
+export const useMultiButtonState = (buttonStates: ButtonStateReturn[]) => {
   const t = useTranslations('button_states');
 
   // 检查是否有任何按钮正在loading

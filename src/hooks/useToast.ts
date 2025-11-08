@@ -1,6 +1,6 @@
 'use client';
 
-import type { ToastData } from '@/components/ui/Toast';
+import type { ToastData } from '@/components/Toast';
 import { create } from 'zustand';
 
 type ToastStore = {

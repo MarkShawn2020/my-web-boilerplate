@@ -5,7 +5,7 @@ import { useTranslations } from 'next-intl';
 import { useRouter } from 'next/navigation';
 import { useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { Button } from '@/components/ui/button';
+import { Button } from '@/components/Button';
 import { useFormButtonState } from '@/hooks/useButtonState';
 import { CounterValidation } from '@/validations/CounterValidation';
 
@@ -18,10 +18,10 @@ export const CounterForm = () => {
     },
   });
   const router = useRouter();
-  const formRef = useRef<HTMLFormElement>(null);
+  const formRef = useRef<HTMLFormElement | null>(null);
 
   // 使用统一的按钮状态管理
-  const buttonState = useFormButtonState(formRef, ['increment']);
+  const buttonState = useFormButtonState(formRef as React.RefObject<HTMLFormElement>, ['increment']);
 
   const handleIncrement = form.handleSubmit(async (data) => {
     // 使用统一的异步执行方法
@@ -51,13 +51,6 @@ export const CounterForm = () => {
   const isFormInvalid = Object.keys(form.formState.errors).length > 0;
   const isDisabled = buttonState.isDisabled || isFormInvalid || form.formState.isSubmitting;
 
-  let disabledReason = buttonState.disabledReason;
-  if (isFormInvalid) {
-    disabledReason = t('error_increment_range');
-  } else if (form.formState.isSubmitting) {
-    disabledReason = t('submitting');
-  }
-
   return (
     <form ref={formRef} onSubmit={handleIncrement}>
       <p>{t('presentation')}</p>
@@ -66,7 +59,6 @@ export const CounterForm = () => {
           {t('label_increment')}
           <input
             id="increment"
-            name="increment"
             type="number"
             className="ml-2 w-32 appearance-none rounded-sm border border-gray-200 px-2 py-1 text-sm leading-tight text-gray-700 focus:outline-hidden focus:ring-3 focus:ring-blue-300/50"
             {...form.register('increment')}
@@ -85,12 +77,9 @@ export const CounterForm = () => {
           type="submit"
           variant="default"
           size="default"
-          state={buttonState.state}
           disabled={isDisabled}
-          disabledReason={disabledReason}
-          loadingText={t('loading_submit')}
         >
-          {t('button_increment')}
+          {buttonState.isLoading ? t('loading_submit') : t('button_increment')}
         </Button>
       </div>
     </form>

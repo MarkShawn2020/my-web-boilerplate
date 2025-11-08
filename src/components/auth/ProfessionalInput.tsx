@@ -1,6 +1,6 @@
 'use client';
 
-import React, {forwardRef, useRef, useState} from 'react';
+import React, { useRef, useState} from 'react';
 import {RegisterOptions, UseFormRegister, UseFormSetValue} from 'react-hook-form';
 import {Input} from "@/components/ui/input";
 import {cn} from '@/lib/utils';
@@ -19,25 +19,7 @@ export interface ProfessionalInputProps
     setValue?: UseFormSetValue<any>;
 }
 
-export const ProfessionalInput = forwardRef<HTMLInputElement, ProfessionalInputProps>(
-    ({
-         className,
-         type = "text",
-         label,
-         name,
-         error,
-         leftIcon,
-         rightIcon,
-         isLoading = false,
-         register,
-         rules,
-         setValue,
-         onChange,
-         onFocus,
-         onBlur,
-         value,
-         ...props
-     }, ref) => {
+export const ProfessionalInput = ({ ref, className, type = "text", label, name, error, leftIcon, rightIcon, isLoading = false, register, rules, setValue, onChange, onFocus, onBlur, value, ...props }: ProfessionalInputProps & { ref?: React.RefObject<HTMLInputElement | null> }) => {
         const [isFocused, setIsFocused] = useState(false);
         const inputRef = useRef<HTMLInputElement>(null);
 
@@ -192,7 +174,6 @@ export const ProfessionalInput = forwardRef<HTMLInputElement, ProfessionalInputP
                 )}
             </div>
         );
-    }
-);
+    };
 
 ProfessionalInput.displayName = "ProfessionalInput";

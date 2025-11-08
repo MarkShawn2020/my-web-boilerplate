@@ -1,8 +1,8 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
-import { NeuroraIcon } from '../ui/NeuroraIcon';
-import { SocialIcon } from '../ui/SocialIcons';
+import { NeuroraIcon } from '../NeuroraIcon';
+import { SocialIcon } from '../SocialIcons';
 import { Container } from './Container';
 
 const Footer = () => {

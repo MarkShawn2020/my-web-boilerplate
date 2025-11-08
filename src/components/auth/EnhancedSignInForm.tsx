@@ -3,11 +3,9 @@
 import type { SignInFormData } from '@/validations/AuthValidation';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
-import { useRouter as useNextRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useAuthActions } from '@/hooks/useAuthUser';
-import { usePathname, useRouter } from '@/libs/I18nNavigation';
 import { SignInSchema } from '@/validations/AuthValidation';
 import { ProfessionalAuthLayout } from './ProfessionalAuthLayout';
 import { ProfessionalButton } from './ProfessionalButton';
@@ -28,40 +26,33 @@ export function EnhancedSignInForm({
 }: EnhancedSignInFormProps) {
   const t = useTranslations('SignIn');
   const { signIn, signInWithGoogle } = useAuthActions();
-  const router = useRouter();
-  const nextRouter = useNextRouter();
-  const pathname = usePathname();
   const [isLoading, setIsLoading] = useState(false);
   const [isGoogleLoading, setIsGoogleLoading] = useState(false);
 
   // 获取当前locale并构建正确的本地化路径
   const getLocalizedPath = (path: string): string => {
     const currentPath = window.location.pathname;
-    console.log('🌐 Current path:', currentPath);
-    
+
     // 尝试多种方式检测locale
     let locale = null;
-    
+
     // 方式1: 从路径提取 (例如: /zh/sign-in -> zh)
     const localeMatch = currentPath.match(/^\/([^/]+)\//);
     if (localeMatch && localeMatch[1] && ['zh', 'en'].includes(localeMatch[1])) {
       locale = localeMatch[1];
     }
-    
+
     // 方式2: 如果路径是根路径，检查HTML lang属性
     if (!locale) {
       locale = document.documentElement.lang || 'en';
     }
-    
-    console.log('🌐 Detected locale:', locale);
-    
+
     // 构建本地化路径
     let localizedPath = path;
     if (locale && locale !== 'en' && !path.startsWith(`/${locale}`)) {
       localizedPath = `/${locale}${path}`;
     }
-    
-    console.log('🔗 Original path:', path, '-> Localized path:', localizedPath);
+
     return localizedPath;
   };
 
@@ -76,13 +67,10 @@ export function EnhancedSignInForm({
   });
 
   const onSubmit = async (data: SignInFormData) => {
-    console.log('🚀 Form submitted with data:', data);
     setIsLoading(true);
 
     try {
-      console.log('🔐 Calling signIn...');
       const result = await signIn(data.email, data.password);
-      console.log('📝 SignIn result:', result);
 
       if (result.error) {
         console.error('❌ SignIn error:', result.error);
@@ -90,31 +78,22 @@ export function EnhancedSignInForm({
         return;
       }
 
-      console.log('✅ SignIn successful, redirecting...');
-      console.log('🔗 Redirect params:', { onSuccess: !!onSuccess, redirectTo, defaultRoute: '/dashboard' });
-      
       if (onSuccess) {
-        console.log('🎯 Calling onSuccess callback');
         onSuccess();
       } else if (redirectTo) {
-        console.log('🔄 Redirecting to:', redirectTo);
         const localizedRedirectTo = getLocalizedPath(redirectTo);
-        
+
         // 直接使用强制重定向，绕过中间件时序问题
-        console.log('🚀 Force redirect to avoid middleware timing issues:', localizedRedirectTo);
-        
+
         // 添加认证标记到URL，告诉中间件这是刚登录的用户
         const urlWithAuthFlag = `${localizedRedirectTo}?just_signed_in=true`;
-        console.log('🔐 Redirecting with auth flag:', urlWithAuthFlag);
-        
+
         window.location.href = urlWithAuthFlag;
       } else {
-        console.log('🔄 Redirecting to default dashboard');
         const localizedDashboard = getLocalizedPath('/dashboard');
-        
+
         // 同样添加认证标记
         const urlWithAuthFlag = `${localizedDashboard}?just_signed_in=true`;
-        console.log('🚀 Direct redirect with auth flag:', urlWithAuthFlag);
         window.location.href = urlWithAuthFlag;
       }
     } catch (error) {
@@ -126,25 +105,19 @@ export function EnhancedSignInForm({
   };
 
   const handleGoogleSignIn = async () => {
-    console.log('🚀 Google Sign In initiated');
     setIsGoogleLoading(true);
 
     try {
-      console.log('🔐 Calling signInWithGoogle...');
       const redirectUrl = redirectTo ? getLocalizedPath(redirectTo) : getLocalizedPath('/dashboard');
       const fullRedirectUrl = `${window.location.origin}${redirectUrl}`;
-      
-      console.log('🔗 Google OAuth redirect URL:', fullRedirectUrl);
+
       const result = await signInWithGoogle(fullRedirectUrl);
-      console.log('📝 Google SignIn result:', result);
 
       if (result.error) {
         console.error('❌ Google SignIn error:', result.error);
         setError('root', { message: result.error });
-        return;
       }
 
-      console.log('✅ Google OAuth initiated successfully');
       // OAuth 重定向会自动处理，不需要手动重定向
     } catch (error) {
       console.error('💥 Google OAuth unexpected error:', error);

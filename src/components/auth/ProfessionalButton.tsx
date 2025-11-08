@@ -1,6 +1,6 @@
 'use client';
 
-import React, { forwardRef } from 'react';
+import React from 'react';
 import { cn } from '@/lib/utils';
 
 export interface ProfessionalButtonProps
@@ -12,18 +12,7 @@ export interface ProfessionalButtonProps
   rightIcon?: React.ReactNode;
 }
 
-export const ProfessionalButton = forwardRef<HTMLButtonElement, ProfessionalButtonProps>(
-  ({ 
-    className, 
-    variant = 'primary', 
-    size = 'md', 
-    isLoading = false,
-    leftIcon,
-    rightIcon,
-    children,
-    disabled,
-    ...props 
-  }, ref) => {
+export const ProfessionalButton = ({ ref, className, variant = 'primary', size = 'md', isLoading = false, leftIcon, rightIcon, children, disabled, ...props }: ProfessionalButtonProps & { ref?: React.RefObject<HTMLButtonElement | null> }) => {
     const baseStyles = "inline-flex items-center justify-center rounded-xl font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed relative overflow-hidden";
     
     const variants = {
@@ -118,7 +107,6 @@ export const ProfessionalButton = forwardRef<HTMLButtonElement, ProfessionalButt
         )}
       </button>
     );
-  }
-);
+  };
 
 ProfessionalButton.displayName = "ProfessionalButton";

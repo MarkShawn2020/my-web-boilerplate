@@ -20,7 +20,7 @@ function CardHeader({ className, ...props }: React.ComponentProps<"div">) {
     <div
       data-slot="card-header"
       className={cn(
-        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-1.5 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
+        "@container/card-header grid auto-rows-min grid-rows-[auto_auto] items-start gap-2 px-6 has-data-[slot=card-action]:grid-cols-[1fr_auto] [.border-b]:pb-6",
         className
       )}
       {...props}
@@ -81,16 +81,6 @@ function CardFooter({ className, ...props }: React.ComponentProps<"div">) {
   )
 }
 
-function CardIcon({ className, ...props }: React.ComponentProps<"div">) {
-  return (
-    <div
-      data-slot="card-icon"
-      className={cn("w-16 h-16 mb-4 rounded-lg bg-primary/10 border", className)}
-      {...props}
-    />
-  )
-}
-
 export {
   Card,
   CardAction,
@@ -98,6 +88,5 @@ export {
   CardDescription,
   CardFooter,
   CardHeader,
-  CardIcon,
   CardTitle,
 }

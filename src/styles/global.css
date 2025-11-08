@@ -10,7 +10,7 @@
     0% { opacity: 0; }
     100% { opacity: 1; }
   }
-  
+
   .animate-fade-in {
     animation: fade-in 0.3s ease-out;
   }
@@ -65,7 +65,7 @@
     --font-sans: 'Fira Code', ui-sans-serif, system-ui, sans-serif;
     --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
   }
-  
+
   body {
     @apply bg-background text-foreground antialiased;
     font-family: var(--font-sans);
@@ -276,7 +276,7 @@
 
 :root {
   --radius: 0.75rem; /* Updated to match Lovpen border-radius-md */
-  
+
   /* Lovpen Theme Integration - Light Mode */
   --background: #f9f9f7; /* Lovpen warm off-white */
   --foreground: #181818; /* Lovpen text main */
@@ -296,14 +296,14 @@
   --border: #87867f; /* Lovpen border default */
   --input: #f0eee6; /* Lovpen ivory medium */
   --ring: #d97757; /* Lovpen primary for focus rings */
-  
+
   /* Chart colors using Lovpen swatch */
   --chart-1: #b49fd8; /* Lovpen fig */
   --chart-2: #c2c07d; /* Lovpen olive */
   --chart-3: #629a90; /* Lovpen cactus */
   --chart-4: #97b5d5; /* Lovpen sky */
   --chart-5: #d2bedf; /* Lovpen heather */
-  
+
   /* Sidebar using Lovpen colors */
   --sidebar: #f0eee6; /* Lovpen ivory medium */
   --sidebar-foreground: #181818; /* Lovpen text main */
@@ -335,14 +335,14 @@
   --border: #87867f; /* Lovpen border consistent */
   --input: #3d3d3a; /* Lovpen faded */
   --ring: #d97757; /* Lovpen primary for focus */
-  
+
   /* Dark mode chart colors - slightly muted versions */
   --chart-1: #b49fd8; /* Lovpen fig */
   --chart-2: #c2c07d; /* Lovpen olive */
   --chart-3: #629a90; /* Lovpen cactus */
   --chart-4: #97b5d5; /* Lovpen sky */
   --chart-5: #d2bedf; /* Lovpen heather */
-  
+
   /* Dark sidebar */
   --sidebar: #3d3d3a; /* Lovpen faded */
   --sidebar-foreground: #f9f9f7; /* Light text */
