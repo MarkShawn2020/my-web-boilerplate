@@ -12,14 +12,14 @@ const baseConfig: NextConfig = {
   },
   poweredByHeader: false,
   reactStrictMode: true,
+  // Enable Code Inspector for Turbopack (Next.js >= 15.3.x)
+  turbopack: {
+    rules: codeInspectorPlugin({ bundler: 'turbopack' }),
+  },
   webpack: (config, { dev }) => {
     // Add code-inspector-plugin only in development
     if (dev) {
-      config.plugins.push(
-        codeInspectorPlugin({
-          bundler: 'webpack',
-        })
-      );
+      config.plugins.push(codeInspectorPlugin({ bundler: 'webpack' }));
     }
     return config;
   },
