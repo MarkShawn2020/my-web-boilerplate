@@ -1,9 +1,9 @@
 'use client';
 
 import React, {forwardRef, useRef, useState} from 'react';
-import {cn} from '@/lib/utils';
+import {RegisterOptions, UseFormRegister, UseFormSetValue} from 'react-hook-form';
 import {Input} from "@/components/ui/input";
-import {UseFormRegister, RegisterOptions, UseFormSetValue} from 'react-hook-form';
+import {cn} from '@/lib/utils';
 import "./autofill.css"
 
 export interface ProfessionalInputProps

@@ -1,22 +1,22 @@
+import { 
+  ArrowRight, 
+  Building, 
+  CheckCircle, 
+  Globe, 
+  GraduationCap,
+  Palette,
+  Rocket,
+  Shield,
+  TestTube,
+  Users,
+  Zap
+} from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
 import Link from 'next/link';
 import { Container } from '@/components/layout/Container';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader } from '@/components/ui/Card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/Tabs';
-import { 
-  ArrowRight, 
-  Shield, 
-  Zap, 
-  Globe, 
-  TestTube,
-  Palette,
-  Users,
-  Building,
-  GraduationCap,
-  CheckCircle,
-  Rocket
-} from 'lucide-react';
 
 type IIndexProps = {
   params: Promise<{ locale: string }>;

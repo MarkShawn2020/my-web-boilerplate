@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState } from 'react';
 import { useLocale } from 'next-intl';
+import React, { useState } from 'react';
 import { useAuthActions, useAuthUser } from '@/hooks/useAuthUser';
 import { usePathname, useRouter } from '@/libs/I18nNavigation';
 import { Avatar, AvatarFallback, AvatarImage } from './Avatar';

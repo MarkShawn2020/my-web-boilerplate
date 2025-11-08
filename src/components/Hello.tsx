@@ -1,8 +1,8 @@
 import { createServerClient } from '@supabase/ssr';
-import { cookies } from 'next/headers';
 import { getTranslations } from 'next-intl/server';
-import { Sponsors } from './Sponsors';
+import { cookies } from 'next/headers';
 import { Env } from '@/libs/Env';
+import { Sponsors } from './Sponsors';
 
 export const Hello = async () => {
   const t = await getTranslations('Dashboard');

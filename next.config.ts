@@ -1,8 +1,8 @@
 import type { NextConfig } from 'next';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
-import createNextIntlPlugin from 'next-intl/plugin';
 import { codeInspectorPlugin } from 'code-inspector-plugin';
+import createNextIntlPlugin from 'next-intl/plugin';
 import './src/libs/Env';
 
 // Define the base Next.js configuration

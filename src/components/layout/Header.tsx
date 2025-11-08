@@ -9,18 +9,18 @@ import {cn} from '@/utils/Helpers';
 import packageJson from '../../../package.json';
 import {LocaleSwitcher} from '../LocaleSwitcher';
 import {Button} from '../ui/button';
-import {NeuroraIcon} from '../ui/NeuroraIcon';
-import {UserDropdown} from '../ui/UserDropdown';
-import {Container} from './Container';
-import {HeaderActionSkeleton} from './HeaderActionSkeleton';
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuTrigger,
+    DropdownMenuLabel,
     DropdownMenuSeparator,
-    DropdownMenuLabel
+    DropdownMenuTrigger
 } from '../ui/dropdown-menu';
+import {NeuroraIcon} from '../ui/NeuroraIcon';
+import {UserDropdown} from '../ui/UserDropdown';
+import {Container} from './Container';
+import {HeaderActionSkeleton} from './HeaderActionSkeleton';
 
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);

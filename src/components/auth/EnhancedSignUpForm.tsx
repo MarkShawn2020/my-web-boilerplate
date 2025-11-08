@@ -5,11 +5,11 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useTranslations } from 'next-intl';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { ProfessionalButton } from './ProfessionalButton';
-import { ProfessionalInput } from './ProfessionalInput';
-import { ProfessionalAuthLayout } from './ProfessionalAuthLayout';
 import { useAuthActions } from '@/hooks/useAuthUser';
 import { SignUpSchema } from '@/validations/AuthValidation';
+import { ProfessionalAuthLayout } from './ProfessionalAuthLayout';
+import { ProfessionalButton } from './ProfessionalButton';
+import { ProfessionalInput } from './ProfessionalInput';
 
 type EnhancedSignUpFormProps = {
   redirectTo?: string;

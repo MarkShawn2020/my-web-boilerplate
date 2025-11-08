@@ -1,9 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { ResetPasswordForm } from './ResetPasswordForm';
 import { EnhancedSignInForm } from './EnhancedSignInForm';
 import { EnhancedSignUpForm } from './EnhancedSignUpForm';
+import { ResetPasswordForm } from './ResetPasswordForm';
 
 type AuthMode = 'signin' | 'signup' | 'reset';
 

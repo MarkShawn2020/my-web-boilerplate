@@ -76,9 +76,9 @@ const UnauthenticatedMobileSkeleton = () => (
 );
 
 export { 
-  HeaderActionSkeleton,
   AuthenticatedDesktopSkeleton,
-  UnauthenticatedDesktopSkeleton,
   AuthenticatedMobileSkeleton,
+  HeaderActionSkeleton,
+  UnauthenticatedDesktopSkeleton,
   UnauthenticatedMobileSkeleton
 };
