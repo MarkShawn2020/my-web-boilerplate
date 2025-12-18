@@ -14,8 +14,14 @@ Common commands:
 - `npm run check:types` - Type checking
 - `npm run lint:fix` - Fix linting issues
 - `npm test` - Run unit tests with Vitest
+- `npm test -- src/path/to/file.test.ts` - Run single test file
 - `npm run test:e2e` - Run E2E tests with Playwright
 - `npm run commit` - Interactive commit with Commitizen
+- `npm run storybook` - UI component development at http://localhost:6006
+
+Quality checks:
+- `npm run check:deps` - Detect unused files/dependencies with Knip
+- `npm run check:i18n` - Validate i18n translations
 
 Database commands:
 - `npm run db:studio` - Open Drizzle Studio at https://local.drizzle.studio
@@ -29,7 +35,8 @@ Database commands:
 - **Language**: TypeScript (strict mode)
 - **Styling**: Tailwind CSS v4 + shadcn/ui components
 - **Database**: Supabase (PostgreSQL) + DrizzleORM
-- **Auth**: Supabase Auth (server-side)
+- **Auth**: Supabase Auth (server-side with cookie-based sessions)
+- **State**: Zustand for client-side state
 - **Forms**: React Hook Form + Zod validation
 - **i18n**: next-intl (zh/en locales)
 - **Monitoring**: Sentry (with Spotlight for dev), PostHog, Better Stack
