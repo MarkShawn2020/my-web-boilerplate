@@ -10,14 +10,6 @@ import packageJson from '../../../package.json';
 import {Button} from '../Button';
 import {LocaleSwitcher} from '../LocaleSwitcher';
 import {LovwebIcon} from '../LovwebIcon';
-import {
-    DropdownMenu,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger
-} from '../ui/dropdown-menu';
 import {UserDropdown} from '../UserDropdown';
 import {Container} from './Container';
 import {HeaderActionSkeleton} from './HeaderActionSkeleton';
@@ -36,41 +28,8 @@ const Header = () => {
         setHasMounted(true);
     }, []);
 
-    // Regular navigation items (Features will be handled separately as dropdown)
     const navigation = [
-        {name: 'Gallery', href: '/gallery'}, // TODO: Add t('gallery') to translations
-        {name: t('community'), href: '/community'},
-        {name: 'Download', href: '/download'}, // TODO: Add t('download') to translations
         {name: t('pricing'), href: '/pricing'},
-        {name: t('blog'), href: '/blog'},
-    ];
-
-    // Features dropdown configuration
-    const featuresDropdownItems = [
-        {
-            category: 'Core Features', // TODO: Add t('core_features') to translations
-            items: [
-                {name: 'AI Analysis', href: '/features/ai-analysis'}, // TODO: Add translations
-                {name: 'Data Visualization', href: '/features/visualization'},
-                {name: 'Smart Insights', href: '/features/insights'},
-            ]
-        },
-        {
-            category: 'Advanced Tools', // TODO: Add t('advanced_tools') to translations
-            items: [
-                {name: 'Automation', href: '/features/automation'},
-                {name: 'Collaboration', href: '/features/collaboration'},
-                {name: 'Custom Workflows', href: '/features/workflows'},
-            ]
-        },
-        {
-            category: 'Integrations', // TODO: Add t('integrations') to translations
-            items: [
-                {name: 'API Access', href: '/features/api'},
-                {name: 'Third Party', href: '/features/integrations'},
-                {name: 'Enterprise', href: '/features/enterprise'},
-            ]
-        }
     ];
 
     // Handle login button click
@@ -84,35 +43,6 @@ const Header = () => {
         router.push('/dashboard');
         setIsMenuOpen(false);
     };
-
-    // Features Dropdown Component
-    const FeaturesDropdown = () => (
-        <DropdownMenu>
-            <DropdownMenuTrigger className="text-text-main hover:text-primary transition-colors no-underline flex items-center space-x-1 outline-none focus:outline-none data-[state=open]:text-primary">
-                <span>{t('features')}</span>
-                <svg className="w-4 h-4 transition-transform duration-200 data-[state=open]:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-64" align="start" sideOffset={8}>
-                {featuresDropdownItems.map((section, sectionIndex) => (
-                    <div key={section.category}>
-                        <DropdownMenuLabel className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">
-                            {section.category}
-                        </DropdownMenuLabel>
-                        {section.items.map((item) => (
-                            <DropdownMenuItem key={item.name} asChild>
-                                <Link href={item.href} className="cursor-pointer flex items-center">
-                                    {item.name}
-                                </Link>
-                            </DropdownMenuItem>
-                        ))}
-                        {sectionIndex < featuresDropdownItems.length - 1 && <DropdownMenuSeparator />}
-                    </div>
-                ))}
-            </DropdownMenuContent>
-        </DropdownMenu>
-    );
 
     return (
         <header
@@ -135,7 +65,6 @@ const Header = () => {
 
                     {/* Desktop Navigation */}
                     <nav className="hidden lg:flex items-center space-x-8">
-                        <FeaturesDropdown />
                         {navigation.map(item => (
                             <Link
                                 key={item.name}
@@ -228,30 +157,8 @@ const Header = () => {
                                 <LocaleSwitcher/>
                             </div>
                         )}
-                        
-                        {/* Mobile Features Section */}
-                        <div className="space-y-2">
-                            <div className="text-text-main font-medium py-2">{t('features')}</div>
-                            {featuresDropdownItems.map((section) => (
-                                <div key={section.category} className="ml-4 space-y-1">
-                                    <div className="text-sm font-medium text-muted-foreground py-1">
-                                        {section.category}
-                                    </div>
-                                    {section.items.map((item) => (
-                                        <Link
-                                            key={item.name}
-                                            href={item.href}
-                                            className="block text-text-main hover:text-primary transition-colors py-1 text-sm ml-2 no-underline"
-                                            onClick={() => setIsMenuOpen(false)}
-                                        >
-                                            {item.name}
-                                        </Link>
-                                    ))}
-                                </div>
-                            ))}
-                        </div>
-                        
-                        {/* Regular Navigation Items */}
+
+                        {/* Navigation Items */}
                         {navigation.map(item => (
                             <Link
                                 key={item.name}

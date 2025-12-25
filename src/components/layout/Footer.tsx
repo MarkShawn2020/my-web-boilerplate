@@ -11,10 +11,6 @@ const Footer = () => {
   const footerLinks = [
     { name: t('links.company.about'), href: '/about' },
     { name: t('links.product.pricing'), href: '/pricing' },
-    { name: t('links.product.api_docs'), href: '/docs/api' },
-    { name: t('links.support.help_center'), href: '/help' },
-    { name: t('links.company.blog'), href: '/blog' },
-    { name: t('links.support.contact'), href: '#contact' },
   ];
 
   const legalLinks = [
