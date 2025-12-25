@@ -1,5 +1,11 @@
 # lovweb
 
+## 0.3.0
+
+### Minor Changes
+
+- Integrate Lovstudio design system with warm academic theme
+
 ## 0.2.0
 
 ### Minor Changes
