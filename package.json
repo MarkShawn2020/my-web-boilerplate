@@ -5,6 +5,7 @@
   "engines": {
     "node": ">=20"
   },
+  "packageManager": "pnpm@10.18.1",
   "scripts": {
     "dev:spotlight": "npx @spotlightjs/sidecar",
     "dev:next": "next dev",
