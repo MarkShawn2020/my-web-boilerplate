@@ -1,5 +1,13 @@
 # Lovweb
 
+## 0.3.1
+
+### Patch Changes
+
+- - refactor: update logo components to use new logo.svg
+  - fix(nav): remove broken links from Header/Footer
+  - refactor: transform into generic SaaS starter template
+
 ## 0.3.0
 
 ### Minor Changes

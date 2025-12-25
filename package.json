@@ -1,6 +1,6 @@
 {
   "name": "lovweb",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "author": "Ixartz (https://github.com/ixartz)",
   "engines": {
     "node": ">=20"
