@@ -1,4 +1,4 @@
-# lovweb
+# Lovweb
 
 ## 0.3.0
 

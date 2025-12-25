@@ -1,10 +1,10 @@
 import React from 'react';
 
-type NeuroraIconProps = {
+type LovwebIconProps = {
   className?: string;
 };
 
-const NeuroraIcon: React.FC<NeuroraIconProps> = ({ className = 'h-8 w-8' }) => {
+const LovwebIcon: React.FC<LovwebIconProps> = ({ className = 'h-8 w-8' }) => {
   return (
     <svg
       id="图层_1"
@@ -42,4 +42,4 @@ const NeuroraIcon: React.FC<NeuroraIconProps> = ({ className = 'h-8 w-8' }) => {
   );
 };
 
-export { NeuroraIcon };
+export { LovwebIcon };

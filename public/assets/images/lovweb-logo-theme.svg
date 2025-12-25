@@ -1,8 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 80" fill="#DA1C2E" >
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 80" fill="var(--primary-color, #DA1C2E)" >
     <rect width="520" height="80" fill="transparent"/>
 
     <g transform="translate(0, 0)">
-        <!-- Neurora Tech Logo -->
+        <!-- Lovweb Tech Logo -->
         <g transform="scale(0.075) translate(100, -100)">
             <path d="M1196.56,991.34h-.44l.21-.38-26.77-46.36h-.42l.21-.37-26.77-46.36h-.44l.23-.39-26.75-46.33h-.47l.23-.39-26.75-46.34H926.76l26.75,46.34.24.39,26.75,46.33.21.39,26.77,46.34.21.39,26.75,46.33.24.41,26.76,46.33.22.4h53.51l.22-.39.23.39h53.5l.23-.39.23.39h53.52l.21-.39ZM1007.24,851.15l.24-.39.23.39Zm27,46.72.23-.39.21.39Zm54.17-.39.23.39h-.44Zm-27-46.72.23.39h-.44Zm-.21,93.84.23-.39.22.39Zm27,46.74.24-.41.23.41Zm27-46.74.21-.39.22.39Zm27,46.74.21-.38.23.38Z"/>
             <path d="M926.32,617.49H818.84l26.75,46.33.23.41,26.75,46.34.23.38,26.75,46.34.23.39H953.3l.22-.39.21.39h53.52l.21-.37.23.37h53.52l.23-.37L1034.67,711h-.44l.21-.38-26.75-46.34h-.44l.23-.39-26.77-46.35H926.32Zm-27,46.74.21-.39.23.39Zm27,46.72.22-.38.22.38Zm54.17-.38.22.38h-.44Zm-27-46.73.22.39h-.43Z"/>
@@ -12,7 +12,7 @@
             <polygon points="656.96 337.1 710.48 337.1 710.7 336.73 710.91 337.1 764.45 337.1 764.66 336.73 764.87 337.1 818.39 337.1 818.62 336.73 791.85 290.38 791.41 290.38 737.89 290.38 737.45 290.38 683.93 290.38 683.5 290.38 629.98 290.38 656.75 336.73 656.96 337.1"/>
         </g>
 
-        <!-- NEURORA Text -->
+        <!-- LOVWEB Text -->
         <g transform="translate(100, -10)">
             <defs>
                 <mask id="text-mask">
@@ -24,7 +24,7 @@
                             font-weight="bold"
                             fill="white"
                     >
-                        NEURORA
+                        LOVWEB
                     </text>
                 </mask>
 
@@ -36,11 +36,11 @@
                         width="100%"
                         height="64"
                 >
-                    <rect width="100%" height="4" y="0" fill="#DA1C2E" />
-                    <rect width="100%" height="4" y="7" fill="#DA1C2E" />
-                    <rect width="100%" height="8" y="14" fill="#DA1C2E" />
-                    <rect width="100%" height="12" y="25" fill="#DA1C2E" />
-                    <rect width="100%" height="20" y="40" fill="#DA1C2E" />
+                    <rect width="100%" height="4" y="0" fill="var(--primary-color, #DA1C2E)" />
+                    <rect width="100%" height="4" y="7" fill="var(--primary-color, #DA1C2E)" />
+                    <rect width="100%" height="8" y="14" fill="var(--primary-color, #DA1C2E)" />
+                    <rect width="100%" height="12" y="25" fill="var(--primary-color, #DA1C2E)" />
+                    <rect width="100%" height="20" y="40" fill="var(--primary-color, #DA1C2E)" />
                 </pattern>
             </defs>
 

@@ -17,12 +17,12 @@
     "sign_up_link": "注册"
   },
   "BaseTemplate": {
-    "description": "Neurora，为创作者而生的 AI 智能创作平台",
+    "description": "Lovweb，为创作者而生的 AI 智能创作平台",
     "made_with": "由 <author></author> 精心打造。"
   },
   "Index": {
-    "meta_title": "Neurora - 为创作者而生的 AI 智能创作平台",
-    "meta_description": "Neurora，专为知识博主和内容创作者打造的 AI 智能创作平台，让一部分人先机械飞升，最大化思想者的价值。",
+    "meta_title": "Lovweb - 为创作者而生的 AI 智能创作平台",
+    "meta_description": "Lovweb，专为知识博主和内容创作者打造的 AI 智能创作平台，让一部分人先机械飞升，最大化思想者的价值。",
     "sponsors_title": "合作伙伴"
   },
   "Counter": {
@@ -44,8 +44,8 @@
   },
   "About": {
     "meta_title": "关于我们",
-    "meta_description": "了解 Neurora 团队和我们的使命",
-    "about_paragraph": "欢迎来到 Neurora！我们是一支充满激情的团队，致力于为创作者打造最先进的 AI 智能创作平台。",
+    "meta_description": "了解 Lovweb 团队和我们的使命",
+    "about_paragraph": "欢迎来到 Lovweb！我们是一支充满激情的团队，致力于为创作者打造最先进的 AI 智能创作平台。",
     "translation_powered_by": "翻译服务由以下提供支持"
   },
   "Portfolio": {
@@ -85,7 +85,7 @@
         "blog": "博客"
       },
       "product": {
-        "platform": "Neurora 平台",
+        "platform": "Lovweb 平台",
         "pricing": "定价方案",
         "api_docs": "API 文档",
         "help_docs": "帮助文档"
@@ -109,7 +109,7 @@
     "sign_out": "退出登录"
   },
   "HomePage": {
-    "hero_title": "Neurora - 为创作者而生",
+    "hero_title": "Lovweb - 为创作者而生",
     "hero_description": "专为知识博主和内容创作者打造的 AI 智能创作平台，让一部分人先机械飞升，最大化思想者的价值。",
     "get_started": "立即开始",
     "view_docs": "查看文档",
@@ -118,7 +118,7 @@
     "features_title": "为创作者量身打造",
     "features_description": "集成先进的 AI 技术，提供完整的创作工具链，助力内容创作者实现价值最大化。",
     "cta_title": "准备开始创作了吗？",
-    "cta_description": "加入数千名创作者，使用 Neurora 打造专业内容，释放创作潜能。",
+    "cta_description": "加入数千名创作者，使用 Lovweb 打造专业内容，释放创作潜能。",
     "cta_start": "立即开始",
     "cta_github": "了解更多",
     "features": {
@@ -148,7 +148,7 @@
       }
     },
     "use_cases_title": "适合各种创作场景",
-    "use_cases_description": "无论您是个人知识博主还是企业内容团队，Neurora 都能与您一起扩展创作边界。",
+    "use_cases_description": "无论您是个人知识博主还是企业内容团队，Lovweb 都能与您一起扩展创作边界。",
     "tabs": {
       "individual": {
         "label": "个人博主",
@@ -173,7 +173,7 @@
     }
   },
   "DemoBanner": {
-    "demo_text": "Next.js 模板在线演示 - 由 Neurora 团队开发",
+    "demo_text": "Next.js 模板在线演示 - 由 Lovweb 团队开发",
     "try_auth": "体验认证功能"
   },
   "notifications": {
@@ -230,16 +230,16 @@
   },
   "TermsOfService": {
     "meta_title": "服务条款",
-    "meta_description": "Neurora AI 智能创作平台服务条款",
+    "meta_description": "Lovweb AI 智能创作平台服务条款",
     "title": "服务条款",
     "sections": {
       "acceptance": {
         "title": "1. 条款接受",
-        "content": "通过访问和使用 Neurora，您接受并同意受本协议条款和条件的约束。如果您不同意遵守以上条款，请不要使用本服务。"
+        "content": "通过访问和使用 Lovweb，您接受并同意受本协议条款和条件的约束。如果您不同意遵守以上条款，请不要使用本服务。"
       },
       "description": {
         "title": "2. 服务描述",
-        "content": "Neurora 是专为知识博主和内容创作者设计的 AI 智能创作平台。我们的服务提供内容创作、协作和发布工具。"
+        "content": "Lovweb 是专为知识博主和内容创作者设计的 AI 智能创作平台。我们的服务提供内容创作、协作和发布工具。"
       },
       "user_accounts": {
         "title": "3. 用户账户和注册",
@@ -251,7 +251,7 @@
       },
       "intellectual_property": {
         "title": "5. 知识产权",
-        "content": "本服务及其原创内容、功能和特色是且将继续是 Neurora 及其许可方的专有财产。"
+        "content": "本服务及其原创内容、功能和特色是且将继续是 Lovweb 及其许可方的专有财产。"
       },
       "ai_usage": {
         "title": "6. AI 和数据使用",
@@ -267,7 +267,7 @@
       },
       "governing_law": {
         "title": "9. 适用法律",
-        "content": "本条款应受 Neurora 运营所在司法管辖区法律管辖并据此解释。"
+        "content": "本条款应受 Lovweb 运营所在司法管辖区法律管辖并据此解释。"
       },
       "contact": {
         "title": "10. 联系信息",
@@ -277,12 +277,12 @@
   },
   "PrivacyPolicy": {
     "meta_title": "隐私政策",
-    "meta_description": "Neurora AI 智能创作平台隐私政策",
+    "meta_description": "Lovweb AI 智能创作平台隐私政策",
     "title": "隐私政策",
     "sections": {
       "introduction": {
         "title": "1. 简介",
-        "content": "Neurora 尊重您的隐私，致力于保护您的个人数据。本隐私政策解释了当您使用我们的服务时，我们如何收集、使用和分享您的信息。"
+        "content": "Lovweb 尊重您的隐私，致力于保护您的个人数据。本隐私政策解释了当您使用我们的服务时，我们如何收集、使用和分享您的信息。"
       },
       "information_collected": {
         "title": "2. 我们收集的信息",
@@ -332,7 +332,7 @@
   },
   "CookiePolicy": {
     "meta_title": "Cookie 政策",
-    "meta_description": "Neurora AI 智能创作平台 Cookie 政策",
+    "meta_description": "Lovweb AI 智能创作平台 Cookie 政策",
     "title": "Cookie 政策",
     "sections": {
       "what_are_cookies": {
@@ -369,8 +369,8 @@
     "loading": "加载中..."
   },
   "SignIn": {
-    "meta_title": "登录 - Neurora",
-    "meta_description": "登录您的 Neurora 账户，使用 AI 智能创作工具",
+    "meta_title": "登录 - Lovweb",
+    "meta_description": "登录您的 Lovweb 账户，使用 AI 智能创作工具",
     "title": "登录",
     "subtitle": "欢迎回来！请登录您的账户",
     "email_label": "邮箱地址",
@@ -386,10 +386,10 @@
     "sign_up_link": "立即注册"
   },
   "SignUp": {
-    "meta_title": "注册 - Neurora",
-    "meta_description": "创建您的 Neurora 账户，开始使用 AI 智能创作工具",
+    "meta_title": "注册 - Lovweb",
+    "meta_description": "创建您的 Lovweb 账户，开始使用 AI 智能创作工具",
     "title": "创建账户",
-    "subtitle": "加入数千名创作者，使用 Neurora 创作",
+    "subtitle": "加入数千名创作者，使用 Lovweb 创作",
     "full_name_label": "姓名",
     "full_name_placeholder": "请输入您的姓名",
     "email_label": "邮箱地址",
@@ -423,7 +423,7 @@
     "email_sent_message": "如果该邮箱对应的账户存在，我们已向您发送了密码重置链接。"
   },
   "UserProfile": {
-    "meta_title": "个人设置 - Neurora",
+    "meta_title": "个人设置 - Lovweb",
     "title": "个人设置",
     "loading": "加载个人资料中...",
     "profile_updated_success": "个人资料更新成功",
@@ -452,7 +452,7 @@
     "not_verified": "未验证"
   },
   "Pricing": {
-    "meta_title": "定价 - Neurora AI 智能创作平台",
+    "meta_title": "定价 - Lovweb AI 智能创作平台",
     "meta_description": "灵活的定价方案，满足内容创作者和团队需求。免费开始，支持 3 个项目，升级享受无限 AI 创作和协作功能。",
     "hero_title": "灵活定价，适合所有人",
     "hero_description": "选择最适合您内容创作需求的方案。免费开始，随着业务增长而扩展。",
@@ -534,7 +534,7 @@
       { "name": "Medium", "description": "文章发布" }
     ],
     "testimonial": {
-      "quote": "Neurora 彻底改变了我们的内容创作方式。AI 助手非常直观，帮助我们在所有渠道保持内容的一致性。",
+      "quote": "Lovweb 彻底改变了我们的内容创作方式。AI 助手非常直观，帮助我们在所有渠道保持内容的一致性。",
       "author": "张小明",
       "company": "数字营销机构",
       "avatar": "/avatars/zhang-xiaoming.jpg"
@@ -567,8 +567,8 @@
     "faq_title": "常见问题",
     "faq": [
       {
-        "question": "Neurora 支持哪些平台？",
-        "answer": "Neurora 支持所有主流平台的内容创作，包括微信公众号、知乎、小红书、抖音、微博、B站、WordPress、Medium 等。我们持续添加对新平台的支持。"
+        "question": "Lovweb 支持哪些平台？",
+        "answer": "Lovweb 支持所有主流平台的内容创作，包括微信公众号、知乎、小红书、抖音、微博、B站、WordPress、Medium 等。我们持续添加对新平台的支持。"
       },
       {
         "question": "我可以随时更改套餐吗？",

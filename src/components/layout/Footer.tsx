@@ -1,7 +1,7 @@
 import { useTranslations } from 'next-intl';
 import Link from 'next/link';
 import React from 'react';
-import { NeuroraIcon } from '../NeuroraIcon';
+import { LovwebIcon } from '../LovwebIcon';
 import { SocialIcon } from '../SocialIcons';
 import { Container } from './Container';
 
@@ -31,15 +31,15 @@ const Footer = () => {
             {/* Brand */}
             <div className="lg:col-span-1">
               <Link href="/" className="flex items-center space-x-2 no-underline mb-4">
-                <NeuroraIcon className="h-8 w-8" />
-                <span className="text-xl font-semibold text-text-main">Neurora</span>
+                <LovwebIcon className="h-8 w-8" />
+                <span className="text-xl font-semibold text-text-main">Lovweb</span>
               </Link>
               <p className="text-sm text-text-faded mb-4">
                 为创作者而生的 AI 智能创作平台
               </p>
               <div className="flex space-x-4">
-                <SocialIcon href="https://github.com/neurora-ai" icon="github" />
-                <SocialIcon href="https://twitter.com/neurora_ai" icon="twitter" />
+                <SocialIcon href="https://github.com/lovstudio" icon="github" />
+                <SocialIcon href="https://twitter.com/lovstudio_ai" icon="twitter" />
                 <SocialIcon href="https://weixin.qq.com/r/nHGkUFf" icon="wechat" />
               </div>
             </div>
@@ -64,7 +64,7 @@ const Footer = () => {
           <div className="mt-12 pt-8 border-t border-border/50">
             <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
               <p className="text-sm text-text-faded">
-                © 2025 Neurora Technology. {t('rights_reserved')}
+                © 2025 Lovstudio. {t('rights_reserved')}
               </p>
               <div className="flex gap-6">
                 {legalLinks.map(link => (

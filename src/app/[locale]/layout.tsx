@@ -26,37 +26,37 @@ export const generateMetadata = async (props: {
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> => {
   const { locale } = await props.params;
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://neurora.ai';
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://lovweb.ai';
 
   // Locale-specific metadata
   const metadataByLocale = {
     zh: {
       title: {
-        default: 'Neurora - 为创作者而生的 AI 智能创作平台',
-        template: '%s | Neurora',
+        default: 'Lovweb - 为创作者而生的 AI 智能创作平台',
+        template: '%s | Lovweb',
       },
-      description: 'Neurora，为创作者而生。专为知识博主和内容创作者打造的 AI 智能创作平台，让一部分人先机械飞升，最大化思想者的价值。',
-      keywords: ['AI创作', '内容创作', '知识博主', '创作平台', '机械飞升', 'Neurora'],
+      description: 'Lovweb，为创作者而生。专为知识博主和内容创作者打造的 AI 智能创作平台，让一部分人先机械飞升，最大化思想者的价值。',
+      keywords: ['AI创作', '内容创作', '知识博主', '创作平台', '机械飞升', 'Lovweb'],
       ogLocale: 'zh_CN',
-      ogTitle: 'Neurora - 为创作者而生的 AI 智能创作平台',
-      ogDescription: 'Neurora，为创作者而生。专为知识博主和内容创作者打造的 AI 智能创作平台，让一部分人先机械飞升，最大化思想者的价值。',
-      twitterTitle: 'Neurora - 为创作者而生的 AI 智能创作平台',
-      twitterDescription: 'Neurora，为创作者而生。专为知识博主和内容创作者打造的 AI 智能创作平台。',
-      ogImageAlt: 'Neurora - 为创作者而生',
+      ogTitle: 'Lovweb - 为创作者而生的 AI 智能创作平台',
+      ogDescription: 'Lovweb，为创作者而生。专为知识博主和内容创作者打造的 AI 智能创作平台，让一部分人先机械飞升，最大化思想者的价值。',
+      twitterTitle: 'Lovweb - 为创作者而生的 AI 智能创作平台',
+      twitterDescription: 'Lovweb，为创作者而生。专为知识博主和内容创作者打造的 AI 智能创作平台。',
+      ogImageAlt: 'Lovweb - 为创作者而生',
     },
     en: {
       title: {
-        default: 'Neurora - AI Creation Platform for Content Creators',
-        template: '%s | Neurora',
+        default: 'Lovweb - AI Creation Platform for Content Creators',
+        template: '%s | Lovweb',
       },
-      description: 'Neurora is built for creators. An AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators.',
-      keywords: ['AI creation', 'content creation', 'knowledge blogger', 'creation platform', 'AI platform', 'Neurora'],
+      description: 'Lovweb is built for creators. An AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators.',
+      keywords: ['AI creation', 'content creation', 'knowledge blogger', 'creation platform', 'AI platform', 'Lovweb'],
       ogLocale: 'en_US',
-      ogTitle: 'Neurora - AI Creation Platform for Content Creators',
-      ogDescription: 'Neurora is built for creators. An AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators.',
-      twitterTitle: 'Neurora - AI Creation Platform for Content Creators',
-      twitterDescription: 'Neurora is built for creators. AI-powered creation platform for content creators.',
-      ogImageAlt: 'Neurora - Built for creators',
+      ogTitle: 'Lovweb - AI Creation Platform for Content Creators',
+      ogDescription: 'Lovweb is built for creators. An AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators.',
+      twitterTitle: 'Lovweb - AI Creation Platform for Content Creators',
+      twitterDescription: 'Lovweb is built for creators. AI-powered creation platform for content creators.',
+      ogImageAlt: 'Lovweb - Built for creators',
     },
   };
 
@@ -66,9 +66,9 @@ export const generateMetadata = async (props: {
     title: currentMetadata.title,
     description: currentMetadata.description,
     keywords: currentMetadata.keywords,
-    authors: [{ name: 'Neurora Technology' }],
-    creator: 'Neurora Technology',
-    publisher: 'Neurora Technology',
+    authors: [{ name: 'Lovweb Technology' }],
+    creator: 'Lovweb Technology',
+    publisher: 'Lovweb Technology',
     formatDetection: {
       email: false,
       address: false,
@@ -90,7 +90,7 @@ export const generateMetadata = async (props: {
       url: `/${locale}`,
       title: currentMetadata.ogTitle,
       description: currentMetadata.ogDescription,
-      siteName: 'Neurora',
+      siteName: 'Lovweb',
       images: [
         {
           url: '/og-image.png',
@@ -102,8 +102,8 @@ export const generateMetadata = async (props: {
     },
     twitter: {
       card: 'summary_large_image',
-      site: '@neurora_ai',
-      creator: '@neurora_ai',
+      site: '@lovweb_ai',
+      creator: '@lovweb_ai',
       title: currentMetadata.twitterTitle,
       description: currentMetadata.twitterDescription,
       images: ['/og-image.png'],

@@ -329,7 +329,7 @@ export function AuthForm({
       brandSection={
         <div className="text-center text-sm text-white/80">
           {isSignIn ? (
-            <p>已有超过 <span className="font-semibold text-white">10,000+</span> 创作者选择 Neurora</p>
+            <p>已有超过 <span className="font-semibold text-white">10,000+</span> 创作者选择 Lovweb</p>
           ) : (
             <div className="space-y-2">
               <p>加入 <span className="font-semibold text-white">10,000+</span> 创作者的行列</p>

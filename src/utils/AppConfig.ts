@@ -23,8 +23,8 @@ export const detectUserLocale = (acceptLanguage?: string | null): string => {
 };
 
 export const AppConfig = {
-  name: 'Neurora',
+  name: 'Lovweb',
   locales: ['zh', 'en'],
-  defaultLocale: 'zh', // Default to Chinese for Neurora's primary audience
+  defaultLocale: 'zh', // Default to Chinese for Lovweb's primary audience
   localePrefix,
 };

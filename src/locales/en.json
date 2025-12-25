@@ -17,12 +17,12 @@
     "sign_up_link": "Sign up"
   },
   "BaseTemplate": {
-    "description": "Neurora - AI-powered creation platform for creators",
+    "description": "Lovweb - AI-powered creation platform for creators",
     "made_with": "Crafted with <author></author>."
   },
   "Index": {
-    "meta_title": "Neurora - AI Creation Platform for Content Creators",
-    "meta_description": "Neurora is built for creators. An AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators.",
+    "meta_title": "Lovweb - AI Creation Platform for Content Creators",
+    "meta_description": "Lovweb is built for creators. An AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators.",
     "sponsors_title": "Partners"
   },
   "Counter": {
@@ -44,8 +44,8 @@
   },
   "About": {
     "meta_title": "About",
-    "meta_description": "Learn about Neurora team and our mission",
-    "about_paragraph": "Welcome to Neurora! We are a passionate team dedicated to building the most advanced AI-powered creation platform for creators.",
+    "meta_description": "Learn about Lovweb team and our mission",
+    "about_paragraph": "Welcome to Lovweb! We are a passionate team dedicated to building the most advanced AI-powered creation platform for creators.",
     "translation_powered_by": "Translation powered by"
   },
   "Portfolio": {
@@ -85,7 +85,7 @@
         "blog": "Blog"
       },
       "product": {
-        "platform": "Neurora Platform",
+        "platform": "Lovweb Platform",
         "pricing": "Pricing",
         "api_docs": "API Documentation",
         "help_docs": "Help Center"
@@ -109,7 +109,7 @@
     "sign_out": "Sign out"
   },
   "HomePage": {
-    "hero_title": "Neurora - Built for Creators",
+    "hero_title": "Lovweb - Built for Creators",
     "hero_description": "An AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators to maximize the value of thinkers.",
     "get_started": "Get Started",
     "view_docs": "View Documentation",
@@ -118,7 +118,7 @@
     "features_title": "Tailored for Content Creators",
     "features_description": "Integrated with advanced AI technology, providing a complete creation toolkit to help content creators maximize their value.",
     "cta_title": "Ready to Start Creating?",
-    "cta_description": "Join thousands of creators using Neurora to craft professional content and unlock your creative potential.",
+    "cta_description": "Join thousands of creators using Lovweb to craft professional content and unlock your creative potential.",
     "cta_start": "Get Started",
     "cta_github": "Learn More",
     "features": {
@@ -148,7 +148,7 @@
       }
     },
     "use_cases_title": "Perfect for Every Creator",
-    "use_cases_description": "Whether you're an individual blogger or an enterprise content team, Neurora scales with your creative ambitions.",
+    "use_cases_description": "Whether you're an individual blogger or an enterprise content team, Lovweb scales with your creative ambitions.",
     "tabs": {
       "individual": {
         "label": "Individual",
@@ -173,7 +173,7 @@
     }
   },
   "DemoBanner": {
-    "demo_text": "Next.js Template Demo - Developed by Neurora Team",
+    "demo_text": "Next.js Template Demo - Developed by Lovweb Team",
     "try_auth": "Try Authentication"
   },
   "notifications": {
@@ -230,16 +230,16 @@
   },
   "TermsOfService": {
     "meta_title": "Terms of Service",
-    "meta_description": "Terms of Service for Neurora AI creation platform",
+    "meta_description": "Terms of Service for Lovweb AI creation platform",
     "title": "Terms of Service",
     "sections": {
       "acceptance": {
         "title": "1. Acceptance of Terms",
-        "content": "By accessing and using Neurora, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service."
+        "content": "By accessing and using Lovweb, you accept and agree to be bound by the terms and provision of this agreement. If you do not agree to abide by the above, please do not use this service."
       },
       "description": {
         "title": "2. Description of Service",
-        "content": "Neurora is an AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators. Our service provides tools for content creation, collaboration, and publishing."
+        "content": "Lovweb is an AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators. Our service provides tools for content creation, collaboration, and publishing."
       },
       "user_accounts": {
         "title": "3. User Accounts and Registration",
@@ -251,7 +251,7 @@
       },
       "intellectual_property": {
         "title": "5. Intellectual Property Rights",
-        "content": "The service and its original content, features, and functionality are and will remain the exclusive property of Neurora and its licensors."
+        "content": "The service and its original content, features, and functionality are and will remain the exclusive property of Lovweb and its licensors."
       },
       "ai_usage": {
         "title": "6. AI and Data Usage",
@@ -267,7 +267,7 @@
       },
       "governing_law": {
         "title": "9. Governing Law",
-        "content": "These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Neurora operates."
+        "content": "These Terms shall be governed by and construed in accordance with the laws of the jurisdiction in which Lovweb operates."
       },
       "contact": {
         "title": "10. Contact Information",
@@ -277,12 +277,12 @@
   },
   "PrivacyPolicy": {
     "meta_title": "Privacy Policy",
-    "meta_description": "Privacy Policy for Neurora AI creation platform",
+    "meta_description": "Privacy Policy for Lovweb AI creation platform",
     "title": "Privacy Policy",
     "sections": {
       "introduction": {
         "title": "1. Introduction",
-        "content": "Neurora respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, and share information about you when you use our services."
+        "content": "Lovweb respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, and share information about you when you use our services."
       },
       "information_collected": {
         "title": "2. Information We Collect",
@@ -332,7 +332,7 @@
   },
   "CookiePolicy": {
     "meta_title": "Cookie Policy",
-    "meta_description": "Cookie Policy for Neurora AI creation platform",
+    "meta_description": "Cookie Policy for Lovweb AI creation platform",
     "title": "Cookie Policy",
     "sections": {
       "what_are_cookies": {
@@ -369,8 +369,8 @@
     "loading": "Loading..."
   },
   "SignIn": {
-    "meta_title": "Sign In - Neurora",
-    "meta_description": "Sign in to your Neurora account to access AI-powered content creation tools",
+    "meta_title": "Sign In - Lovweb",
+    "meta_description": "Sign in to your Lovweb account to access AI-powered content creation tools",
     "title": "Sign In",
     "subtitle": "Welcome back! Please sign in to your account",
     "email_label": "Email Address",
@@ -386,10 +386,10 @@
     "sign_up_link": "Sign up"
   },
   "SignUp": {
-    "meta_title": "Sign Up - Neurora",
-    "meta_description": "Create your Neurora account and start building amazing content with AI assistance",
+    "meta_title": "Sign Up - Lovweb",
+    "meta_description": "Create your Lovweb account and start building amazing content with AI assistance",
     "title": "Create Account",
-    "subtitle": "Join thousands of creators using Neurora",
+    "subtitle": "Join thousands of creators using Lovweb",
     "full_name_label": "Full Name",
     "full_name_placeholder": "Enter your full name",
     "email_label": "Email Address",
@@ -423,7 +423,7 @@
     "email_sent_message": "If an account with that email exists, we've sent you a password reset link."
   },
   "UserProfile": {
-    "meta_title": "Profile Settings - Neurora",
+    "meta_title": "Profile Settings - Lovweb",
     "title": "Profile Settings",
     "loading": "Loading profile...",
     "profile_updated_success": "Profile updated successfully",
@@ -452,7 +452,7 @@
     "not_verified": "No"
   },
   "Pricing": {
-    "meta_title": "Pricing - Neurora AI Creation Platform",
+    "meta_title": "Pricing - Lovweb AI Creation Platform",
     "meta_description": "Flexible pricing plans for content creators and teams. Start free with 3 projects, upgrade for unlimited AI-powered content creation and collaboration.",
     "hero_title": "Flexible pricing for everyone",
     "hero_description": "Choose the perfect plan for your content creation needs. Start free and scale as you grow.",
@@ -534,7 +534,7 @@
       { "name": "TikTok", "description": "Short-form content" }
     ],
     "testimonial": {
-      "quote": "Neurora has transformed how we create content. The AI assistance is incredibly intuitive and helps us maintain consistency across all our channels.",
+      "quote": "Lovweb has transformed how we create content. The AI assistance is incredibly intuitive and helps us maintain consistency across all our channels.",
       "author": "Sarah Chen",
       "company": "Digital Marketing Agency",
       "avatar": "/avatars/sarah-chen.jpg"
@@ -567,8 +567,8 @@
     "faq_title": "Frequently Asked Questions",
     "faq": [
       {
-        "question": "What platforms does Neurora support?",
-        "answer": "Neurora supports content creation for all major platforms including WordPress, Medium, LinkedIn, Twitter/X, Facebook, Instagram, YouTube, and TikTok. We're constantly adding support for new platforms."
+        "question": "What platforms does Lovweb support?",
+        "answer": "Lovweb supports content creation for all major platforms including WordPress, Medium, LinkedIn, Twitter/X, Facebook, Instagram, YouTube, and TikTok. We're constantly adding support for new platforms."
       },
       {
         "question": "Can I change my plan at any time?",

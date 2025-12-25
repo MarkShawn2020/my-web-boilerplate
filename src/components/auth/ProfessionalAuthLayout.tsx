@@ -43,7 +43,7 @@ export function ProfessionalAuthLayout({
               </svg>
             </div>
             <h1 className="text-3xl font-bold mb-2" style={{ color: '#F9F9F7', fontFamily: 'Fira Code, ui-sans-serif, system-ui, sans-serif' }}>
-              Neurora
+              Lovweb
             </h1>
             <p className="text-lg" style={{ color: 'rgba(249, 249, 247, 0.8)' }}>
               为创作者而生的 AI 智能创作平台
@@ -95,7 +95,7 @@ export function ProfessionalAuthLayout({
                   color: '#181818', 
                   fontFamily: 'Fira Code, ui-sans-serif, system-ui, sans-serif' 
                 }}>
-              Neurora
+              Lovweb
             </h1>
           </Link>
 
@@ -127,7 +127,7 @@ export function ProfessionalAuthLayout({
           {/* 底部信息 - Lovpen 色彩 */}
           <div className="mt-8 text-center">
             <p className="text-sm" style={{ color: '#87867F' }}>
-              © 2024 Neurora. 安全可靠的 AI 创作平台
+              © 2024 Lovweb. 安全可靠的 AI 创作平台
             </p>
           </div>
         </div>
