@@ -1,10 +1,10 @@
 <p align="center">
-  <img src="docs/images/cover.png" alt="My Web Boilerplate Cover" width="100%">
+  <img src="docs/images/cover.png" alt="Lovweb Cover" width="100%">
 </p>
 
 <h1 align="center">
   <img src="assets/logo.svg" width="32" height="32" alt="Logo" align="top">
-  My Web Boilerplate
+  Lovweb
 </h1>
 
 <p align="center">
