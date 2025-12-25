@@ -52,6 +52,7 @@ export default function Counter() {
           alt="Arcjet"
           width={128}
           height={38}
+          priority
         />
       </a>
     </>
