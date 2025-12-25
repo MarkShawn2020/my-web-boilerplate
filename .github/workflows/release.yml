@@ -1,41 +1,57 @@
 name: Release
 
 on:
-  workflow_run:
-    workflows: [CI]
-    types:
-      - completed
-    branches:
-      - main
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag (e.g. v1.0.0)'
+        required: true
+
+permissions:
+  contents: write
 
 jobs:
   release:
-    strategy:
-      matrix:
-        node-version: [22.x]
-
-    name: Create a new release
     runs-on: ubuntu-latest
-
-    permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          ref: ${{ github.event.inputs.tag || github.ref_name }}
 
-      - name: Set up Node.js environment
-        uses: ./.github/actions/setup-project
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node-version }}
+          node-version: 20
+          cache: 'pnpm'
 
-      - name: Verify the integrity of provenance attestations and registry signatures for installed dependencies
-        run: npm audit signatures
+      - run: pnpm install
 
-      - name: Release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: pnpm build
+
+      - name: Get tag
+        id: tag
+        run: echo "tag=${{ github.event.inputs.tag || github.ref_name }}" >> $GITHUB_OUTPUT
+
+      - name: Extract release notes
+        id: notes
+        run: |
+          VERSION="${{ steps.tag.outputs.tag }}"
+          VERSION_NUM="${VERSION#v}"
+          if [ -f CHANGELOG.md ]; then
+            NOTES=$(awk -v ver="$VERSION_NUM" '
+              /^## / { if (found) exit; if ($2 == ver) { found=1; next } }
+              found { print }
+            ' CHANGELOG.md)
+          fi
+          if [ -z "$NOTES" ]; then NOTES="Release $VERSION"; fi
+          echo 'notes<<EOF' >> $GITHUB_OUTPUT
+          echo "$NOTES" >> $GITHUB_OUTPUT
+          echo 'EOF' >> $GITHUB_OUTPUT
+
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.tag }}
+          body: ${{ steps.notes.outputs.notes }}
