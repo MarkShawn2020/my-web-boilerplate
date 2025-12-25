@@ -8,7 +8,7 @@
   "packageManager": "pnpm@10.18.1",
   "scripts": {
     "dev:spotlight": "npx @spotlightjs/sidecar",
-    "dev:next": "next dev",
+    "dev:next": "next dev -p 5253",
     "dev": "run-p dev:*",
     "build:next": "next build",
     "build": "run-p build:* --race",
