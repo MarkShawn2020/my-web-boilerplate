@@ -1,7 +1,7 @@
 {
-  "name": "Lovweb - AI 智能创作平台",
+  "name": "Lovweb - Next.js SaaS Starter",
   "short_name": "Lovweb",
-  "description": "为创作者而生的 AI 智能创作平台",
+  "description": "Production-ready Next.js SaaS template by Lovstudio",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F9F9F7",

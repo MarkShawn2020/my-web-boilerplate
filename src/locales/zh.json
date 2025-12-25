@@ -17,12 +17,12 @@
     "sign_up_link": "注册"
   },
   "BaseTemplate": {
-    "description": "Lovweb，为创作者而生的 AI 智能创作平台",
+    "description": "Lovweb - 生产就绪的 Next.js SaaS 模板",
     "made_with": "由 <author></author> 精心打造。"
   },
   "Index": {
-    "meta_title": "Lovweb - 为创作者而生的 AI 智能创作平台",
-    "meta_description": "Lovweb，专为知识博主和内容创作者打造的 AI 智能创作平台，让一部分人先机械飞升，最大化思想者的价值。",
+    "meta_title": "Lovweb - 生产就绪的 Next.js SaaS 模板",
+    "meta_description": "基于 Next.js 15、Supabase 和 Tailwind CSS 的全栈 SaaS 模板，快速启动您的下一个项目。",
     "sponsors_title": "合作伙伴"
   },
   "Counter": {
@@ -44,8 +44,8 @@
   },
   "About": {
     "meta_title": "关于我们",
-    "meta_description": "了解 Lovweb 团队和我们的使命",
-    "about_paragraph": "欢迎来到 Lovweb！我们是一支充满激情的团队，致力于为创作者打造最先进的 AI 智能创作平台。",
+    "meta_description": "了解 Lovweb 模板和 Lovstudio 团队",
+    "about_paragraph": "欢迎来到 Lovweb！这是一个由 Lovstudio 团队打造的生产就绪 Next.js SaaS 模板，帮助开发者快速构建现代 Web 应用。",
     "translation_powered_by": "翻译服务由以下提供支持"
   },
   "Portfolio": {
@@ -66,7 +66,28 @@
   "Dashboard": {
     "meta_title": "控制台",
     "hello_message": "您好，{email}！",
-    "alternative_message": "想要使用相同技术栈更快地构建您的 SaaS？试试 <url></url>。"
+    "alternative_message": "想要使用相同技术栈更快地构建您的 SaaS？试试 <url></url>。",
+    "welcome": "欢迎回来，{name}！",
+    "welcome_subtitle": "这是您的仪表盘，在这里管理您的项目和设置。",
+    "stats": {
+      "projects": "项目",
+      "tasks": "任务",
+      "storage": "存储空间"
+    },
+    "quick_actions": {
+      "title": "快速操作",
+      "profile": "编辑个人资料",
+      "profile_desc": "更新您的个人信息和偏好设置",
+      "settings": "账户设置",
+      "settings_desc": "管理您的账户和安全设置",
+      "docs": "查看文档",
+      "docs_desc": "了解如何使用和定制模板"
+    },
+    "getting_started": {
+      "title": "开始使用",
+      "description": "这是一个演示仪表盘。在实际项目中，您可以在这里展示关键数据和操作。",
+      "cta": "查看 GitHub"
+    }
   },
   "Footer": {
     "company_title": "公司",
@@ -109,68 +130,68 @@
     "sign_out": "退出登录"
   },
   "HomePage": {
-    "hero_title": "Lovweb - 为创作者而生",
-    "hero_description": "专为知识博主和内容创作者打造的 AI 智能创作平台，让一部分人先机械飞升，最大化思想者的价值。",
-    "get_started": "立即开始",
-    "view_docs": "查看文档",
-    "hero_card_title": "AI 创作平台",
-    "hero_card_subtitle": "智能 • 高效 • 专业",
-    "features_title": "为创作者量身打造",
-    "features_description": "集成先进的 AI 技术，提供完整的创作工具链，助力内容创作者实现价值最大化。",
-    "cta_title": "准备开始创作了吗？",
-    "cta_description": "加入数千名创作者，使用 Lovweb 打造专业内容，释放创作潜能。",
-    "cta_start": "立即开始",
-    "cta_github": "了解更多",
+    "hero_badge": "生产就绪",
+    "hero_title": "构建您的下一个 SaaS",
+    "hero_description": "基于 Next.js 15、Supabase 和 Tailwind CSS v4 的全栈模板，包含认证、数据库、UI 组件等开箱即用。",
+    "get_started": "开始使用",
+    "view_github": "查看 GitHub",
+    "features_title": "开箱即用的功能",
+    "features_description": "我们已经为您配置好了构建 SaaS 所需的一切，让您专注于业务逻辑。",
     "features": {
-      "nextjs": {
-        "title": "Next.js 15 + App Router",
-        "description": "基于最新的 Next.js 15 和 App Router，支持 React 19 并配置了 TypeScript，提供卓越的开发体验。"
+      "auth": {
+        "title": "身份认证",
+        "description": "Supabase Auth 提供完整的认证方案，支持邮箱登录、社交登录和 SSO。"
       },
-      "design": {
-        "title": "现代设计系统",
-        "description": "完整的设计令牌系统和组件库，遵循现代 UI/UX 设计原则，支持 Tailwind CSS v4。"
+      "database": {
+        "title": "数据库",
+        "description": "DrizzleORM + PostgreSQL，类型安全的数据库操作，自动迁移管理。"
       },
-      "security": {
-        "title": "企业级安全认证",
-        "description": "集成 Clerk 认证系统，支持多因素认证、社交登录等企业级安全特性。"
-      },
-      "performance": {
-        "title": "性能优先",
-        "description": "使用现代构建工具优化，支持 Turbopack、代码分割和性能监控，确保极致体验。"
+      "ui": {
+        "title": "UI 组件",
+        "description": "shadcn/ui + Tailwind CSS v4，美观且可定制的组件库。"
       },
       "i18n": {
-        "title": "国际化就绪",
-        "description": "内置 next-intl 国际化支持，配合 Crowdin 实现专业的多语言工作流。"
+        "title": "国际化",
+        "description": "next-intl 提供完整的 i18n 支持，默认中英双语。"
       },
-      "testing": {
-        "title": "质量保证",
-        "description": "完整的测试套件，包含 Vitest、React Testing Library 和 Playwright 端到端测试。"
+      "monitoring": {
+        "title": "监控告警",
+        "description": "Sentry 错误追踪、PostHog 分析、Better Stack 日志管理。"
+      },
+      "security": {
+        "title": "安全防护",
+        "description": "Arcjet 提供 WAF、机器人检测和频率限制保护。"
       }
     },
-    "use_cases_title": "适合各种创作场景",
-    "use_cases_description": "无论您是个人知识博主还是企业内容团队，Lovweb 都能与您一起扩展创作边界。",
-    "tabs": {
-      "individual": {
-        "label": "个人博主",
-        "title": "个人知识分享",
-        "description": "专为个人知识博主设计，提供内容创作、SEO优化和粉丝互动工具，助力个人品牌建设。"
-      },
-      "team": {
-        "label": "团队协作",
-        "title": "团队内容创作",
-        "description": "支持多人协作编辑、版本控制和内容审核流程，适合内容团队高效协作创作。"
-      },
-      "enterprise": {
-        "label": "企业级",
-        "title": "企业内容营销",
-        "description": "企业级安全和管理功能，支持品牌一致性管理、多渠道发布和数据分析。"
-      },
-      "education": {
-        "label": "教育培训",
-        "title": "在线教育内容",
-        "description": "专门为教育工作者打造，支持课程内容创作、学习路径设计和学员互动。"
-      }
-    }
+    "tech": {
+      "nextjs": "App Router",
+      "typescript": "类型安全",
+      "tailwind": "原子化 CSS",
+      "supabase": "后端即服务",
+      "drizzle": "类型安全 ORM",
+      "shadcn": "UI 组件库"
+    },
+    "included_title": "模板包含",
+    "included_description": "所有构建 SaaS 所需的核心功能",
+    "included": {
+      "auth": "完整的认证流程（登录/注册/重置密码）",
+      "dashboard": "用户仪表盘布局",
+      "profile": "用户资料管理",
+      "i18n": "中英文国际化",
+      "seo": "SEO 优化配置",
+      "forms": "React Hook Form 表单处理",
+      "validation": "Zod 数据验证",
+      "dark_mode": "深色模式支持（即将推出）"
+    },
+    "demo_title": "探索演示",
+    "demo_description": "查看模板的实际效果，体验完整的用户流程。",
+    "demo_signup": "注册体验",
+    "demo_pricing": "定价页面",
+    "demo_counter": "计数器演示",
+    "cta_title": "准备开始了吗？",
+    "cta_description": "克隆仓库，几分钟内启动您的 SaaS 项目。",
+    "cta_clone": "克隆仓库",
+    "cta_try_demo": "体验演示"
   },
   "DemoBanner": {
     "demo_text": "Next.js 模板在线演示 - 由 Lovweb 团队开发",
@@ -370,7 +391,7 @@
   },
   "SignIn": {
     "meta_title": "登录 - Lovweb",
-    "meta_description": "登录您的 Lovweb 账户，使用 AI 智能创作工具",
+    "meta_description": "登录您的 Lovweb 账户",
     "title": "登录",
     "subtitle": "欢迎回来！请登录您的账户",
     "email_label": "邮箱地址",
@@ -387,9 +408,9 @@
   },
   "SignUp": {
     "meta_title": "注册 - Lovweb",
-    "meta_description": "创建您的 Lovweb 账户，开始使用 AI 智能创作工具",
+    "meta_description": "创建您的 Lovweb 账户，开始使用 SaaS 模板",
     "title": "创建账户",
-    "subtitle": "加入数千名创作者，使用 Lovweb 创作",
+    "subtitle": "创建账户，开始使用模板",
     "full_name_label": "姓名",
     "full_name_placeholder": "请输入您的姓名",
     "email_label": "邮箱地址",

@@ -1,5 +1,5 @@
 import { getTranslations } from 'next-intl/server';
-import { Hello } from '@/components/Hello';
+import { DashboardOverview } from '@/components/dashboard/DashboardOverview';
 
 export async function generateMetadata(props: {
   params: Promise<{ locale: string }>;
@@ -16,9 +16,5 @@ export async function generateMetadata(props: {
 }
 
 export default function Dashboard() {
-  return (
-    <div className="py-5 [&_p]:my-6">
-      <Hello />
-    </div>
-  );
+  return <DashboardOverview />;
 }

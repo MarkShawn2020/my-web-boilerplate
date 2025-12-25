@@ -17,12 +17,12 @@
     "sign_up_link": "Sign up"
   },
   "BaseTemplate": {
-    "description": "Lovweb - AI-powered creation platform for creators",
+    "description": "Lovweb - Production-ready Next.js SaaS Starter",
     "made_with": "Crafted with <author></author>."
   },
   "Index": {
-    "meta_title": "Lovweb - AI Creation Platform for Content Creators",
-    "meta_description": "Lovweb is built for creators. An AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators.",
+    "meta_title": "Lovweb - Production-ready Next.js SaaS Starter",
+    "meta_description": "A full-stack SaaS template built with Next.js 15, Supabase, and Tailwind CSS. Start your next project in minutes.",
     "sponsors_title": "Partners"
   },
   "Counter": {
@@ -44,8 +44,8 @@
   },
   "About": {
     "meta_title": "About",
-    "meta_description": "Learn about Lovweb team and our mission",
-    "about_paragraph": "Welcome to Lovweb! We are a passionate team dedicated to building the most advanced AI-powered creation platform for creators.",
+    "meta_description": "Learn about Lovweb template and the Lovstudio team",
+    "about_paragraph": "Welcome to Lovweb! This is a production-ready Next.js SaaS starter built by the Lovstudio team to help developers build modern web applications quickly.",
     "translation_powered_by": "Translation powered by"
   },
   "Portfolio": {
@@ -66,7 +66,28 @@
   "Dashboard": {
     "meta_title": "Dashboard",
     "hello_message": "Hello {email}!",
-    "alternative_message": "Want to build your SaaS faster using the same stack? Try <url></url>."
+    "alternative_message": "Want to build your SaaS faster using the same stack? Try <url></url>.",
+    "welcome": "Welcome back, {name}!",
+    "welcome_subtitle": "This is your dashboard. Manage your projects and settings here.",
+    "stats": {
+      "projects": "Projects",
+      "tasks": "Tasks",
+      "storage": "Storage"
+    },
+    "quick_actions": {
+      "title": "Quick Actions",
+      "profile": "Edit Profile",
+      "profile_desc": "Update your personal information and preferences",
+      "settings": "Account Settings",
+      "settings_desc": "Manage your account and security settings",
+      "docs": "View Documentation",
+      "docs_desc": "Learn how to use and customize the template"
+    },
+    "getting_started": {
+      "title": "Getting Started",
+      "description": "This is a demo dashboard. In a real project, you can display key data and actions here.",
+      "cta": "View on GitHub"
+    }
   },
   "Footer": {
     "company_title": "Company",
@@ -109,68 +130,68 @@
     "sign_out": "Sign out"
   },
   "HomePage": {
-    "hero_title": "Lovweb - Built for Creators",
-    "hero_description": "An AI-powered intelligent creation platform designed specifically for knowledge bloggers and content creators to maximize the value of thinkers.",
+    "hero_badge": "Production Ready",
+    "hero_title": "Build Your Next SaaS",
+    "hero_description": "A full-stack template built with Next.js 15, Supabase, and Tailwind CSS v4. Authentication, database, UI components - all ready out of the box.",
     "get_started": "Get Started",
-    "view_docs": "View Documentation",
-    "hero_card_title": "AI Creation Platform",
-    "hero_card_subtitle": "Smart • Efficient • Professional",
-    "features_title": "Tailored for Content Creators",
-    "features_description": "Integrated with advanced AI technology, providing a complete creation toolkit to help content creators maximize their value.",
-    "cta_title": "Ready to Start Creating?",
-    "cta_description": "Join thousands of creators using Lovweb to craft professional content and unlock your creative potential.",
-    "cta_start": "Get Started",
-    "cta_github": "Learn More",
+    "view_github": "View on GitHub",
+    "features_title": "Everything You Need",
+    "features_description": "We've configured everything you need to build a SaaS, so you can focus on your business logic.",
     "features": {
-      "nextjs": {
-        "title": "AI-Powered Creation Engine",
-        "description": "Advanced artificial intelligence that understands your content needs, generating high-quality drafts, suggestions, and optimizations tailored to your unique voice and style."
+      "auth": {
+        "title": "Authentication",
+        "description": "Supabase Auth provides complete authentication with email login, social login, and SSO support."
       },
-      "design": {
-        "title": "Professional Content Studio",
-        "description": "Complete content creation toolkit with modern editing interface, collaborative features, and professional templates designed for knowledge creators."
+      "database": {
+        "title": "Database",
+        "description": "DrizzleORM + PostgreSQL for type-safe database operations with automatic migrations."
       },
-      "security": {
-        "title": "Enterprise-Grade Security",
-        "description": "Built-in security with encrypted data storage, secure collaboration, and privacy-first approach to protect your intellectual property and content."
-      },
-      "performance": {
-        "title": "Lightning-Fast Performance",
-        "description": "Optimized for speed and efficiency with real-time collaboration, instant previews, and seamless publishing across multiple platforms."
+      "ui": {
+        "title": "UI Components",
+        "description": "shadcn/ui + Tailwind CSS v4 for beautiful and customizable components."
       },
       "i18n": {
-        "title": "Global Publishing Ready",
-        "description": "Multi-language support with automated translation capabilities and localization tools to reach global audiences effortlessly."
+        "title": "Internationalization",
+        "description": "next-intl provides complete i18n support with Chinese and English by default."
       },
-      "testing": {
-        "title": "Quality Assurance",
-        "description": "Built-in content validation, plagiarism detection, SEO optimization, and analytics to ensure your content meets the highest standards."
+      "monitoring": {
+        "title": "Monitoring",
+        "description": "Sentry error tracking, PostHog analytics, and Better Stack logging."
+      },
+      "security": {
+        "title": "Security",
+        "description": "Arcjet provides WAF, bot detection, and rate limiting protection."
       }
     },
-    "use_cases_title": "Perfect for Every Creator",
-    "use_cases_description": "Whether you're an individual blogger or an enterprise content team, Lovweb scales with your creative ambitions.",
-    "tabs": {
-      "individual": {
-        "label": "Individual",
-        "title": "Personal Knowledge Sharing",
-        "description": "Designed for individual knowledge bloggers with content creation tools, SEO optimization, and audience engagement features to build your personal brand."
-      },
-      "team": {
-        "label": "Team",
-        "title": "Collaborative Content Creation",
-        "description": "Multi-user collaboration with version control and content review workflows, perfect for content teams working together efficiently."
-      },
-      "enterprise": {
-        "label": "Enterprise",
-        "title": "Enterprise Content Marketing",
-        "description": "Enterprise-grade security and management features with brand consistency controls, multi-channel publishing, and advanced analytics."
-      },
-      "education": {
-        "label": "Education",
-        "title": "Educational Content",
-        "description": "Specially designed for educators with course content creation, learning path design, and student interaction capabilities."
-      }
-    }
+    "tech": {
+      "nextjs": "App Router",
+      "typescript": "Type Safe",
+      "tailwind": "Utility CSS",
+      "supabase": "BaaS",
+      "drizzle": "Type-safe ORM",
+      "shadcn": "UI Components"
+    },
+    "included_title": "What's Included",
+    "included_description": "All the core features you need to build a SaaS",
+    "included": {
+      "auth": "Complete auth flow (login/signup/reset password)",
+      "dashboard": "User dashboard layout",
+      "profile": "User profile management",
+      "i18n": "Chinese & English internationalization",
+      "seo": "SEO optimization",
+      "forms": "React Hook Form integration",
+      "validation": "Zod validation",
+      "dark_mode": "Dark mode support (coming soon)"
+    },
+    "demo_title": "Explore the Demo",
+    "demo_description": "See the template in action. Experience the complete user flow.",
+    "demo_signup": "Try Sign Up",
+    "demo_pricing": "View Pricing",
+    "demo_counter": "Counter Demo",
+    "cta_title": "Ready to Get Started?",
+    "cta_description": "Clone the repository and launch your SaaS project in minutes.",
+    "cta_clone": "Clone Repository",
+    "cta_try_demo": "Try the Demo"
   },
   "DemoBanner": {
     "demo_text": "Next.js Template Demo - Developed by Lovweb Team",

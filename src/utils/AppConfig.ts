@@ -25,6 +25,6 @@ export const detectUserLocale = (acceptLanguage?: string | null): string => {
 export const AppConfig = {
   name: 'Lovweb',
   locales: ['zh', 'en'],
-  defaultLocale: 'zh', // Default to Chinese for Lovweb's primary audience
+  defaultLocale: 'zh', // Default to Chinese
   localePrefix,
 };

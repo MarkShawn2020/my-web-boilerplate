@@ -1,14 +1,13 @@
-import { 
-  ArrowRight, 
-  Building, 
-  CheckCircle, 
-  Globe, 
-  GraduationCap,
+import {
+  ArrowRight,
+  CheckCircle,
+  Database,
+  Globe,
+  Layout,
+  Lock,
+  Monitor,
   Palette,
-  Rocket,
   Shield,
-  TestTube,
-  Users,
   Zap
 } from 'lucide-react';
 import { getTranslations, setRequestLocale } from 'next-intl/server';
@@ -16,7 +15,6 @@ import Link from 'next/link';
 import { Button } from '@/components/Button';
 import { Card, CardContent, CardHeader } from '@/components/Card';
 import { Container } from '@/components/layout/Container';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/Tabs';
 
 type IIndexProps = {
   params: Promise<{ locale: string }>;
@@ -43,24 +41,19 @@ export default async function Index(props: IIndexProps) {
 
   const features = [
     {
-      icon: Rocket,
-      title: t('features.nextjs.title'),
-      description: t('features.nextjs.description'),
+      icon: Lock,
+      title: t('features.auth.title'),
+      description: t('features.auth.description'),
+    },
+    {
+      icon: Database,
+      title: t('features.database.title'),
+      description: t('features.database.description'),
     },
     {
       icon: Palette,
-      title: t('features.design.title'),
-      description: t('features.design.description'),
-    },
-    {
-      icon: Shield,
-      title: t('features.security.title'),
-      description: t('features.security.description'),
-    },
-    {
-      icon: Zap,
-      title: t('features.performance.title'),
-      description: t('features.performance.description'),
+      title: t('features.ui.title'),
+      description: t('features.ui.description'),
     },
     {
       icon: Globe,
@@ -68,50 +61,73 @@ export default async function Index(props: IIndexProps) {
       description: t('features.i18n.description'),
     },
     {
-      icon: TestTube,
-      title: t('features.testing.title'),
-      description: t('features.testing.description'),
+      icon: Monitor,
+      title: t('features.monitoring.title'),
+      description: t('features.monitoring.description'),
+    },
+    {
+      icon: Shield,
+      title: t('features.security.title'),
+      description: t('features.security.description'),
     },
   ];
 
-  const stats = [
-    { value: "10K+", label: "活跃创作者" },
-    { value: "50M+", label: "内容阅读量" },
-    { value: "99.9%", label: "服务可用性" },
-    { value: "24/7", label: "技术支持" },
+  const techStack = [
+    { name: 'Next.js 15', description: t('tech.nextjs') },
+    { name: 'TypeScript', description: t('tech.typescript') },
+    { name: 'Tailwind CSS v4', description: t('tech.tailwind') },
+    { name: 'Supabase', description: t('tech.supabase') },
+    { name: 'DrizzleORM', description: t('tech.drizzle') },
+    { name: 'shadcn/ui', description: t('tech.shadcn') },
+  ];
+
+  const included = [
+    t('included.auth'),
+    t('included.dashboard'),
+    t('included.profile'),
+    t('included.i18n'),
+    t('included.seo'),
+    t('included.forms'),
+    t('included.validation'),
+    t('included.dark_mode'),
   ];
 
   return (
     <>
-      {/* Hero Section - Clean and Professional */}
+      {/* Hero Section */}
       <section className="w-full py-24 lg:py-32">
         <Container>
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-main mb-6">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-6">
+              <Zap className="w-4 h-4 mr-2" />
+              {t('hero_badge')}
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-text-main mb-6 font-serif">
               {t('hero_title')}
             </h1>
-            
+
             <p className="text-lg md:text-xl text-text-faded mb-10 max-w-2xl mx-auto">
               {t('hero_description')}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href={`/${locale}/sign-up`}>
-                <Button 
-                  variant="default" 
-                  size="lg" 
+                <Button
+                  variant="default"
+                  size="lg"
                   className="bg-primary hover:bg-primary/90 transition-colors"
                 >
                   {t('get_started')}
                   <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
-              <Link href={`/${locale}/about`}>
-                <Button 
-                  variant="outline" 
+              <Link href="https://github.com/lovstudio/lovweb" target="_blank" rel="noopener noreferrer">
+                <Button
+                  variant="outline"
                   size="lg"
                 >
-                  {t('view_docs')}
+                  {t('view_github')}
                 </Button>
               </Link>
             </div>
@@ -119,17 +135,17 @@ export default async function Index(props: IIndexProps) {
         </Container>
       </section>
 
-      {/* Stats Section - Simple and Clean */}
+      {/* Tech Stack Section */}
       <section className="w-full py-16 border-y border-border/50">
         <Container>
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-3xl lg:text-4xl font-bold text-text-main mb-2">
-                  {stat.value}
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+            {techStack.map((tech) => (
+              <div key={tech.name} className="text-center">
+                <div className="text-lg font-semibold text-text-main mb-1">
+                  {tech.name}
                 </div>
                 <div className="text-sm text-text-faded">
-                  {stat.label}
+                  {tech.description}
                 </div>
               </div>
             ))}
@@ -137,11 +153,11 @@ export default async function Index(props: IIndexProps) {
         </Container>
       </section>
 
-      {/* Features Section - Minimalist Cards */}
+      {/* Features Section */}
       <section className="w-full py-24 lg:py-32">
         <Container>
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4 font-serif">
               {t('features_title')}
             </h2>
             <p className="text-lg text-text-faded max-w-2xl mx-auto">
@@ -151,9 +167,11 @@ export default async function Index(props: IIndexProps) {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature) => (
-              <Card key={feature.title} className="border border-border/50 bg-background hover:border-border transition-colors">
+              <Card key={feature.title} className="border border-border/50 bg-background hover:border-primary/30 transition-colors">
                 <CardHeader className="pb-4">
-                  <feature.icon className="w-8 h-8 text-primary mb-4" />
+                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4">
+                    <feature.icon className="w-6 h-6 text-primary" />
+                  </div>
                   <h3 className="text-xl font-semibold text-text-main">
                     {feature.title}
                   </h3>
@@ -169,179 +187,93 @@ export default async function Index(props: IIndexProps) {
         </Container>
       </section>
 
-      {/* Use Cases Section - Clean Tabs */}
-      <section className="w-full py-24 lg:py-32 bg-background-oat/30">
+      {/* What's Included Section */}
+      <section className="w-full py-24 lg:py-32 bg-muted/30">
         <Container>
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4">
-              {t('use_cases_title')}
-            </h2>
-            <p className="text-lg text-text-faded max-w-2xl mx-auto">
-              {t('use_cases_description')}
-            </p>
-          </div>
-
-          <Tabs defaultValue="individual" className="max-w-4xl mx-auto">
-            <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 bg-white/50">
-              <TabsTrigger value="individual" className="data-[state=active]:bg-background data-[state=active]:text-text-main">
-                <Users className="w-4 h-4 mr-2" />
-                <span className="hidden sm:inline">{t('tabs.individual.label')}</span>
-              </TabsTrigger>
-              <TabsTrigger value="team" className="data-[state=active]:bg-background data-[state=active]:text-text-main">
-                <Users className="w-4 h-4 mr-2" />
-                <span className="hidden sm:inline">{t('tabs.team.label')}</span>
-              </TabsTrigger>
-              <TabsTrigger value="enterprise" className="data-[state=active]:bg-background data-[state=active]:text-text-main">
-                <Building className="w-4 h-4 mr-2" />
-                <span className="hidden sm:inline">{t('tabs.enterprise.label')}</span>
-              </TabsTrigger>
-              <TabsTrigger value="education" className="data-[state=active]:bg-background data-[state=active]:text-text-main">
-                <GraduationCap className="w-4 h-4 mr-2" />
-                <span className="hidden sm:inline">{t('tabs.education.label')}</span>
-              </TabsTrigger>
-            </TabsList>
-
-            <div className="mt-8">
-              <TabsContent value="individual">
-                <Card className="border-0 shadow-sm">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-semibold text-text-main mb-4">
-                      {t('tabs.individual.title')}
-                    </h3>
-                    <p className="text-text-faded mb-6 leading-relaxed">
-                      {t('tabs.individual.description')}
-                    </p>
-                    <ul className="space-y-3">
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">AI 智能写作辅助</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">SEO 优化建议</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">多平台同步发布</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="team">
-                <Card className="border-0 shadow-sm">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-semibold text-text-main mb-4">
-                      {t('tabs.team.title')}
-                    </h3>
-                    <p className="text-text-faded mb-6 leading-relaxed">
-                      {t('tabs.team.description')}
-                    </p>
-                    <ul className="space-y-3">
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">实时协作编辑</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">版本控制管理</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">团队权限管理</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="enterprise">
-                <Card className="border-0 shadow-sm">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-semibold text-text-main mb-4">
-                      {t('tabs.enterprise.title')}
-                    </h3>
-                    <p className="text-text-faded mb-6 leading-relaxed">
-                      {t('tabs.enterprise.description')}
-                    </p>
-                    <ul className="space-y-3">
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">品牌资产管理</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">数据分析洞察</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">API 集成支持</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </TabsContent>
-
-              <TabsContent value="education">
-                <Card className="border-0 shadow-sm">
-                  <CardContent className="p-8">
-                    <h3 className="text-2xl font-semibold text-text-main mb-4">
-                      {t('tabs.education.title')}
-                    </h3>
-                    <p className="text-text-faded mb-6 leading-relaxed">
-                      {t('tabs.education.description')}
-                    </p>
-                    <ul className="space-y-3">
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">课程内容管理</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">学习路径设计</span>
-                      </li>
-                      <li className="flex items-center gap-3">
-                        <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-text-faded">互动测验系统</span>
-                      </li>
-                    </ul>
-                  </CardContent>
-                </Card>
-              </TabsContent>
+          <div className="max-w-4xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4 font-serif">
+                {t('included_title')}
+              </h2>
+              <p className="text-lg text-text-faded">
+                {t('included_description')}
+              </p>
             </div>
-          </Tabs>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {included.map((item) => (
+                <div key={item} className="flex items-center gap-3 p-4 bg-background rounded-xl border border-border/50">
+                  <CheckCircle className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-text-main">{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
         </Container>
       </section>
 
-      {/* CTA Section - Simple and Direct */}
+      {/* Demo Section */}
       <section className="w-full py-24 lg:py-32">
         <Container>
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-6">
+            <Layout className="w-12 h-12 text-primary mx-auto mb-6" />
+            <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-4 font-serif">
+              {t('demo_title')}
+            </h2>
+            <p className="text-lg text-text-faded mb-8 max-w-2xl mx-auto">
+              {t('demo_description')}
+            </p>
+
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link href={`/${locale}/sign-up`}>
+                <Button variant="default" size="lg">
+                  {t('demo_signup')}
+                </Button>
+              </Link>
+              <Link href={`/${locale}/pricing`}>
+                <Button variant="outline" size="lg">
+                  {t('demo_pricing')}
+                </Button>
+              </Link>
+              <Link href={`/${locale}/counter`}>
+                <Button variant="outline" size="lg">
+                  {t('demo_counter')}
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </Container>
+      </section>
+
+      {/* CTA Section */}
+      <section className="w-full py-24 lg:py-32 bg-primary/5">
+        <Container>
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-main mb-6 font-serif">
               {t('cta_title')}
             </h2>
-            
+
             <p className="text-lg text-text-faded mb-10 max-w-2xl mx-auto">
               {t('cta_description')}
             </p>
-            
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href={`/${locale}/sign-up`}>
-                <Button 
-                  variant="default" 
+              <Link href="https://github.com/lovstudio/lovweb" target="_blank" rel="noopener noreferrer">
+                <Button
+                  variant="default"
                   size="lg"
                   className="bg-text-main hover:bg-text-main/90 text-white transition-colors"
                 >
-                  {t('cta_start')}
+                  {t('cta_clone')}
+                  <ArrowRight className="ml-2 w-4 h-4" />
                 </Button>
               </Link>
-              <Link href="https://github.com" target="_blank" rel="noopener noreferrer">
-                <Button 
-                  variant="outline" 
+              <Link href={`/${locale}/sign-up`}>
+                <Button
+                  variant="outline"
                   size="lg"
                 >
-                  {t('cta_github')}
+                  {t('cta_try_demo')}
                 </Button>
               </Link>
             </div>
@@ -350,4 +282,4 @@ export default async function Index(props: IIndexProps) {
       </section>
     </>
   );
-};
+}

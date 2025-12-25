@@ -35,7 +35,7 @@ const Footer = () => {
                 <span className="text-xl font-semibold text-text-main">Lovweb</span>
               </Link>
               <p className="text-sm text-text-faded mb-4">
-                为创作者而生的 AI 智能创作平台
+                Production-ready Next.js SaaS Starter
               </p>
               <div className="flex space-x-4">
                 <SocialIcon href="https://github.com/lovstudio" icon="github" />
