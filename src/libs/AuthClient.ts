@@ -40,15 +40,21 @@ export class AuthClientService {
     try {
       console.log('🔧 AuthClientService.signInWithGoogle called');
       console.log('🌐 Calling supabase.auth.signInWithOAuth...');
-      
+
+      // 使用非 locale 的 callback 页面处理 OAuth callback
+      const callbackUrl = new URL('/auth/callback', window.location.origin);
+
+      // 获取当前 locale 用于 next 参数
+      const locale = window.location.pathname.match(/^\/([^/]+)\//)?.[1] || 'zh';
+      const redirectPath = redirectTo
+        ? (redirectTo.startsWith('http') ? new URL(redirectTo).pathname : redirectTo)
+        : `/${locale}/dashboard`;
+      callbackUrl.searchParams.set('next', redirectPath);
+
       const { data, error } = await supabase.auth.signInWithOAuth({
         provider: 'google',
         options: {
-          redirectTo: redirectTo || `${window.location.origin}/dashboard`,
-          queryParams: {
-            access_type: 'offline',
-            prompt: 'consent',
-          },
+          redirectTo: callbackUrl.toString(),
         },
       });
 

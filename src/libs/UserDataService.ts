@@ -24,6 +24,10 @@ export class UserDataService {
         if (error.code === 'PGRST116') {
           return await this.createDefaultUserProfile(userId);
         }
+        // 表不存在时返回默认值而不是报错
+        if (error.message?.includes('Could not find the table') || error.code === '42P01') {
+          return await this.getDefaultProfile(userId);
+        }
         console.error('Error fetching user profile:', error.message);
         return null;
       }
@@ -51,6 +55,10 @@ export class UserDataService {
         if (error.code === 'PGRST116') {
           return await this.createDefaultUserPreferences(userId);
         }
+        // 表不存在时返回默认值而不是报错
+        if (error.message?.includes('Could not find the table') || error.code === '42P01') {
+          return this.getDefaultPreferences(userId);
+        }
         console.error('Error fetching user preferences:', error.message);
         return null;
       }
@@ -77,6 +85,10 @@ export class UserDataService {
         // 如果没有找到记录，创建免费订阅
         if (error.code === 'PGRST116') {
           return await this.createDefaultUserSubscription(userId);
+        }
+        // 表不存在时返回默认值而不是报错
+        if (error.message?.includes('Could not find the table') || error.code === '42P01') {
+          return this.getDefaultSubscription(userId);
         }
         console.error('Error fetching user subscription:', error.message);
         return null;
@@ -399,6 +411,66 @@ export class UserDataService {
       cancelAtPeriodEnd: dbData.cancel_at_period_end,
       createdAt: new Date(dbData.created_at),
       updatedAt: new Date(dbData.updated_at),
+    };
+  }
+
+  // ==========================================
+  // 默认值辅助函数（表不存在时使用）
+  // ==========================================
+
+  /**
+   * 返回默认用户档案（表不存在时使用）
+   */
+  private static async getDefaultProfile(userId: string): Promise<UserProfile> {
+    const { data: { user } } = await supabase.auth.getUser();
+    const now = new Date();
+    return {
+      id: userId,
+      email: user?.email || '',
+      fullName: user?.user_metadata?.full_name || null,
+      avatarUrl: user?.user_metadata?.avatar_url || null,
+      locale: 'zh',
+      timezone: 'Asia/Shanghai',
+      onboardingCompleted: false,
+      createdAt: now,
+      updatedAt: now,
+    };
+  }
+
+  /**
+   * 返回默认用户偏好设置（表不存在时使用）
+   */
+  private static getDefaultPreferences(userId: string): UserPreferences {
+    const now = new Date();
+    return {
+      id: 0,
+      userId,
+      theme: 'light',
+      emailNotifications: true,
+      marketingEmails: false,
+      language: 'zh',
+      createdAt: now,
+      updatedAt: now,
+    };
+  }
+
+  /**
+   * 返回默认用户订阅（表不存在时使用）
+   */
+  private static getDefaultSubscription(userId: string): UserSubscription {
+    const now = new Date();
+    return {
+      id: 0,
+      userId,
+      planId: 'free',
+      status: 'active',
+      stripeCustomerId: null,
+      stripeSubscriptionId: null,
+      currentPeriodStart: null,
+      currentPeriodEnd: null,
+      cancelAtPeriodEnd: false,
+      createdAt: now,
+      updatedAt: now,
     };
   }
 }

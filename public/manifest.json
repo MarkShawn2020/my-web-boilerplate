@@ -1,0 +1,21 @@
+{
+  "name": "Neurora - AI 智能创作平台",
+  "short_name": "Neurora",
+  "description": "为创作者而生的 AI 智能创作平台",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9F9F7",
+  "theme_color": "#D97757",
+  "icons": [
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
