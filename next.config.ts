@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 import withBundleAnalyzer from '@next/bundle-analyzer';
 import { withSentryConfig } from '@sentry/nextjs';
-import { codeInspectorPlugin } from 'code-inspector-plugin';
+import { lovinspPlugin } from 'lovinsp';
 import createNextIntlPlugin from 'next-intl/plugin';
 import './src/libs/Env';
 
@@ -12,14 +12,14 @@ const baseConfig: NextConfig = {
   },
   poweredByHeader: false,
   reactStrictMode: true,
-  // Enable Code Inspector for Turbopack (Next.js >= 15.3.x)
+  // Enable Lovinsp for Turbopack (Next.js >= 15.3.x)
   turbopack: {
-    rules: codeInspectorPlugin({ bundler: 'turbopack' }),
+    rules: lovinspPlugin({ bundler: 'turbopack' }),
   },
   webpack: (config, { dev }) => {
-    // Add code-inspector-plugin only in development
+    // Add lovinsp only in development
     if (dev) {
-      config.plugins.push(codeInspectorPlugin({ bundler: 'webpack' }));
+      config.plugins.push(lovinspPlugin({ bundler: 'webpack' }));
     }
     return config;
   },
