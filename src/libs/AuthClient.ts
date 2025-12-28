@@ -1,5 +1,19 @@
 import { supabase } from './Supabase';
 
+const API_TIMEOUT_MS = 3000;
+
+/**
+ * Wrap a promise with timeout
+ */
+function withTimeout<T>(promise: PromiseLike<T>, ms: number, errorMessage: string): Promise<T> {
+  return Promise.race([
+    Promise.resolve(promise),
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error(errorMessage)), ms)
+    ),
+  ]);
+}
+
 /**
  * Client-side authentication utilities
  * 只包含可在浏览器中安全运行的操作
@@ -129,14 +143,20 @@ export class AuthClientService {
   }
 
   /**
-   * Get current session
+   * Get current session with timeout
    */
   static async getSession() {
     try {
-      const { data: { session }, error } = await supabase.auth.getSession();
+      const { data: { session }, error } = await withTimeout(
+        supabase.auth.getSession(),
+        API_TIMEOUT_MS,
+        'Session request timed out'
+      );
       return { session, error: error?.message };
     } catch (error) {
-      return { session: null, error: 'An unexpected error occurred' };
+      const message = error instanceof Error ? error.message : 'An unexpected error occurred';
+      console.error('[AuthClient] getSession error:', message);
+      return { session: null, error: message };
     }
   }
 

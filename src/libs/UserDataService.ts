@@ -3,6 +3,20 @@
 import type { UserPreferences, UserProfile, UserSubscription } from '@/providers/AuthProvider';
 import { supabase } from './Supabase';
 
+const API_TIMEOUT_MS = 3000;
+
+/**
+ * Wrap a promise with timeout
+ */
+function withTimeout<T>(promise: PromiseLike<T>, ms: number, errorMessage: string): Promise<T> {
+  return Promise.race([
+    Promise.resolve(promise),
+    new Promise<T>((_, reject) =>
+      setTimeout(() => reject(new Error(errorMessage)), ms)
+    ),
+  ]);
+}
+
 /**
  * 直接调用 Supabase 的用户数据服务
  * 使用 RLS 策略保证安全性，避免 API 层的额外延迟
@@ -13,11 +27,11 @@ export class UserDataService {
    */
   static async getUserProfile(userId: string): Promise<UserProfile | null> {
     try {
-      const { data, error } = await supabase
-        .from('user_profiles')
-        .select('*')
-        .eq('id', userId)
-        .single();
+      const { data, error } = await withTimeout(
+        supabase.from('user_profiles').select('*').eq('id', userId).single(),
+        API_TIMEOUT_MS,
+        'User profile request timed out'
+      );
 
       if (error) {
         // 如果没有找到记录，创建默认用户档案
@@ -44,11 +58,11 @@ export class UserDataService {
    */
   static async getUserPreferences(userId: string): Promise<UserPreferences | null> {
     try {
-      const { data, error } = await supabase
-        .from('user_preferences')
-        .select('*')
-        .eq('user_id', userId)
-        .single();
+      const { data, error } = await withTimeout(
+        supabase.from('user_preferences').select('*').eq('user_id', userId).single(),
+        API_TIMEOUT_MS,
+        'User preferences request timed out'
+      );
 
       if (error) {
         // 如果没有找到记录，创建默认偏好设置
@@ -75,11 +89,11 @@ export class UserDataService {
    */
   static async getUserSubscription(userId: string): Promise<UserSubscription | null> {
     try {
-      const { data, error } = await supabase
-        .from('user_subscriptions')
-        .select('*')
-        .eq('user_id', userId)
-        .single();
+      const { data, error } = await withTimeout(
+        supabase.from('user_subscriptions').select('*').eq('user_id', userId).single(),
+        API_TIMEOUT_MS,
+        'User subscription request timed out'
+      );
 
       if (error) {
         // 如果没有找到记录，创建免费订阅

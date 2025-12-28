@@ -14,9 +14,12 @@ import {UserDropdown} from '../UserDropdown';
 import {Container} from './Container';
 import {HeaderActionSkeleton} from './HeaderActionSkeleton';
 
+const LOADING_TIMEOUT_MS = 3000;
+
 const Header = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const [hasMounted, setHasMounted] = useState(false);
+    const [loadingTimedOut, setLoadingTimedOut] = useState(false);
     const t = useTranslations('Header');
     const router = useRouter();
 
@@ -27,6 +30,22 @@ const Header = () => {
     useEffect(() => {
         setHasMounted(true);
     }, []);
+
+    // Loading timeout - stop showing skeleton after 3 seconds
+    useEffect(() => {
+        if (!loading) {
+            setLoadingTimedOut(false);
+            return;
+        }
+        const timer = setTimeout(() => {
+            console.warn('[Header] Auth loading timed out after 3s');
+            setLoadingTimedOut(true);
+        }, LOADING_TIMEOUT_MS);
+        return () => clearTimeout(timer);
+    }, [loading]);
+
+    // Effective loading state: loading AND not timed out
+    const effectiveLoading = loading && !loadingTimedOut;
 
     const navigation = [
         {name: t('pricing'), href: '/pricing'},
@@ -64,7 +83,7 @@ const Header = () => {
                     </div>
 
                     {/* Desktop Navigation */}
-                    <nav className="hidden lg:flex items-center space-x-8">
+                    <nav className="hidden md:flex items-center space-x-8">
                         {navigation.map(item => (
                             <Link
                                 key={item.name}
@@ -75,7 +94,7 @@ const Header = () => {
                             </Link>
                         ))}
                         {/* Show LocaleSwitcher only when user is not authenticated */}
-                        {(!hasMounted || loading || !isAuthenticated) && (
+                        {(!hasMounted || effectiveLoading || !isAuthenticated) && (
                             <div className="pl-4 border-l border-border-default/20">
                                 <LocaleSwitcher/>
                             </div>
@@ -84,7 +103,7 @@ const Header = () => {
 
                     {/* Desktop Actions */}
                     <div className="hidden lg:flex items-center space-x-4">
-                        {!hasMounted || loading
+                        {!hasMounted || effectiveLoading
                             ? (
                                 <HeaderActionSkeleton variant="desktop" />
                             )
@@ -152,7 +171,7 @@ const Header = () => {
                 >
                     <nav className="flex flex-col space-y-4">
                         {/* Show LocaleSwitcher only when user is not authenticated */}
-                        {(!hasMounted || loading || !isAuthenticated) && (
+                        {(!hasMounted || effectiveLoading || !isAuthenticated) && (
                             <div className="flex justify-end py-2">
                                 <LocaleSwitcher/>
                             </div>
@@ -170,7 +189,7 @@ const Header = () => {
                             </Link>
                         ))}
                         <div className="flex flex-col space-y-3 pt-4 border-t border-border-default/20">
-                            {!hasMounted || loading
+                            {!hasMounted || effectiveLoading
                                 ? (
                                     <HeaderActionSkeleton variant="mobile" />
                                 )
