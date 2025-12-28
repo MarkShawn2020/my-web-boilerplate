@@ -102,7 +102,7 @@ const Header = () => {
                     </nav>
 
                     {/* Desktop Actions */}
-                    <div className="hidden lg:flex items-center space-x-4">
+                    <div className="hidden sm:flex items-center space-x-4">
                         {!hasMounted || effectiveLoading
                             ? (
                                 <HeaderActionSkeleton variant="desktop" />
@@ -132,7 +132,7 @@ const Header = () => {
                     <button
                         type="button"
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className="lg:hidden p-2 rounded-md text-text-main hover:bg-gray-100 transition-colors"
+                        className="sm:hidden p-2 rounded-md text-text-main hover:bg-gray-100 transition-colors"
                         aria-label="Toggle menu"
                     >
                         <svg
@@ -165,7 +165,7 @@ const Header = () => {
                 {/* Mobile Menu */}
                 <div
                     className={cn(
-                        'lg:hidden transition-all duration-300 overflow-hidden',
+                        'sm:hidden transition-all duration-300 overflow-hidden',
                         isMenuOpen ? 'max-h-[500px] pb-6' : 'max-h-0',
                     )}
                 >
